@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 16:28:46 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 17:35:53 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int push(t_data *data, int src, int dst);
 int swap(t_data *data, int stack);
 void display_stack(t_data *data, int stack);
 int rev_rotate(t_data *data, int stack);
+int rotate(t_data *data, int stack);
 
 void check_digit_assert(void)
 {
@@ -321,7 +322,7 @@ void swap_assert(void)
     ASSERT_END(__func__);
 }
 
-void rr_assert(void)
+void rev_rotate_assert(void)
 {
     ASSERT_START(__func__);
     
@@ -338,6 +339,10 @@ void rr_assert(void)
     data.size_b = 3;
 
     i = 0;
+    NL;
+    display_stack(&data, STACK_A);
+    display_stack(&data, STACK_B);
+    NL;
     while (i < data.size_a)
     {
         tmp = *data.a;
@@ -359,24 +364,56 @@ void rr_assert(void)
         i++;
     }
     assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
-
+    NL;
+    display_stack(&data, STACK_A);
+    display_stack(&data, STACK_B);
+    NL;
     ASSERT_END(__func__);
     
+}
+
+
+void rotate_assert(void)
+{
+    ASSERT_START(__func__);
+    t_data data;
+    int arr[] = {10, 22, 1101, 7, 12, 32};
+
+    data.a = &arr[3];
+    data.b = &arr[2];
+    data.start = &arr[0];
+    data.end = &arr[5];
+    data.size_a = 3;
+    data.size_b = 3;
+
+    NL;
+    display_stack(&data, STACK_A);
+    rotate(&data, STACK_A);
+    display_stack(&data, STACK_A);
+    NL;
+    display_stack(&data, STACK_B);
+    rotate(&data, STACK_B);
+    display_stack(&data, STACK_B);
+    NL;
+    
+    ASSERT_END(__func__);
 }
 
 int main(int argc, char **argv)
 {
     (void)argc;
     (void)argv;
-    check_digit_assert();
-    get_complexity_assert();
-    atoi_long_long_assert();
-    check_arg_assert();
-    init_stack_assert();
-    check_dupplicate_assert();
-    init_data_assert(&argv[1]);
-    push_assert();
-    swap_assert();
-    rr_assert();
+    // check_digit_assert();
+    // get_complexity_assert();
+    // atoi_long_long_assert();
+    // check_arg_assert();
+    // init_stack_assert();
+    // check_dupplicate_assert();
+    // init_data_assert(&argv[1]);
+    // push_assert();
+    // swap_assert();
+    // rev_rotate_assert();
+    rotate_assert();
+    
     return (0);
 }

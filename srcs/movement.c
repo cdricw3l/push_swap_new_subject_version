@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 15:30:52 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 17:39:56 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,36 @@ int rev_rotate(t_data *data, int stack)
         tmp = *(data->b - (data->size_b - 1));
         ft_memmove(data->b - 2, data->b - 1, (data->size_b ) * sizeof(int));
         *(data->b) = tmp;
+    }
+    return (OK);    
+}
+
+int rotate(t_data *data, int stack)
+{
+    int *arr;
+    int len;
+    int tmp;
+
+    (void)len;
+    (void)arr;
+    if (!data || (stack != STACK_A && stack != STACK_B))
+        return (NO_MOVE);
+    if (stack == STACK_A && data->a)
+    {
+        arr = data->a;
+        len = data->size_a;
+        tmp = *(data->a);
+        ft_memmove(data->a, data->a + 1, (data->size_a - 1) * sizeof(int));
+        *(data->a + (data->size_a - 1)) = tmp;
+    }
+    else if (stack == STACK_B && data->b)
+    {
+        arr = data->b;
+        len = data->size_b;
+        tmp = *(data->b);
+
+        ft_memmove(data->b - 1, data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
+        *(data->b - (data->size_b  - 1)) = tmp;
     }
     return (OK);    
 }
