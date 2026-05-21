@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 07:51:56 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 09:25:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 #define SPACE 32
 #define PLUS 43
 #define MINUS 45
+#define STACK_A 0
+#define STACK_B 1
+#define NO_MOVE 1
 
 enum e_algo
 {
@@ -36,6 +39,8 @@ typedef struct s_data
 {
     int *a;
     int *b;
+    int *start;
+    int *end;
     int stack[1024];
     int algo;
     int size_a;

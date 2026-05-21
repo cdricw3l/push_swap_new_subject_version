@@ -6,11 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 08:51:09 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 09:26:49 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "../include/push_swap.h"
 #include <assert.h>
 
 int get_complexity(char *arg)
@@ -110,6 +110,8 @@ int create_stack(char **argv, t_data *data)
         k++;
     }
     data->a = data->stack;
+    data->start = data->stack;
+    data->end = &data->stack[data->size_a - 1];
     data->b = NULL;
     return (OK);
 }

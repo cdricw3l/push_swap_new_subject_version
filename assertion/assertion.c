@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 08:59:05 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 09:24:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,8 @@ void init_data_assert(char **argv)
     else
         split_len = (int)ft_split_len(split) - 1;
     assert(data.size_a == split_len);
+    assert(data.size_b == 0);
+    
     ft_split_clean(&split);
     ASSERT_END(__func__);
 }
