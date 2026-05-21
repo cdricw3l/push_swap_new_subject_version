@@ -33,7 +33,7 @@ re: fclean $(NAME)
 
 COM=push_swap_generic
 
-git: fclean
+git: copy fclean
 	git add .
 	git commit -m $(COM)
 	git push origin $(shell git branch --show-current)
@@ -44,5 +44,10 @@ libft:
 	cp $(LIBFT)/libft.* lib/.
 	make clean -C $(LIBFT)
 
+copy:
+	mv .git ../. && mv Makefile ../.
+	rm -rf *
+	cp -r ../push_swap/* .
+	rm Makefile && mv ../.git . && mv ../Makefile .
 
 .PHONY: all clean fclean re as
