@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 14:47:24 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 15:15:28 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int swap(t_data *data, int stack)
     return (OK);
 }
 
-int rr(t_data *data, int stack)
+int rev_rotate(t_data *data, int stack)
 {
     int *arr;
     int len;
@@ -146,8 +146,8 @@ int rr(t_data *data, int stack)
     {
         arr = data->a;
         len = data->size_a;
-        tmp = *(data->a);
-        ft_memmove(data->a + 1, data->a, data->size_a - 1);
+        tmp = *(data->a + data->size_a - 1);
+        ft_memmove(data->a + 1, data->a, (data->size_a ) * sizeof(int));
         *(data->a) = tmp;
 
     }
@@ -155,8 +155,8 @@ int rr(t_data *data, int stack)
     {
         arr = data->b;
         len = data->size_b;
-        tmp = *(data->b - data->size_b);
-        ft_memmove(data->b - 1, data->b, data->size_b - 1);
+        tmp = *(data->b - (data->size_b - 1));
+        ft_memmove(data->b - 2, data->b - 1, (data->size_b ) * sizeof(int));
         *(data->b) = tmp;
     }
     else

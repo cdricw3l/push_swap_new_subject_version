@@ -6,7 +6,7 @@
 /*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 14:46:34 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 15:08:40 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void display_data(t_data data);
 int push(t_data *data, int src, int dst);
 int swap(t_data *data, int stack);
 void display_stack(t_data *data, int stack);
+int rev_rotate(t_data *data, int stack);
 
 void check_digit_assert(void)
 {
@@ -322,16 +323,28 @@ void swap_assert(void)
 
 void rr_assert(void)
 {
+    ASSERT_START(__func__);
     t_data data;
     int arr[] = {10, 22, 1101, 7, 12, 32};
 
     data.a = &arr[3];
     data.b = &arr[2];
+    data.start = &arr[0];
+    data.end = &arr[5];
     data.size_a = 3;
     data.size_b = 3;
 
     display_stack(&data, STACK_A);
+    rev_rotate(&data, STACK_A);
+    display_stack(&data, STACK_A);
+
+    
     display_stack(&data, STACK_B);
+    rev_rotate(&data, STACK_B);
+    display_stack(&data, STACK_B);
+
+    ASSERT_END(__func__);
+    
 }
 
 int main(int argc, char **argv)
@@ -347,5 +360,6 @@ int main(int argc, char **argv)
     init_data_assert(&argv[1]);
     push_assert();
     swap_assert();
+    rr_assert();
     return (0);
 }
