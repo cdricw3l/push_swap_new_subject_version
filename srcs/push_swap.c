@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 12:18:39 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 13:56:28 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ int check_duplicate(t_data *data)
 
 int init_data(char **argv, t_data *data)
 {
-    printf("voici %p\n", argv[0]);
     if (!argv || !*argv)
         return (ERR);
     if(check_args(argv, data) == ERR)

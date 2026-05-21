@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 13:40:25 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 14:17:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,22 @@ int push(t_data *data, int src, int dst)
     return (NO_MOVE);
 }
 
+void ft_swap(int *p1, int *p2)
+{
+    int tmp;
+
+    tmp = *p1;
+    *p1 = *p2;
+    *p2 = tmp;
+}
+
 int swap(t_data *data, int stack)
 {
     int *arr;
     int len;
-    int tmp;
 
+    if (!data)
+        return (NO_MOVE);
     if (stack == STACK_A)
     {
         arr = data->a;
@@ -117,9 +127,10 @@ int swap(t_data *data, int stack)
         return (NO_MOVE);
     if (arr && len > 1)
     {
-        tmp = arr[0];
-        arr[0] = arr[1];
-        arr[1] = tmp;
+        if (stack == STACK_A)
+            ft_swap(data->a, data->a + 1);
+        else if(stack == STACK_B)
+            ft_swap(data->b, data->b - 1);
     }
     else
         return (NO_MOVE);

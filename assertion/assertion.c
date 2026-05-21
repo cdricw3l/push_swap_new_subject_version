@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 13:44:38 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/21 14:18:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,6 @@ void push_assert(void)
     char *str[] = {"10 12 88 74 7 9 77", NULL};
     assert(init_data((char **)str, &data) == OK);
     int status;
-
     
     while (data.size_a > 0)
     {
@@ -277,50 +276,55 @@ void push_assert(void)
     }
     status = push(&data, STACK_A, STACK_B);
     assert(status == NO_MOVE);
-
-    // assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
-    // assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
-    // assert(push(&data, STACK_A, STACK_B)  == NO_MOVE); 
-    // while (data.b != NULL)
-    // {
-    //     assert(push(&data, STACK_B, STACK_A) == OK);
-    //     display_data(data);
-    //     NL;
-    // }
-    // assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
-    // assert(push(NULL, STACK_B, STACK_A)  == NO_MOVE);   
-    // assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
-    // assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);
-    // assert(push(&data, INT_MAX, INT_MIN)  == NO_MOVE);
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);
+    while (data.size_b > 0)
+    {
+        
+        status = push(&data, STACK_B, STACK_A);
+        display_stack(&data, STACK_B);
+        display_stack(&data, STACK_A);
+        assert(status == OK);
+        NL;
+    }
+    status = push(&data, STACK_B, STACK_A);
+    assert(status == NO_MOVE);
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE); 
+    
     ASSERT_END(__func__);
 }
 
-// void swap_assert(void)
-// {
-//     ASSERT_START(__func__);
-//     t_data data;
-//     char *str[] = {"10 12 88 74 7 9 77", NULL};
-//     assert(init_data((char **)str, &data) == OK);
+void swap_assert(void)
+{
+    ASSERT_START(__func__);
+    t_data data;
+    char *str[] = {"10 12 88 74 7 9 77", NULL};
     
-//     assert(push(&data, STACK_A, STACK_B) == OK);
-//     assert(push(&data, STACK_A, STACK_B) == OK);
-//     assert(push(&data, STACK_A, STACK_B) == OK);
-    
-//     assert(swap(&data, STACK_A) == OK);
-//     assert(data.a[0] == 7);
-//     assert(data.a[1] == 74);
-    
-
-//     assert(swap(&data, STACK_B) == OK);
-//     assert(data.b[0] == 12);
-//     assert(data.b[1] == 88);
-//     display_stack(&data, STACK_A);
-//     assert(swap(&data, STACK_A) == OK);
-//     assert(swap(&data, STACK_B) == OK);
-    
-    
-//     ASSERT_END(__func__);
-// }
+    assert(init_data((char **)str, &data) == OK);
+    assert(push(&data, STACK_A, STACK_B) == OK);
+    assert(push(&data, STACK_A, STACK_B) == OK);
+    assert(push(&data, STACK_A, STACK_B) == OK);
+    assert(swap(&data, STACK_A) == OK);
+    assert(*data.a == 7);
+    assert(*(data.a + 1) == 74);
+    assert(swap(&data, STACK_B) == OK);
+    assert(*data.b == 12);
+    assert(*(data.b - 1) == 88);
+    assert(swap(&data, STACK_A) == OK);
+    assert(swap(&data, STACK_B) == OK);
+    assert(swap(NULL, STACK_A) == NO_MOVE);
+    assert(swap(NULL, STACK_B) == NO_MOVE);
+    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(data.size_b == 0);
+    assert(*(data.a) == 10);
+    assert(swap(&data, STACK_B) ==  NO_MOVE);
+    ASSERT_END(__func__);
+}
 
 int main(int argc, char **argv)
 {
@@ -334,7 +338,6 @@ int main(int argc, char **argv)
     check_dupplicate_assert();
     init_data_assert(&argv[1]);
     push_assert();
-    //swap_assert();
-    
+    swap_assert();
     return (0);
 }
