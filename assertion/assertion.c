@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assertion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 18:04:26 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/21 18:29:49 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int check_digit(char *str);
 int get_complexity(char *arg);
 int check_args(char **argv, t_data *data);
 int create_stack(char **argv, t_data *data);
-int check_duplicate(t_data data);
+int check_duplicate(t_data *data);
 int init_data(char **argv, t_data *data);
 void display_data(t_data data);
 int push(t_data *data, int src, int dst);
@@ -201,7 +201,7 @@ void check_dupplicate_assert(void)
     /* 
         check duplicate value in stack.data
     */
-    assert(check_duplicate(data) == ERR);
+    assert(check_duplicate(&data) == ERR);
     /* check whitout dupplicate value */
     split = malloc(sizeof(char *) * 6);
     assert(split);
@@ -229,7 +229,7 @@ void check_dupplicate_assert(void)
     assert(data.stack[data.size_a - 3] == INT_MIN);
     ft_split_clean(&split);
     /* check duplicate value in stack.data */
-    assert(check_duplicate(data) == OK);
+    assert(check_duplicate(&data) == OK);
     ASSERT_END(__func__);
 }
 
@@ -348,7 +348,7 @@ void rev_rotate_assert(void)
         tmp = *data.a;
         assert(rev_rotate(&data, STACK_A) == OK);
         display_stack(&data, STACK_A);
-        assert(*(data.a + 1) == tmp);
+        assert(*(data.a + data.size_a) == tmp);
         i++;
     }
     NL;
@@ -414,16 +414,16 @@ int main(int argc, char **argv)
 {
     (void)argc;
     (void)argv;
-    // check_digit_assert();
-    // get_complexity_assert();
-    // atoi_long_long_assert();
-    // check_arg_assert();
-    // init_stack_assert();
-    // check_dupplicate_assert();
-    // init_data_assert(&argv[1]);
-    // push_assert();
-    // swap_assert();
-    // rev_rotate_assert();
+    check_digit_assert();
+    get_complexity_assert();
+    atoi_long_long_assert();
+    check_arg_assert();
+    init_stack_assert();
+    check_dupplicate_assert();
+    init_data_assert(&argv[1]);
+    push_assert();
+    swap_assert();
+    rev_rotate_assert();
     rotate_assert();
     
     return (0);
