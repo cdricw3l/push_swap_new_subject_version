@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/21 19:14:51 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/22 10:57:28 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,22 @@ void ft_swap(int *p1, int *p2)
     *p2 = tmp;
 }
 
-int compute_disorder(t_data *data)
+float compute_disorder(t_data *data)
 {
-    int mistakes;
-    int total_pairs;
     int i;
     int j;
+    float mistakes;
+    float total_pairs;
 
     i = 0;
     mistakes = 0;
-    total_pairs = data->size_a;
+    total_pairs = 0;
     while (i < data->size_a)
     {
         j = i + 1;
         while (j < data->size_a)
         {
+            total_pairs++;
             if (data->stack[i] > data->stack[j])
                 mistakes++;
             j++;

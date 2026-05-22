@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assertion.c                                        :+:      :+:    :+:   */
+/*   lldb.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/22 10:59:00 by cebouhad         ###   ########.fr       */
+/*   Created: 2026/05/22 11:32:50 by cebouhad          #+#    #+#             */
+/*   Updated: 2026/05/22 11:57:28 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "assertion.h"
+#include "../include/push_swap.h"
+
+// void put_float(float nb)
+// {
+    
+// }
 
 int main(int argc, char **argv)
 {
 
-    init_and_check_assert(argc, &argv[1]);
-    move_assertions(argc, argv);
+    (void)argc;
+    (void)argv;
+
+    printf("voici le nombre d'argument %.4d\n",  8);
+
     
     return (0);
 }

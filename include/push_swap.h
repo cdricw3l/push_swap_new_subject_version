@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 19:11:14 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/22 10:55:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,23 @@ enum e_algo
 
 typedef struct s_data
 {
-    int *a;
-    int *b;
-    int *start;
-    int *end;
-    int stack[1024];
-    int algo;
-    int size_a;
-    int size_b;
-    int disorder;
+    int     *a;
+    int     *b;
+    int     *start;
+    int     *end;
+    int     stack[1024];
+    int     algo;
+    int     size_a;
+    int     size_b;
+    float   disorder;
 
 } t_data;
 
 
 /* utils */
 
-void ft_swap(int *p1, int *p2);
+void    ft_swap(int *p1, int *p2);
+float   compute_disorder(t_data *data);
 
 #endif
 

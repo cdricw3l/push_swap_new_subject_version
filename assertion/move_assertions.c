@@ -1,0 +1,270 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_assertions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
+/*   Updated: 2026/05/22 13:29:59 by cebouhad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "assertion.h"
+
+void push_assert(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_data data;
+    char *str[] = {"10 12 88 74 7 9 77", NULL};
+    assert(init_data((char **)str, &data) == OK);
+    int status;
+    
+    while (data.size_a > 0)
+    {
+        status = push(&data, STACK_A, STACK_B);
+        display_stack(&data, STACK_B);
+        display_stack(&data, STACK_A);
+        assert(status == OK);
+        NL;
+    }
+    status = push(&data, STACK_A, STACK_B);
+    assert(status == NO_MOVE);
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);   
+    assert(push(&data, STACK_A, STACK_B)  == NO_MOVE);
+    while (data.size_b > 0)
+    {
+        
+        status = push(&data, STACK_B, STACK_A);
+        display_stack(&data, STACK_B);
+        display_stack(&data, STACK_A);
+        assert(status == OK);
+        NL;
+    }
+    status = push(&data, STACK_B, STACK_A);
+    assert(status == NO_MOVE);
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE);   
+    assert(push(&data, STACK_B, STACK_A)  == NO_MOVE); 
+    
+    ASSERT_END(__func__);
+}
+
+void swap_assert(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_data data;
+    char *str[] = {"10 12 88 74 7 9 77", NULL};
+    
+    assert(init_data((char **)str, &data) == OK);
+    assert(push(&data, STACK_A, STACK_B) == OK);
+    assert(push(&data, STACK_A, STACK_B) == OK);
+    assert(push(&data, STACK_A, STACK_B) == OK);
+    assert(swap(&data, STACK_A) == OK);
+    assert(*data.a == 7);
+    assert(*(data.a + 1) == 74);
+    assert(swap(&data, STACK_B) == OK);
+    assert(*data.b == 12);
+    assert(*(data.b - 1) == 88);
+    assert(swap(&data, STACK_A) == OK);
+    assert(swap(&data, STACK_B) == OK);
+    assert(swap(NULL, STACK_A) == NO_MOVE);
+    assert(swap(NULL, STACK_B) == NO_MOVE);
+    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(push(&data, STACK_B, STACK_A) == OK);
+    assert(data.size_b == 0);
+    assert(*(data.a) == 10);
+    assert(swap(&data, STACK_B) ==  NO_MOVE);
+    ASSERT_END(__func__);
+}
+
+void rev_rotate_short_assert(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    
+    t_data data;
+    int i;
+    int tmp;
+    int arr[] = {10, 22, 1101, 7, 12, 32};
+
+    data.a = &arr[3];
+    data.b = &arr[2];
+    data.start = &arr[0];
+    data.end = &arr[5];
+    data.size_a = 3;
+    data.size_b = 3;
+
+    i = 0;
+    NL;
+    display_stack(&data, STACK_A);
+    display_stack(&data, STACK_B);
+    NL;
+    while (i < data.size_a)
+    {
+        tmp = *data.a;
+        assert(rev_rotate(&data, STACK_A) == OK);
+        display_stack(&data, STACK_A);
+        assert(*(data.a + data.size_a) == tmp);
+        i++;
+    }
+    NL;
+    assert(*data.a == 7 && *(data.a + 1) == 12 && *(data.a + 2) == 32);
+    i = 0;
+    assert(data.size_b == 3);
+    while (i < data.size_b)
+    {
+        tmp = *data.b;
+        assert(rev_rotate(&data, STACK_B) == OK);
+        display_stack(&data, STACK_B);
+        assert(*(data.b - 1) == tmp);
+        i++;
+    }
+    assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
+    NL;
+    display_stack(&data, STACK_A);
+    display_stack(&data, STACK_B);
+    NL;
+    ASSERT_END(__func__);
+    
+}
+
+
+void rotate_short_assert(void)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_data data;
+    int arr[] = {10, 22, 1101, 7, 12, 32};
+    int i;
+    int tmp;
+
+    data.a = &arr[3];
+    data.b = &arr[2];
+    data.start = &arr[0];
+    data.end = &arr[5];
+    data.size_a = 3;
+    data.size_b = 3;
+
+    i = 0;
+    while (i < data.size_a)
+    {
+        tmp = data.a[1];
+        rotate(&data,  STACK_A);
+        assert(data.a[0] == tmp);
+        i++;
+    }
+    assert(*data.a == 7 && *(data.a + 1) == 12 && *(data.a + 2) == 32);
+    i = 0;
+    while (i < data.size_b)
+    {
+        tmp = *(data.b - 1);
+        rotate(&data,  STACK_B);
+        assert(*data.b == tmp);
+        i++;
+    }
+    assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
+    ASSERT_END(__func__);
+}
+
+
+void rotate_push_rotate_push_assert(char **argv)
+{
+    ASSERT_START(__func__, __LINE__);
+    t_data data;
+    int i;
+    int last_value;
+    int first_value;
+    int size_a;
+    int size_b;
+
+    assert(init_data(argv, &data) == OK);
+    assert(data.b  == NULL);
+    size_a = data.size_a;
+    first_value = *(data.a);
+    last_value = *(data.a + (data.size_a - 1));
+    /*
+        check rotation in big list for stack a 
+    */
+    i = 0;
+    while (i < data.size_a)
+    {
+        rotate(&data, STACK_A);
+        i++;
+    }
+    assert(*(data.a) == first_value);
+    /* 
+        check rev_rotation in big list for stack a
+    */
+    i = 0;
+    while (i < data.size_a)
+    {
+        rev_rotate(&data, STACK_A);
+        i++;
+    }
+    assert(*(data.a) == first_value);
+    
+    /* push everything in b */
+    
+    i = OK;
+    while (i == OK)
+        i = push(&data, STACK_A, STACK_B);
+    
+    /* 
+        ensure list a is empty and data.a == NULL
+    */
+    assert(data.a == NULL);
+    /*
+        ensure the first value of stack b is the last value of stack a after pushing everything
+    */
+    size_b = data.size_b;
+    assert(size_a == data.size_b);
+    assert(*data.b == last_value);
+    /*
+        pour avoir le dernier element de la list b, la liaste etant inverse, il faut recuperer la valeur a data.b - (data.size_b - 1);
+    */
+    assert(*(data.b - (data.size_b - 1)) == first_value);
+    
+    /*
+        check rotation in big list for stack b
+    */
+    
+    i = 0;
+    display_stack(&data, STACK_B);
+    NL;
+    while (i < 1)
+    {
+        rev_rotate(&data, STACK_B);
+        display_stack(&data, STACK_B);
+        NL;
+        i++;
+    }
+    assert(*(data.b) == last_value);
+    
+    i = 0;
+    printf("last value %d\n", *(data.b));
+
+    while (i < data.size_b)
+    {
+        rotate(&data, STACK_B);
+        i++;
+    }
+
+    assert(*(data.b) == last_value);
+
+    
+    
+    ASSERT_END(__func__);
+}
+
+void move_assertions(int argc, char **argv)
+{
+    (void)argc;
+    (void)argv;
+    
+    // push_assert();
+    // swap_assert();
+    // rev_rotate_short_assert();
+    // rotate_short_assert();
+    rotate_push_rotate_push_assert(&argv[1]);
+}

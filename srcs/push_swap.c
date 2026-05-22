@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 13:56:28 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 11:01:02 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int check_args(char **argv, t_data *data)
             {
                 data->algo = NONE;
                 ft_split_clean(&split);
+                write(STDOUT_FILENO,"Error size value", 16);
                 return (ERR);
             }
             j++;
@@ -145,16 +146,20 @@ int init_data(char **argv, t_data *data)
         write(STDOUT_FILENO,"Error check arg\n", 16);
         return (ERR);
     }
+
     if (create_stack(argv, data) == ERR)
     {
         write(STDOUT_FILENO,"Error stack creation\n", 21);
         return (ERR);
     }
+
     if(check_duplicate(data) == ERR)
     {
         write(STDOUT_FILENO,"Error dupplicate value\n", 23);
         return (ERR);
     }
+
+    data->disorder = compute_disorder(data);
     return (OK);
 }
 

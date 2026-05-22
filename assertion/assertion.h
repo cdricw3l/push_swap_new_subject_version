@@ -11,10 +11,24 @@
 #define GREEN   "\033[0;32m"
 #define RESET   "\033[0m"
 
-#define ASSERT_START(msg) printf(YELLOW"Test assertion %s\n"RESET, msg)
+#define ASSERT_START(msg, line) printf(YELLOW"Test assertion %s line: %d\n" RESET, msg, line)
 #define ASSERT_END(msg) printf(GREEN"End assertion %s --> Ok!\n"RESET, msg)
 
+void    move_assertions(int argc, char **argv);
+int     init_and_check_assert(int argc, char **argv);
 
-
+int push(t_data *data, int src, int dst);
+int swap(t_data *data, int stack);
+void display_stack(t_data *data, int stack);
+int rev_rotate(t_data *data, int stack);
+int rotate(t_data *data, int stack);
+int check_args(char **argv, t_data *data);
+int check_digit(char *str);
+int get_complexity(char *arg);
+int check_args(char **argv, t_data *data);
+int create_stack(char **argv, t_data *data);
+int check_duplicate(t_data *data);
+int init_data(char **argv, t_data *data);
+void display_data(t_data data);
 
 #endif

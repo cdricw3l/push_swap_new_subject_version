@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/21 17:39:56 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/22 13:31:59 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,9 @@ int rev_rotate(t_data *data, int stack)
     {
         arr = data->b;
         len = data->size_b;
-        tmp = *(data->b - (data->size_b - 1));
-        ft_memmove(data->b - 2, data->b - 1, (data->size_b ) * sizeof(int));
+        tmp = *(data->b);
+        printf("voici %d\n", tmp);
+        ft_memmove(data->b - 2, data->b - 1, (data->size_b - 1) * sizeof(int));
         *(data->b) = tmp;
     }
     return (OK);    
