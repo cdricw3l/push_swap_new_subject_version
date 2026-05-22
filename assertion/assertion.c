@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-
+    
     init_and_check_assert(argc, &argv[1]);
     move_assertions(argc, argv);
     
