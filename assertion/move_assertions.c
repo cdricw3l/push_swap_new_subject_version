@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:06:08 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 16:18:55 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void rev_rotate_short_assert(void)
         tmp = *data.a;
         assert(rev_rotate(&data, STACK_A) == OK);
         display_stack(&data, STACK_A);
-        assert(*(data.a +  1) == tmp);
+        assert(*(data.a + (data.size_a - 1)) == tmp);
         i++;
     }
     NL;
@@ -118,7 +118,7 @@ void rev_rotate_short_assert(void)
         tmp = *data.b;
         assert(rev_rotate(&data, STACK_B) == OK);
         display_stack(&data, STACK_B);
-        assert(*(data.b - 1) == tmp);
+        assert(*(data.b - (data.size_b - 1)) == tmp);
         i++;
     }
     assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
@@ -149,18 +149,18 @@ void rotate_short_assert(void)
     i = 0;
     while (i < data.size_a)
     {
-        tmp = data.a[1];
+        tmp = *(data.a);
         rotate(&data,  STACK_A);
-        assert(data.a[0] == tmp);
+        assert(*(data.a + 1) == tmp);
         i++;
     }
     assert(*data.a == 7 && *(data.a + 1) == 12 && *(data.a + 2) == 32);
     i = 0;
     while (i < data.size_b)
     {
-        tmp = *(data.b - 1);
+        tmp = *(data.b);
         rotate(&data,  STACK_B);
-        assert(*data.b == tmp);
+        assert(*(data.b - 1) == tmp);
         i++;
     }
     assert(*data.b == 1101 && *(data.b - 1) == 22 && *(data.b - 2) == 10);
@@ -217,7 +217,6 @@ void rotate_push_rotate_push_assert(char **argv)
     /*
         ensure the first value of stack b is the last value of stack a after pushing everything
     */
-    (void)size_b;
     size_b = data.size_b;
     assert(size_a == data.size_b);
     assert(*data.b == last_value);
@@ -241,8 +240,6 @@ void rotate_push_rotate_push_assert(char **argv)
     assert(*(data.b) == last_value);
     
     i = 0;
-    printf("last value %d\n", *(data.b));
-
     display_stack(&data, STACK_B);
     while (i < data.size_b)
     {
@@ -250,11 +247,7 @@ void rotate_push_rotate_push_assert(char **argv)
         i++;
     }
     display_stack(&data, STACK_B);
-
     assert(*(data.b) == last_value);
-
-    
-    
     ASSERT_END(__func__);
 }
 
@@ -269,44 +262,44 @@ void move_assertions(int argc, char **argv)
     (void)argc;
     (void)argv;
     
-    // push_assert();
-    // swap_assert();
-    // rev_rotate_short_assert();
-    // rotate_short_assert();
-    // rotate_push_rotate_push_assert(&argv[1]);
+    push_assert();
+    swap_assert();
+    rev_rotate_short_assert();
+    rotate_short_assert();
+    rotate_push_rotate_push_assert(&argv[1]);
 
-    t_data data;
+    // t_data data;
 
-    char *split[] = {"10 11 12 13 14", NULL};
+    // char *split[] = {"10 11 12 13 14", NULL};
 
-    assert(init_data(split, &data) == OK);
-    assert(data.size_a == 5);
-    int i;
-    i = 0;
-    while (i < data.size_a)
-    {
-        display_stack(&data, STACK_A);
-        rev_rotate(&data, STACK_A);
-        i++;
+    // assert(init_data(split, &data) == OK);
+    // assert(data.size_a == 5);
+    // int i;
+    // i = 0;
+    // while (i < data.size_a)
+    // {
+    //     display_stack(&data, STACK_A);
+    //     rev_rotate(&data, STACK_A);
+    //     i++;
 
-    }
-    display_stack(&data, STACK_A);
-    i = OK;
-    while (i == OK)
-    {
-        i = push(&data, STACK_A, STACK_B);
-    }
-    NL;
-    NL;
-    i = 0;
-    assert(data.size_b == 5);
-    while (i < data.size_b)
-    {
-        display_stack(&data, STACK_B);
-        rev_rotate(&data, STACK_B);
-        i++;
+    // }
+    // display_stack(&data, STACK_A);
+    // i = OK;
+    // while (i == OK)
+    // {
+    //     i = push(&data, STACK_A, STACK_B);
+    // }
+    // NL;
+    // NL;
+    // i = 0;
+    // assert(data.size_b == 5);
+    // while (i < data.size_b)
+    // {
+    //     display_stack(&data, STACK_B);
+    //     rev_rotate(&data, STACK_B);
+    //     i++;
 
-    }
-    display_stack(&data, STACK_B);
+    // }
+    // display_stack(&data, STACK_B);
 
 }

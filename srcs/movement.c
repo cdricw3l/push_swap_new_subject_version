@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 16:05:01 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 16:09:46 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,7 @@ int rev_rotate(t_data *data, int stack)
         arr = data->b;
         len = data->size_b;
         tmp = *(data->b);
-
-        ft_memmove(data->b - 1, data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
+        ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
         *(data->b - (data->size_b  - 1)) = tmp;
     }
     return (OK);    
