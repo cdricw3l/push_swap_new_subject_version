@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/22 10:55:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/22 16:58:28 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 #define MINUS 45
 #define STACK_A 0
 #define STACK_B 1
+#define A_AND_B 3
 #define NO_MOVE 1
+#define DISPLAY 0
+#define NO_DISPLAY 1
 #define NL printf("\n")
 
 enum e_algo
@@ -34,6 +37,16 @@ enum e_algo
     MEDIUM,
     COMPLEX,
     ADAPTATIVE
+};
+
+enum e_move
+{
+    S,
+    P,
+    R,
+    RV,
+    RR,
+    RRR
 };
 
 typedef struct s_data
@@ -50,10 +63,19 @@ typedef struct s_data
 
 } t_data;
 
+/* movement */
+
+int push(t_data *data, int src, int dst);
+int swap(t_data *data, int stack);
+int rotate(t_data *data, int stack, int mode);
+int rev_rotate(t_data *data, int stack, int mode);
 
 /* utils */
 
 void    ft_swap(int *p1, int *p2);
+void    display_data(t_data data);
+void    display_stack(t_data *data, int stack);
+void    print_move(int move, int stack);
 float   compute_disorder(t_data *data);
 
 #endif
