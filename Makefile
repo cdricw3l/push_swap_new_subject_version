@@ -5,9 +5,10 @@ CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/check_and_init.c \
 		srcs/movement.c \
 		srcs/utils.c \
-		srcs/main.c \
 		srcs/display.c \
-		srcs/debbuging.c
+		srcs/debbuging.c \
+		srcs/main.c \
+
 SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
