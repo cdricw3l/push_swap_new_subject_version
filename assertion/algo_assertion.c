@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 20:54:53 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 21:01:06 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void buble_sort_assert(char **argv)
 
 void algo_assert(char **argv)
 {
-    //tree_value_assert();
-    printf("voici %s\n", argv[0]);
-    buble_sort_assert(argv);
+    tree_value_assert();
+    //printf("voici %s\n", argv[0]);
+    //buble_sort_assert(argv);
 }   
