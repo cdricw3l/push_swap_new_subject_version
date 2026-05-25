@@ -46,7 +46,8 @@ ifeq ($(shell uname), Darwin)
 	@./$(NAME_ASSER) $(ARG)
 endif
 ifeq ($(OS), Linux)
-	@valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG)
+	echo $(ARG)
+	valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG)
 endif
 
 LLDB_SRCS= lldb_training/lldb.c srcs/utils.c

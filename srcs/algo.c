@@ -6,11 +6,30 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 12:30:19 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 13:42:40 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+
+int ft_buble_sort_push(t_data *data)
+{
+    int count;
+
+    count = 0;
+    while (!ft_is_sort(data))
+    {
+        if(*(data->a) < *(data->a + 1))
+        {
+            swap(data, STACK_A, DISPLAY);
+            count++;
+        }
+        rotate(data, STACK_A, DISPLAY);
+        count++;
+    }
+    return (count);
+}
 
 /*
     case 0: 1 2 3; case 1: 1 3 2; case 2: 2 1 3; case 3: 2 3 1; case 4: 3 1 2; case 5: 3 2 1

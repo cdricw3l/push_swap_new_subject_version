@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/23 14:08:01 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/25 13:32:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_args(char **argv, t_data *data)
 			{
 				data->algo = NONE;
 				ft_split_clean(&split);
-				write(STDOUT_FILENO, "Error size value", 16);
+				write(STDOUT_FILENO, "Error size value\n", 17);
 				return (ERR);
 			}
 			j++;
