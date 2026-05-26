@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 13:12:33 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 13:59:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,25 @@ int tree_values(t_global_data *data, int stack)
     }
     else
         return (NO_MOVE);
-    if (a > b && b < c)
-        swap(data, stack, DISPLAY);
-    else if (a < b && b > c)                /* case 1 */
+    
+    
+    if (a < b && a < c)                         /* case 1 */
     {
         swap(data, stack, DISPLAY);
         rev_rotate(data, stack, DISPLAY);
     }
-    else if (a > b && b < c)                /* case 2 */
-        rev_rotate(data, stack, DISPLAY);
-    else if ((a > b) &&  (b > c))
+    else if (a > b &&  b > c)               /* case 5 */
     {
         swap(data, stack, DISPLAY);
         rotate(data, stack, DISPLAY);
     }
+    else if (a > b && a < c)                    /* case 2 */
+        swap(data, stack, DISPLAY);
+    else if (a < b && b > c)                /* case 3 */
+        rotate(data, stack, DISPLAY);
+    else if (a > b &&  a > c)               /* case 4 */
+        rev_rotate(data, stack, DISPLAY);
+    
     return (OK);
 }
 

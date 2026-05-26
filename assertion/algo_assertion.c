@@ -6,11 +6,27 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 13:12:57 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 14:00:40 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
+
+/*
+
+    rotate -> the last become the first
+    rev_rotate <- the first become the last
+*/
+
+/*
+    case 0: 3 4 5; 
+    case 1: 3 5 4; 
+    case 2: 4 3 5;
+
+    case 3: 4 5 3;
+    case 4: 5 3 4; 
+    case 5: 5 4 3
+*/
 
 void tree_value_assert(void)
 {
@@ -18,20 +34,20 @@ void tree_value_assert(void)
     t_global_data data;
 
     /* case 0 */
-    // int arr1[6] = {3, 2, 1, 4, 5, 6};
+    int arr1[6] = {3, 2, 1, 4, 5, 6};
     
-    // data.a = &arr1[3];
-    // data.b = &arr1[2];
-    // data.size_a = 3;
-    // data.size_b = 3;
-    // data.start = &arr1[0];
-    // data.end = &arr1[5];
+    data.a = &arr1[3];
+    data.b = &arr1[2];
+    data.size_a = 3;
+    data.size_b = 3;
+    data.start = &arr1[0];
+    data.end = &arr1[5];
     
-    // assert(tree_values(&data, STACK_A) == NO_MOVE);
-    // assert(tree_values(&data, STACK_B) == NO_MOVE);
+    assert(tree_values(&data, STACK_A) == NO_MOVE);
+    assert(tree_values(&data, STACK_B) == NO_MOVE);
 
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
+    assert(ft_is_sort(&data, STACK_A));
+    assert(ft_is_sort(&data, STACK_B));
     
     /* case 1 */
     int arr2[6] = {5 ,6 ,4, 1, 3, 2};
@@ -47,7 +63,7 @@ void tree_value_assert(void)
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
-    
+    NL;
    
     // /* case 2 */
     int arr3[6] = {6 ,4 ,5, 2, 1, 3};
@@ -64,8 +80,8 @@ void tree_value_assert(void)
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
 
-     
-
+    NL;
+    
     /* case 3 */
     int arr4[6] = {4 ,6 ,5, 2, 3, 1};
     data.a = &arr4[3];
@@ -75,90 +91,45 @@ void tree_value_assert(void)
     data.start = &arr4[0];
     data.end = &arr4[5];
 
-    display_stack(&data, STACK_A);
     assert(tree_values(&data, STACK_A) == OK);
-    display_stack(&data, STACK_A);
     assert(tree_values(&data, STACK_B) == OK);
 
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
     
+    NL;
+
     /* case 4 */
-    
-    /*
-        case 0: 3 4 5; 
-        case 1: 3 5 4; 
-        case 2: 4 3 5;
+    int arr5[6] = {5 ,4 ,6, 3, 1, 2};
+    data.a = &arr5[3];
+    data.b = &arr5[2];
+    data.size_a = 3;
+    data.size_b = 3;
+    data.start = &arr5[0];
+    data.end = &arr5[5];
 
-        case 3: 4 5 3;
-        case 4: 5 3 4; 
-        case 5: 5 4 3
-    */
+    assert(tree_values(&data, STACK_A) == OK);
+    assert(tree_values(&data, STACK_B) == OK);
 
+    assert(ft_is_sort(&data, STACK_A));
+    assert(ft_is_sort(&data, STACK_B));
     
-    //  int arr5[6] = {5 ,4 ,6, 3, 1, 2};
-    // data.a = &arr5[3];
-    // data.b = &arr5[2];
-    // data.size_a = 3;
-    // data.size_b = 3;
-    // data.start = &arr5[0];
-    // data.end = &arr5[5];
+    NL;
+    
+    /* case 5 */
+    int arr6[6] = {4 ,5 ,6, 3, 2, 1};
+    data.a = &arr6[3];
+    data.b = &arr6[2];
+    data.size_a = 3;
+    data.size_b = 3;
+    data.start = &arr6[0];
+    data.end = &arr6[5];
 
-    // assert(tree_values(&data, STACK_A) == OK);
-    // assert(tree_values(&data, STACK_B) == OK);
+    assert(tree_values(&data, STACK_A) == OK);
+    assert(tree_values(&data, STACK_B) == OK);
 
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
-    
-    // tree_values(&data, STACK_A);
-    // tree_values(&data, STACK_B);
-
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
-    
-    // data.a = arr3;
-    // data.b = arr33;
-    // data.size_a = 3;
-    // data.size_b = 3;
-    
-    // tree_values(&data, STACK_A);
-    // tree_values(&data, STACK_B);
-    
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
-
-    // data.a = arr4;
-    // data.a = arr44;
-    // data.size_a = 3;
-    // data.size_b = 3;
-    
-    // tree_values(&data, STACK_A);
-    // tree_values(&data, STACK_B);
-
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
-    
-    // data.a = arr5;
-    // data.b = arr55;
-    // data.size_a = 3;
-    // data.size_b = 3;
-    
-    // tree_values(&data, STACK_A);
-    // tree_values(&data, STACK_B);
-
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
-    
-    // data.a = arr6;
-    // data.b = arr66;
-    // data.size_a = 3;
-    // data.size_b = 3;
-    
-    // tree_values(&data, STACK_A);
-    // tree_values(&data, STACK_B);
-
-    // assert(ft_is_sort(&data, STACK_A));
-    // assert(ft_is_sort(&data, STACK_B));
+    assert(ft_is_sort(&data, STACK_A));
+    assert(ft_is_sort(&data, STACK_B));
     
     ASSERT_END(__func__);
 }

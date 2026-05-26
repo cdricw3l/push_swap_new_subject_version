@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_assertions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 22:29:21 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/26 13:32:33 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,7 +310,7 @@ void double_rotation_assert(char **argv)
 /*
 
     rotate -> the last become the first
-    rev_rotate -> the first become the last
+    rev_rotate <- the first become the last
 */
 
 void move_assertions(int argc, char **argv)
