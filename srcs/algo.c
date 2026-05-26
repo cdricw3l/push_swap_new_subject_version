@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 15:57:11 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/05/26 17:03:16 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,22 @@ void five_values(t_global_data *data, int stk_src, int stk_dst)
     tree_values(data, stk_src);
     push(data, stk_dst, stk_src, DISPLAY);
     push(data, stk_dst, stk_src, DISPLAY);
+}
+
+int selection_sort(t_global_data *data)
+{
+    display_stack(data, STACK_A);
+    while(data->size_a > 3)
+    {
+        min_at_beginning(data, STACK_A);
+        push(data, STACK_A, STACK_B, NO_DISPLAY);
+    }
+    display_stack(data, STACK_A);
+    tree_values(data, STACK_A);
+    display_stack(data, STACK_A);
+    display_stack(data, STACK_B);
+    while(data->b)
+        push(data, STACK_B, STACK_A, DISPLAY);
+    display_stack(data, STACK_A);
+    return (OK);
 }
