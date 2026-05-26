@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 19:07:55 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 20:30:57 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@ typedef struct s_stack_data
     
 } t_stack_data;
 
+typedef struct s_best_move
+{
+    int number;
+    int (*move)(t_global_data *, int, int);
+
+} t_best_move;
+
+/*
+
+    rotate -> the last become the first
+    rev_rotate <- the first become the last
+*/
 
 /* movement */
 
