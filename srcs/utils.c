@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/26 10:41:18 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 12:18:38 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,29 @@ float	compute_disorder(t_global_data *data)
 	}
 	return (mistakes / total_pairs);
 }
-int ft_is_sort(t_global_data *data)
-{
-	int i;
+#include <assert.h>
 
+int ft_is_sort(t_global_data *data, int stack)
+{
+	int				i;
+	t_stack_data	stk;
+	
+	if(get_stack_data(*data, stack, &stk) == ERR)
+		return (-1);
 	i = 0;
-	while (i < data->size_a - 1)
+	while (i < stk.len - 1)
 	{
-		if(data->stack[i] > data->stack[i + 1])
+		if(stack == STACK_A)
 		{
-			display_stack(data, STACK_A);
-			return (0);
+			if(*(stk.arr) > *(stk.arr + 1))
+				return (0);
+			stk.arr++;
+		}
+		else if (stack == STACK_B)
+		{
+			if(*(stk.arr) > *(stk.arr - 1))
+				return (0);
+			stk.arr--;
 		}
 		i++;
 	}
@@ -140,7 +152,7 @@ int	min_at_beginning(t_global_data *data, int stack)
 	left = (((long)data->start - (long)smalest) / 4);
 	right = (((long)data->end - (long)smalest) / sizeof(int)) + 1;
 	if (smalest == data->start)
-		return(OK);
+		return(NO_MOVE);
 	if (left < 0)
 		left = left *-1;
 	if (right < 0)

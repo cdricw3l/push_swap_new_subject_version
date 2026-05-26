@@ -6,23 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 10:44:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 13:12:33 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-int ft_buble_sort_push(t_global_data *data)
-{
-    int count;
-
-    count = 0;
-    display_stack(data, STACK_A);
-    
-    rev_rotate(data, STACK_A, DISPLAY);
-    display_stack(data, STACK_A);
-    return (count);
-}
 
 /*
     case 0: 3 4 5; 
@@ -35,44 +23,84 @@ int ft_buble_sort_push(t_global_data *data)
 */
 #include <assert.h>
 
-void tree_values(t_global_data *data)
+int tree_values(t_global_data *data, int stack)
 {
+    t_stack_data stk;
     int a;
     int b;
     int c;
 
-    a = *(data->a);
-    b = *(data->a + 1);
-    c = *(data->a + 2);
-    
-    if (a < b && b > c)
+    if(ft_is_sort(data, stack))
+        return(NO_MOVE);
+    if (get_stack_data(*data,stack, &stk) == ERR)
+        return (NO_MOVE);
+    if (stack == STACK_A)
     {
-        swap(data, STACK_A, DISPLAY);
-        rev_rotate(data, STACK_A, DISPLAY);
-        printf("HERE\n");
+        a = *(data->a);
+        b = *(data->a + 1);
+        c = *(data->a + 2);
     }
-    else if (a > b && b < c)
-        swap(data, STACK_A, DISPLAY);
-    else if (a < b && b > c)
-        rotate(data, STACK_A, DISPLAY);
-    else if (a > b && b < c)
-        rev_rotate(data, STACK_A, DISPLAY);
+    else if (stack == STACK_B)
+    {
+        a = *(data->b);
+        b = *(data->b - 1);
+        c = *(data->b - 2);
+    }
+    else
+        return (NO_MOVE);
+    if (a > b && b < c)
+        swap(data, stack, DISPLAY);
+    else if (a < b && b > c)                /* case 1 */
+    {
+        swap(data, stack, DISPLAY);
+        rev_rotate(data, stack, DISPLAY);
+    }
+    else if (a > b && b < c)                /* case 2 */
+        rev_rotate(data, stack, DISPLAY);
     else if ((a > b) &&  (b > c))
     {
-        swap(data, STACK_A, DISPLAY);
-        rotate(data, STACK_A, DISPLAY);
+        swap(data, stack, DISPLAY);
+        rotate(data, stack, DISPLAY);
     }
+    return (OK);
 }
 
-void five_values(t_global_data *data)
+// void tree_values(t_global_data *data, int stack)
+// {
+//     int a;
+//     int b;
+//     int c;
+
+//     a = *(data->a);
+//     b = *(data->a + 1);
+//     c = *(data->a + 2);
+//     if (a < b && b > c)
+//     {
+//         swap(data, STACK_A, DISPLAY);
+//         rev_rotate(data, STACK_A, DISPLAY);
+//     }
+//     else if (a > b && b < c)
+//         swap(data, STACK_A, DISPLAY);
+//     else if (a < b && b > c)
+//         rotate(data, STACK_A, DISPLAY);
+//     else if (a > b && b < c)
+//         rev_rotate(data, STACK_A, DISPLAY);
+//     else if ((a > b) &&  (b > c))
+//     {
+//         swap(data, STACK_A, DISPLAY);
+//         rotate(data, STACK_A, DISPLAY);
+//     }
+// }
+
+void five_values(t_global_data *data, int stack)
 {
-    if(ft_is_sort(data))
+    if(ft_is_sort(data, stack))
         return ;
     min_at_beginning(data, STACK_A);
     push(data, STACK_A,STACK_B, DISPLAY);
     min_at_beginning(data, STACK_A);
     push(data, STACK_A,STACK_B, DISPLAY);
-    tree_values(data);
+    tree_values(data, stack);
     push(data, STACK_B,STACK_A, DISPLAY);
     push(data, STACK_B,STACK_A, DISPLAY);
     display_stack(data, STACK_A);
