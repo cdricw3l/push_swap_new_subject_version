@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/26 10:20:16 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 10:41:18 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int ft_is_sort(t_global_data *data)
 	while (i < data->size_a - 1)
 	{
 		if(data->stack[i] > data->stack[i + 1])
+		{
+			display_stack(data, STACK_A);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
