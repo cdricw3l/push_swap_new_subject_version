@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 10:44:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 11:24:29 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,10 @@ void tree_values(t_global_data *data)
     a = *(data->a);
     b = *(data->a + 1);
     c = *(data->a + 2);
-    
     if (a < b && b > c)
     {
         swap(data, STACK_A, DISPLAY);
         rev_rotate(data, STACK_A, DISPLAY);
-        printf("HERE\n");
     }
     else if (a > b && b < c)
         swap(data, STACK_A, DISPLAY);
@@ -57,7 +55,7 @@ void tree_values(t_global_data *data)
         rotate(data, STACK_A, DISPLAY);
     else if (a > b && b < c)
         rev_rotate(data, STACK_A, DISPLAY);
-    else if ((a > b) &&  (b > c))
+    else if (a > b &&  b > c)
     {
         swap(data, STACK_A, DISPLAY);
         rotate(data, STACK_A, DISPLAY);
