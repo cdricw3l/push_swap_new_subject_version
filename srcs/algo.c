@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 13:59:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 14:10:45 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
     case 4: 5 3 4; 
     case 5: 5 4 3
 */
-#include <assert.h>
 
 int tree_values(t_global_data *data, int stack)
 {
@@ -48,8 +47,6 @@ int tree_values(t_global_data *data, int stack)
     }
     else
         return (NO_MOVE);
-    
-    
     if (a < b && a < c)                         /* case 1 */
     {
         swap(data, stack, DISPLAY);
@@ -66,47 +63,18 @@ int tree_values(t_global_data *data, int stack)
         rotate(data, stack, DISPLAY);
     else if (a > b &&  a > c)               /* case 4 */
         rev_rotate(data, stack, DISPLAY);
-    
     return (OK);
 }
 
-// void tree_values(t_global_data *data, int stack)
-// {
-//     int a;
-//     int b;
-//     int c;
-
-//     a = *(data->a);
-//     b = *(data->a + 1);
-//     c = *(data->a + 2);
-//     if (a < b && b > c)
-//     {
-//         swap(data, STACK_A, DISPLAY);
-//         rev_rotate(data, STACK_A, DISPLAY);
-//     }
-//     else if (a > b && b < c)
-//         swap(data, STACK_A, DISPLAY);
-//     else if (a < b && b > c)
-//         rotate(data, STACK_A, DISPLAY);
-//     else if (a > b && b < c)
-//         rev_rotate(data, STACK_A, DISPLAY);
-//     else if ((a > b) &&  (b > c))
-//     {
-//         swap(data, STACK_A, DISPLAY);
-//         rotate(data, STACK_A, DISPLAY);
-//     }
-// }
-
-void five_values(t_global_data *data, int stack)
+void five_values(t_global_data *data, int stk_src, int stk_dst)
 {
-    if(ft_is_sort(data, stack))
+    if(ft_is_sort(data, stk_src))
         return ;
-    min_at_beginning(data, STACK_A);
-    push(data, STACK_A,STACK_B, DISPLAY);
-    min_at_beginning(data, STACK_A);
-    push(data, STACK_A,STACK_B, DISPLAY);
-    tree_values(data, stack);
-    push(data, STACK_B,STACK_A, DISPLAY);
-    push(data, STACK_B,STACK_A, DISPLAY);
-    display_stack(data, STACK_A);
+    min_at_beginning(data, stk_src);
+    push(data, stk_src, stk_dst, DISPLAY);
+    min_at_beginning(data, stk_src);
+    push(data, stk_src, stk_dst, DISPLAY);
+    tree_values(data, stk_src);
+    push(data, stk_dst, stk_src, DISPLAY);
+    push(data, stk_dst, stk_src, DISPLAY);
 }
