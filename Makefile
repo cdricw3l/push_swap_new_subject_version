@@ -3,7 +3,7 @@ NAME_ASSER=assertion/push_swap_assert
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/main.c \
-		srcs/check_and_init.c \
+		srcs/initialisation/check_and_init.c \
 		srcs/move/movement.c \
 		srcs/utils/utils_1.c \
 		srcs/utils/min_at_beginning.c \
@@ -15,7 +15,7 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/algo_assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
-				srcs/check_and_init.c \
+				srcs/initialisation/check_and_init.c \
 				srcs/move/movement.c \
 				srcs/utils/utils_1.c \
 				srcs/utils/min_at_beginning.c \
