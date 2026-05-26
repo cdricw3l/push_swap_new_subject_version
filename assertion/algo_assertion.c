@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_assertion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 22:37:06 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/26 10:28:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void tree_value_assert(void)
     assert(ft_is_sort(&data));
     data.a = arr2;
     tree_values(&data);
+    ASSERT_DEBBUG(__LINE__);
     assert(ft_is_sort(&data));
     data.a = arr2;
     tree_values(&data);
@@ -48,26 +49,71 @@ void tree_value_assert(void)
     ASSERT_END(__func__);
 }
 
-void buble_sort_assert(char **argv)
+// void buble_sort_assert(char **argv)
+// {
+//     ASSERT_START(__func__, __LINE__);
+//     t_global_data data;
+
+//     assert(argv[1]);
+//     assert(init_global_data(&argv[1], &data) == OK);
+//     //min_at_beginning(&data, STACK_A);
+//     //display_stack(&data, STACK_A);
+//     //tree_values(&data);
+//     five_values(&data);
+//     display_stack(&data, STACK_A);
+//     assert(ft_is_sort(&data));
+    
+//     ASSERT_END(__func__);
+// }
+
+void min_at_beg_asser(void)
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
+    int smallest;
+    char *l1[] = {"1 5 2 4 3", NULL};
+    char *l2[] = {"1 -5 20 40 3", NULL};
+    char *l3[] = {"1 -5 20 40 3", NULL};
+    char *l4[] = {"1 5 -20 40 3 0 78 44 58", NULL};
+    char *l5[] = {"1 5 -20 -40 3 220 31 7 88 22", NULL};
 
-    assert(argv[1]);
-    assert(init_global_data(&argv[1], &data) == OK);
-    //min_at_beginning(&data, STACK_A);
-    //display_stack(&data, STACK_A);
-    //tree_values(&data);
-    five_values(&data);
-    display_stack(&data, STACK_A);
-    assert(ft_is_sort(&data));
+
+    assert(init_global_data(l1, &data) == OK);
+    smallest = *get_smalest_value(&data, STACK_A);
+    min_at_beginning(&data, STACK_A);
+    assert(smallest == *data.a);
+    free(data.stack);
     
+    assert(init_global_data(l2, &data) == OK);
+    smallest = *get_smalest_value(&data, STACK_A);
+    min_at_beginning(&data, STACK_A);
+    assert(smallest == *(data.a));
+    free(data.stack);
+    
+    assert(init_global_data(l3, &data) == OK);
+    smallest = *get_smalest_value(&data, STACK_A);
+    min_at_beginning(&data, STACK_A);
+    assert(smallest == *data.a);
+    free(data.stack);
+
+    assert(init_global_data(l4, &data) == OK);
+    smallest = *get_smalest_value(&data, STACK_A);
+    min_at_beginning(&data, STACK_A);
+    assert(smallest == *data.a);
+    free(data.stack);
+    
+    assert(init_global_data(l5, &data) == OK);
+    smallest = *get_smalest_value(&data, STACK_A);
+    min_at_beginning(&data, STACK_A);
+    assert(smallest == *data.a);
+    free(data.stack);
     ASSERT_END(__func__);
 }
 
 void algo_assert(char **argv)
 {
     (void)argv;
-    //tree_value_assert();
-    buble_sort_assert(argv);
+    //min_at_beg_asser();
+    tree_value_assert();
+    //buble_sort_assert(argv);
 }   

@@ -12,8 +12,9 @@
 #define GREEN   "\033[0;32m"
 #define RESET   "\033[0m"
 
-#define ASSERT_START(msg, line) printf(YELLOW"Test assertion %s line: %d\n" RESET, msg, line)
-#define ASSERT_END(msg) printf(GREEN"End assertion %s --> Ok!\n"RESET, msg)
+#define ASSERT_START(msg, line) printf(YELLOW"Test assertion %s line: %d" RESET"\n", msg, line)
+#define ASSERT_END(msg) printf(GREEN"End assertion %s --> Ok!"RESET"\n", msg)
+#define ASSERT_DEBBUG(line) printf(RED"WE ARE HERE ligne:%d"RESET"\n", line)
 
 void    move_assertions(int argc, char **argv);
 int     init_and_check_assert(int argc, char **argv);

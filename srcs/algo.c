@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 09:07:16 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 22:32:54 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/26 10:29:43 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void tree_values(t_global_data *data)
     if (a < b && b > c)
     {
         swap(data, STACK_A, DISPLAY);
-        rotate(data, STACK_A, DISPLAY);
+        rev_rotate(data, STACK_A, DISPLAY);
+        printf("HERE\n");
     }
     else if (a > b && b < c)
         swap(data, STACK_A, DISPLAY);
