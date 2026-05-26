@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/26 15:03:48 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:05:21 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,9 @@ int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
     rotate -> the last become the first
     rev_rotate <- the first become the last
 */
+
+
+
 int	min_at_beginning(t_global_data *data, int stack)
 {
 	long	left;
