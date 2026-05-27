@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 16:10:58 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:03:47 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../lib/libft.h"
+
+#define RED  "\033[0;31m"
+#define YELLOW  "\033[0;33m"
+#define GREEN   "\033[0;32m"
+#define RESET   "\033[0m"
+
+
+#define ASSERT_DEBBUG(line) printf(RED"WE ARE HERE ligne:%d"RESET"\n", line)
 
 #define OK 0
 #define ERR -1
@@ -72,6 +80,18 @@ typedef struct s_stack_data
     
 } t_stack_data;
 
+typedef struct s_best_move
+{
+    int number;
+    int (*move)(t_global_data *, int, int);
+
+} t_best_move;
+
+/*
+
+    rotate -> the last become the first
+    rev_rotate <- the first become the last
+*/
 
 /* movement */
 
@@ -97,12 +117,15 @@ float   compute_disorder(t_global_data *data);
 void    put_float(float nb);
 int     get_complexity(char *arg);
 int     ft_is_sort(t_global_data *data, int stack);
-int     *get_smalest_value(t_global_data *data, int stack);
+int     *smalest_value(t_global_data *data, int stack);
+int     *bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
-int     min_at_beginning(t_global_data *data, int stack);
+
+int	    at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int));
 
 #endif
 
 
 
 
+//Doxygen

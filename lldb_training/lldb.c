@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   O(n√n).c                                           :+:      :+:    :+:   */
+/*   lldb.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 17:21:56 by cebouhad         ###   ########.fr       */
+/*   Created: 2026/05/22 11:32:50 by cebouhad          #+#    #+#             */
+/*   Updated: 2026/05/27 10:09:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../include/push_swap.h"
+#include <assert.h>
 
-void middle_rank(t_stack_data *data)
+
+
+int main(void)
 {
+
+    int arr[3] = {52, 3, 12};
     
+    printf("voici %d\n",*(arr + 2));
+    return (0);
 }

@@ -5,24 +5,26 @@ CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/main.c \
 		srcs/initialisation/check_and_init.c \
 		srcs/move/movement.c \
+		srcs/move/at_beginning.c \
 		srcs/utils/utils_1.c \
-		srcs/utils/min_at_beginning.c \
 		srcs/utils/display.c \
 		srcs/utils/debbuging.c \
 		srcs/algo/three.c \
-		srcs/algo/five.c
+		srcs/algo/five.c \
+		srcs/algo/On√n.c 
 SRCS_ASSERT= 	assertion/assertion.c \
 				assertion/algo_assertion.c \
 				assertion/init_and_check_assertions.c \
 				assertion/move_assertions.c \
 				srcs/initialisation/check_and_init.c \
 				srcs/move/movement.c \
+				srcs/move/at_beginning.c \
 				srcs/utils/utils_1.c \
-				srcs/utils/min_at_beginning.c \
 				srcs/utils/debbuging.c \
 				srcs/utils/display.c \
 				srcs/algo/three.c \
-				srcs/algo/five.c
+				srcs/algo/five.c \
+				srcs/algo/On√n.c 
 
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
@@ -52,7 +54,16 @@ ifeq ($(OS), Linux)
 	valgrind --leak-check=full  --leak-resolution=high --log-file=$(VALGRIND_LOG) ./$(NAME_ASSER) $(ARG)
 endif
 
-LLDB_SRCS= lldb_training/lldb.c srcs/utils.c
+LLDB_SRCS= lldb_training/lldb.c \
+			srcs/initialisation/check_and_init.c \
+			srcs/move/movement.c \
+			srcs/utils/utils_1.c \
+			srcs/utils/min_at_beginning.c \
+			srcs/utils/debbuging.c \
+			srcs/utils/display.c \
+			srcs/algo/three.c \
+			srcs/algo/five.c \
+			srcs/algo/On√n.c 
 LLDB_OBJS=  $(LLDB_SRCS:.c=.o)
 
 lldb: $(LLDB_OBJS)

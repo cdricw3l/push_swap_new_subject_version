@@ -5,12 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/21 14:32:29 by cdric.b           #+#    #+#             */
-<<<<<<< HEAD:srcs/utils_1.c
-/*   Updated: 2026/05/26 15:35:21 by cebouhad         ###   ########.fr       */
-=======
-/*   Updated: 2026/05/26 16:48:11 by cebouhad         ###   ########.fr       */
->>>>>>> cedric:srcs/utils/utils_1.c
+/*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
+/*   Updated: 2026/05/27 10:11:31 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
