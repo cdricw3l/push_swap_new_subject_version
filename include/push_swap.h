@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 20:30:57 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 07:56:33 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,13 @@ void    put_float(float nb);
 int     get_complexity(char *arg);
 int     ft_is_sort(t_global_data *data, int stack);
 int     *get_smalest_value(t_global_data *data, int stack);
+int     *get_bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 int     min_at_beginning(t_global_data *data, int stack);
-
+int	    max_at_beginning(t_global_data *data, int stack);
 #endif
 
 
 
 
+//Doxygen

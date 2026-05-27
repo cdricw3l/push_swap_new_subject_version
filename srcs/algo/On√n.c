@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   On√n.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 20:31:10 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/26 21:23:17 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int place_int_stack(t_global_data *data, int stack, int value)
     }
     return(count);
 }
-
-
 
 
 t_best_move best_move(t_global_data data, int range[2])
