@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 10:10:39 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:37:57 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,52 @@ t_best_move best_move(t_global_data data, int range[2])
     if(p_start - data.a < (data.a + (data.size_a - 1)  - p_end) + 1)
     {
         best_move.number = p_start - data.a;
-        best_move.move= rev_rotate;
+        best_move.move= rotate;
     }
     else
     {
         best_move.number = (data.a + (data.size_a - 1)  - p_end) + 1;
-        best_move.move= rotate;
+        best_move.move= rev_rotate;
     }
     return (best_move);
 }
 
+#define RANGE_SIZE 5
+#include <assert.h>
+
 void middle_rank(t_global_data *data)
 {
     int range[2];
+    int nb_range;
+    t_best_move best;
 
-    range[0] = 1;
-    range[1] = 5;
+    nb_range = data->size_a / RANGE_SIZE;
+    range[1] = (RANGE_SIZE * nb_range);
+    range[0] =  (range[1] - RANGE_SIZE) + 1;
+    assert(range[1] == 10 && range[0] == 6);
     best_move(*data, range);
+    while (nb_range > 0)
+    {
+        printf("Range start: %d end: %d\n", range[0], range[1]);
+
+        while (data->size_b != RANGE_SIZE)
+        {
+            best = best_move(*data, range);
+            while (best.number > 0)
+            {
+                best.move(data, STACK_A, DISPLAY);
+                best.number--;
+            }
+            push(data, STACK_A, STACK_B, DISPLAY);
+        }
+        display_stack(data, STACK_B);
+        five_values(data,STACK_B, STACK_A);
+        display_stack(data, STACK_B);
+        assert(1 == 2);
+
+        range[1] -= RANGE_SIZE;
+        range[0] -= RANGE_SIZE;
+        nb_range--;
+    }
     
 }
