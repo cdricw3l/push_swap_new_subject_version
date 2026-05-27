@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 11:30:49 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 11:32:33 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_gl
 	}
 	return (OK);
 }
-
 
 int	at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int))
 {
