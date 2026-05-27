@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 09:55:04 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:08:12 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,12 +169,12 @@ void max_at_beg_asser(void)
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
     assert(data.size_a == 0);
     display_stack(&data, STACK_B);
-    assert(at_beginning(&data, STACK_B, get_bigest_value) == OK);
-    assert(at_beginning(&data, STACK_B, get_bigest_value) == NO_MOVE);
+    assert(at_beginning(&data, STACK_B, bigest_value) == OK);
+    assert(at_beginning(&data, STACK_B, bigest_value) == NO_MOVE);
     while (data.b)
     {
-        biggest = *get_bigest_value(&data, STACK_B);
-        at_beginning(&data, STACK_B, get_bigest_value);
+        biggest = *bigest_value(&data, STACK_B);
+        at_beginning(&data, STACK_B, bigest_value);
         assert(biggest == *data.b);
         push(&data,STACK_B, STACK_A, NO_DISPLAY);
     }
@@ -182,26 +182,26 @@ void max_at_beg_asser(void)
     free(data.stack);
     
     assert(init_global_data(l2, &data) == OK);
-    biggest = *get_bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_B, get_bigest_value);
+    biggest = *bigest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, bigest_value);
     assert(biggest == *(data.a));
     free(data.stack);
     
     assert(init_global_data(l3, &data) == OK);
-    biggest = *get_bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_B, get_bigest_value);
+    biggest = *bigest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, bigest_value);
     assert(biggest == *data.a);
     free(data.stack);
 
     assert(init_global_data(l4, &data) == OK);
-    biggest = *get_bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_B, get_bigest_value);
+    biggest = *bigest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, bigest_value);
     assert(biggest == *data.a);
     free(data.stack);
     
     assert(init_global_data(l5, &data) == OK);
-    biggest = *get_bigest_value(&data, STACK_A);
-    at_beginning(&data, STACK_B, get_bigest_value);
+    biggest = *bigest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, bigest_value);
     assert(biggest == *data.a);
     free(data.stack);
 
@@ -210,15 +210,15 @@ void max_at_beg_asser(void)
     assert(init_global_data(l6, &data) == OK);
     while (data.a)
     {
-        biggest = *get_bigest_value(&data, STACK_A);
-        at_beginning(&data, STACK_B, get_bigest_value);
+        biggest = *bigest_value(&data, STACK_A);
+        at_beginning(&data, STACK_A, bigest_value);
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
         assert(biggest == *data.b);
     }
     while (data.b)
     {
-        biggest = *get_bigest_value(&data, STACK_B);
-        at_beginning(&data, STACK_B, get_bigest_value);
+        biggest = *bigest_value(&data, STACK_B);
+        at_beginning(&data, STACK_B, bigest_value);
         push(&data, STACK_B, STACK_A, NO_DISPLAY);
         assert(biggest == *data.a);
     }
@@ -236,39 +236,39 @@ void min_at_beg_asser(void)
     char *l5[] = {"1 5 -20 -40 3 220 31 7 88 22", NULL};
 
     assert(init_global_data(l1, &data) == OK);
-    smallest = *get_smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, get_smalest_value);
+    smallest = *smalest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, smalest_value);
     assert(smallest == *data.a);
     free(data.stack);
     
-    assert(at_beginning(&data, STACK_A, get_smalest_value) == NO_MOVE);
+    assert(at_beginning(&data, STACK_A, smalest_value) == NO_MOVE);
     assert(smallest == *data.a);
     
     assert(init_global_data(l2, &data) == OK);
-    smallest = *get_smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, get_smalest_value);
+    smallest = *smalest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, smalest_value);
     assert(smallest == *(data.a));
     free(data.stack);
     
     assert(init_global_data(l3, &data) == OK);
-    smallest = *get_smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, get_smalest_value);
+    smallest = *smalest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, smalest_value);
     assert(smallest == *data.a);
     free(data.stack);assert(init_global_data(l5, &data) == OK);
-    smallest = *get_smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, get_smalest_value);
+    smallest = *smalest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, smalest_value);
     assert(smallest == *data.a);
     free(data.stack);
 
     assert(init_global_data(l4, &data) == OK);
-    smallest = *get_smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, get_smalest_value);
+    smallest = *smalest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, smalest_value);
     assert(smallest == *data.a);
     free(data.stack);
     
     assert(init_global_data(l5, &data) == OK);
-    smallest = *get_smalest_value(&data, STACK_A);
-    at_beginning(&data, STACK_A, get_smalest_value);
+    smallest = *smalest_value(&data, STACK_A);
+    at_beginning(&data, STACK_A, smalest_value);
     assert(smallest == *data.a);
     free(data.stack);
 
@@ -277,15 +277,15 @@ void min_at_beg_asser(void)
     assert(init_global_data(l6, &data) == OK);
     while (data.a)
     {
-        smallest = *get_smalest_value(&data, STACK_A);
-        at_beginning(&data, STACK_A, get_smalest_value);
+        smallest = *smalest_value(&data, STACK_A);
+        at_beginning(&data, STACK_A, smalest_value);
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
         assert(smallest == *data.b);
     }
     while (data.b)
     {
-        smallest = *get_smalest_value(&data, STACK_B);
-        at_beginning(&data, STACK_B, get_smalest_value);
+        smallest = *smalest_value(&data, STACK_B);
+        at_beginning(&data, STACK_B, smalest_value);
         push(&data, STACK_B, STACK_A, NO_DISPLAY);
         assert(smallest == *data.a);
     }
@@ -373,9 +373,9 @@ void algo_assert(char **argv)
 {
     (void)argv;
     min_at_beg_asser();
-    //max_at_beg_asser();
-    // three_value_assert();
-    // five_value_assert(argv);
-    // place_in_stack_assert();
-    //find_best_value_of_range_assert();
+    max_at_beg_asser();
+    three_value_assert();
+    five_value_assert(argv);
+    place_in_stack_assert();
+    find_best_value_of_range_assert();
 }   

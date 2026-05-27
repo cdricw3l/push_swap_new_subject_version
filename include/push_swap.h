@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 09:41:51 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:03:47 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ float   compute_disorder(t_global_data *data);
 void    put_float(float nb);
 int     get_complexity(char *arg);
 int     ft_is_sort(t_global_data *data, int stack);
-int     *get_smalest_value(t_global_data *data, int stack);
-int     *get_bigest_value(t_global_data *data, int stack);
+int     *smalest_value(t_global_data *data, int stack);
+int     *bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 
 int	    at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int));

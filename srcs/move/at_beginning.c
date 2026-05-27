@@ -6,13 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 09:55:34 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:02:24 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int *get_bigest_value(t_global_data *data, int stack)
+int *bigest_value(t_global_data *data, int stack)
 {
 	int *arr;
 	int *p1;
@@ -42,7 +42,7 @@ int *get_bigest_value(t_global_data *data, int stack)
 	return (p1);
 }
 
-int *get_smalest_value(t_global_data *data, int stack)
+int *smalest_value(t_global_data *data, int stack)
 {
 	int *arr;
 	int *p1;
@@ -80,6 +80,9 @@ long ABS(long value)
 	return (value);
 }
 
+
+#include <assert.h>
+
 /**
  * @brief return if the movement is cheepest to the left or to the right.
  * @param born Le premier entier.
@@ -87,8 +90,6 @@ long ABS(long value)
  * @param stack stack to process
  * @return OK, NO_MOVE or ERR.
  */
-
-#include <assert.h>
 
 
 int get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_global_data *, int))
@@ -114,6 +115,8 @@ int get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_gl
 	}
 	return (OK);
 }
+
+
 int	at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int))
 {
 	long 	born[2];
@@ -138,9 +141,3 @@ int	at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data 
 		}
 	return (OK);
 }
-
-
-
-
-
-
