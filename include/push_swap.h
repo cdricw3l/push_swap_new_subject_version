@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 07:56:33 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/27 08:30:02 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int     *get_bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
 int     min_at_beginning(t_global_data *data, int stack);
 int	    max_at_beginning(t_global_data *data, int stack);
+int     get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_global_data *, int));
+
 #endif
 
 

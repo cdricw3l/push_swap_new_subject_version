@@ -3,46 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   min_at_beginning.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 07:55:18 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/27 09:03:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
+
+long ABS(long value)
+{
+	if(value < 0)
+		return (value * -1);
+	return (value);
+}
+
 /**
  * @brief return if the movement is cheepest to the left or to the right.
  * @param born Le premier entier.
  * @param data Le deuxième entier.
- * @param stack stack to analyse.
+ * @param stack stack to process
  * @return OK, NO_MOVE or ERR.
  */
 
-static int get_born(long born[2], t_global_data *data, int stack)
+int get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_global_data *, int))
 {
 	int		*value;
 
-	if(stack == STACK_A)
-		value = get_smalest_value(data, stack);
-	else if(stack == STACK_B)
-		value = get_bigest_value(data, stack);
-	else 
-		return (ERR);
+	value = get_value(data, stack);
 	if (!value || (stack != STACK_A && stack != STACK_B))
 		return (ERR);
 	if (stack == STACK_A)
 	{
-		born[LEFT] = (((long)data->a - (long)value) / 4);
-		born[RIGHT] = (((long)(data->a + (data->size_a - 1)) - (long)value) / sizeof(int)) + 1;
+		born[LEFT] = (((long)value - (long)data->a) / 4);
+		born[RIGHT] = ABS(((long)value - (long)(data->a + (data->size_a - 1))) / sizeof(int)) + 1;
 		if (value == data->a)
 			return(NO_MOVE);
 	}
 	else if (stack == STACK_B)
 	{
-		born[LEFT]  = (((long)data->b - (long)value) / 4);
-		born[RIGHT]  = (((long)(data->b - (data->size_b - 1)) - (long)value) / sizeof(int)) + 1;
+		born[LEFT]  = ABS(((long)value - (long) data->b) / 4);
+		born[RIGHT]  = (((long)value - ((long) (data->b - (data->size_b - 1)))) / sizeof(int)) + 1;
 		if (value == data->b)
 			return(NO_MOVE);
 	}
@@ -54,7 +57,7 @@ int	min_at_beginning(t_global_data *data, int stack)
 	long 	born[2];
 	int 	status;
 
-	status = get_born(born, data, stack);
+	status = get_born(born, data, stack, get_smalest_value );
 	if(status == ERR)
 		return (ERR);
 	else if(status == NO_MOVE)

@@ -20,6 +20,7 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				srcs/move/movement.c \
 				srcs/utils/utils_1.c \
 				srcs/utils/min_at_beginning.c \
+				srcs/utils/max_at_beginning.c \
 				srcs/utils/debbuging.c \
 				srcs/utils/display.c \
 				srcs/algo/three.c \

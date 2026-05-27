@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   max_at_beginning.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 07:48:46 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/27 07:49:34 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/27 08:59:12 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,11 @@ int	max_at_beginning(t_global_data *data, int stack)
 	long 	born[2];
 	int 	status;
 
-	status = get_born(born, data, stack);
-	printf("move for left %ld move pour right: %ld\n", born[LEFT], born[RIGHT]);
+	status = get_born(born, data, stack, get_bigest_value);
 	if(status == ERR)
 		return (ERR);
 	else if(status == NO_MOVE)
 		return (NO_MOVE);
-	if (born[LEFT] < 0)
-		born[LEFT] = born[LEFT] *-1;
-	if (born[RIGHT] < 0)
-		born[RIGHT] = born[RIGHT] *-1;
 	if (born[LEFT] > born[RIGHT] || born[LEFT] == born[RIGHT])
 		while (born[RIGHT] > 0)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_assertion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 07:47:48 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/27 09:07:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,71 +158,70 @@ void max_at_beg_asser(void)
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
     int biggest;
-    char *l1[] = {"1 5 2 4 3", NULL};
-    // char *l2[] = {"1 -5 20 40 3", NULL};
-    // char *l3[] = {"1 -5 20 40 3", NULL};
-    // char *l4[] = {"1 5 -20 40 3 0 78 44 58", NULL};
-    // char *l5[] = {"1 5 -20 -40 3 220 31 7 88 22", NULL};
+    char *l1[] = {"10 5 -2 4001 311", NULL};
+    char *l2[] = {"1 -5 20 40 3", NULL};
+    char *l3[] = {"1 -5 20 40 3", NULL};
+    char *l4[] = {"1 5 -20 40 3 0 78 44 58", NULL};
+    char *l5[] = {"1 5 -20 -40 3 220 31 7 88 22", NULL};
 
     assert(init_global_data(l1, &data) == OK);
-    biggest = *get_bigest_value(&data, STACK_A);
-    assert(biggest == 5);
     while (data.a)
-    {
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
-    }
     assert(data.size_a == 0);
-    
     display_stack(&data, STACK_B);
-    max_at_beginning(&data, STACK_B);
-    display_stack(&data, STACK_B);
-    assert(biggest == *data.b);
+    assert(max_at_beginning(&data, STACK_B) == OK);
+    assert(max_at_beginning(&data, STACK_B) == NO_MOVE);
+    while (data.b)
+    {
+        biggest = *get_bigest_value(&data, STACK_B);
+        max_at_beginning(&data, STACK_B);
+        assert(biggest == *data.b);
+        push(&data,STACK_B, STACK_A, NO_DISPLAY);
+    }
+    assert(ft_is_sort(&data, STACK_A));
     free(data.stack);
     
-    // assert(max_at_beginning(&data, STACK_A) == NO_MOVE);
-    // assert(biggest == *data.a);
+    assert(init_global_data(l2, &data) == OK);
+    biggest = *get_bigest_value(&data, STACK_A);
+    max_at_beginning(&data, STACK_A);
+    assert(biggest == *(data.a));
+    free(data.stack);
     
-    // assert(init_global_data(l2, &data) == OK);
-    // biggest = *get_bigest_value(&data, STACK_A);
-    // max_at_beginning(&data, STACK_A);
-    // assert(biggest == *(data.a));
-    // free(data.stack);
-    
-    // assert(init_global_data(l3, &data) == OK);
-    // biggest = *get_bigest_value(&data, STACK_A);
-    // max_at_beginning(&data, STACK_A);
-    // assert(biggest == *data.a);
-    // free(data.stack);
+    assert(init_global_data(l3, &data) == OK);
+    biggest = *get_bigest_value(&data, STACK_A);
+    max_at_beginning(&data, STACK_A);
+    assert(biggest == *data.a);
+    free(data.stack);
 
-    // assert(init_global_data(l4, &data) == OK);
-    // biggest = *get_bigest_value(&data, STACK_A);
-    // max_at_beginning(&data, STACK_A);
-    // assert(biggest == *data.a);
-    // free(data.stack);
+    assert(init_global_data(l4, &data) == OK);
+    biggest = *get_bigest_value(&data, STACK_A);
+    max_at_beginning(&data, STACK_A);
+    assert(biggest == *data.a);
+    free(data.stack);
     
-    // assert(init_global_data(l5, &data) == OK);
-    // biggest = *get_bigest_value(&data, STACK_A);
-    // max_at_beginning(&data, STACK_A);
-    // assert(biggest == *data.a);
-    // free(data.stack);
+    assert(init_global_data(l5, &data) == OK);
+    biggest = *get_bigest_value(&data, STACK_A);
+    max_at_beginning(&data, STACK_A);
+    assert(biggest == *data.a);
+    free(data.stack);
 
 
-    // char *l6[] = {"10 -1 32 45 7 -788", NULL};
-    // assert(init_global_data(l6, &data) == OK);
-    // while (data.a)
-    // {
-    //     biggest = *get_bigest_value(&data, STACK_A);
-    //     max_at_beginning(&data, STACK_A);
-    //     push(&data, STACK_A, STACK_B, NO_DISPLAY);
-    //     assert(biggest == *data.b);
-    // }
-    // while (data.b)
-    // {
-    //     biggest = *get_bigest_value(&data, STACK_B);
-    //     max_at_beginning(&data, STACK_B);
-    //     push(&data, STACK_B, STACK_A, NO_DISPLAY);
-    //     assert(biggest == *data.a);
-    // }
+    char *l6[] = {"10 -1 32 45 7 -788", NULL};
+    assert(init_global_data(l6, &data) == OK);
+    while (data.a)
+    {
+        biggest = *get_bigest_value(&data, STACK_A);
+        max_at_beginning(&data, STACK_A);
+        push(&data, STACK_A, STACK_B, NO_DISPLAY);
+        assert(biggest == *data.b);
+    }
+    while (data.b)
+    {
+        biggest = *get_bigest_value(&data, STACK_B);
+        max_at_beginning(&data, STACK_B);
+        push(&data, STACK_B, STACK_A, NO_DISPLAY);
+        assert(biggest == *data.a);
+    }
     ASSERT_END(__func__);
 }
 void min_at_beg_asser(void)
