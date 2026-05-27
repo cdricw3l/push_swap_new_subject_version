@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:01:09 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:35:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,17 @@ int rev_rotate(t_global_data *data, int stack, int mode)
 		return (NO_MOVE);
 	if (stack == STACK_A && data->a)
 	{
-		tmp = *(data->a + data->size_a - 1);
-		ft_memmove(data->a + 1, data->a, (data->size_a  - 1) * sizeof(int));
-		*(data->a) = tmp;
+		tmp = *(data->a);
+		ft_memmove(data->a, data->a + 1, (data->size_a - 1) * sizeof(int));
+		*(data->a + (data->size_a - 1)) = tmp;
 	}
 	else if (stack == STACK_B && data->b)
 	{
-		tmp = *(data->b - (data->size_b - 1));
-		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
-		*(data->b) = tmp;
+		tmp = *(data->b);
+		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
+		*(data->b - (data->size_b  - 1)) = tmp;
 	}
+	
 	if(mode == DISPLAY)
 		print_move(RV, stack);
 	return (OK);    
@@ -91,15 +92,15 @@ int rotate(t_global_data *data, int stack, int mode)
 		return (NO_MOVE);
 	if (stack == STACK_A && data->a)
 	{
-		tmp = *(data->a);
-		ft_memmove(data->a, data->a + 1, (data->size_a - 1) * sizeof(int));
-		*(data->a + (data->size_a - 1)) = tmp;
+		tmp = *(data->a + data->size_a - 1);
+		ft_memmove(data->a + 1, data->a, (data->size_a  - 1) * sizeof(int));
+		*(data->a) = tmp;
 	}
 	else if (stack == STACK_B && data->b)
 	{
-		tmp = *(data->b);
-		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
-		*(data->b - (data->size_b  - 1)) = tmp;
+		tmp = *(data->b - (data->size_b - 1));
+		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
+		*(data->b) = tmp;
 	}
 	
 	if(mode == DISPLAY)

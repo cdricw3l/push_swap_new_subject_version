@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:09:57 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/25 15:23:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:25:07 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,13 +219,13 @@ void check_dupplicate_assert(void)
     ASSERT_END(__func__);
 }
 
-void init_global_data_assert(char **argv)
+void init_global_data_assert()
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
     //int split_len;
-
-    assert(init_global_data(argv, &data) == OK);
+    char *arg[] = {"--simple -126 -717 -1185 -2219 -2402 -2471 -1055 -3238 -3994 631", NULL};
+    assert(init_global_data(arg, &data) == OK);
     assert(data.a == data.stack);
     assert(data.b == NULL);
     assert(data.size_b == 0);
@@ -247,7 +247,7 @@ int init_and_check_assert(int argc, char **argv)
     check_arg_assert();
     init_stack_assert();
     check_dupplicate_assert();
-    init_global_data_assert(argv);
+    init_global_data_assert();
     
     
     return (0);

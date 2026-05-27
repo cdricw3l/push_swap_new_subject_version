@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:05:16 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:39:17 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ void three_value_assert(void)
     data.start = &arr1[0];
     data.end = &arr1[5];
 
-    display_stack(&data, STACK_B);
+    display_stack(&data, STACK_A);
     assert(three_values(&data, STACK_A) == OK);
     assert(three_values(&data, STACK_B) == OK);
-    display_stack(&data, STACK_B);
+    display_stack(&data, STACK_A);
+    
     assert(ft_is_sort(&data, STACK_A));
     assert(ft_is_sort(&data, STACK_B));
     

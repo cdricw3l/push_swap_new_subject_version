@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/26 13:32:33 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:30:14 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void swap_assert(void)
     ASSERT_END(__func__);
 }
 
-void rev_rotate_short_assert(void)
+void rotate_short_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     
@@ -105,7 +105,7 @@ void rev_rotate_short_assert(void)
     while (i < data.size_a)
     {
         tmp = *data.a;
-        assert(rev_rotate(&data, STACK_A, NO_DISPLAY) == OK);
+        assert(rotate(&data, STACK_A, NO_DISPLAY) == OK);
         display_stack(&data, STACK_A);
         assert(*(data.a + (data.size_a - 1)) == tmp);
         i++;
@@ -117,7 +117,7 @@ void rev_rotate_short_assert(void)
     while (i < data.size_b)
     {
         tmp = *data.b;
-        assert(rev_rotate(&data, STACK_B, NO_DISPLAY) == OK);
+        assert(rotate(&data, STACK_B, NO_DISPLAY) == OK);
         display_stack(&data, STACK_B);
         assert(*(data.b - (data.size_b - 1)) == tmp);
         i++;
@@ -132,7 +132,7 @@ void rev_rotate_short_assert(void)
 }
 
 
-void rotate_short_assert(void)
+void rev_rotate_short_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
@@ -151,7 +151,7 @@ void rotate_short_assert(void)
     while (i < data.size_a)
     {
         tmp = *(data.a);
-        rotate(&data,  STACK_A, NO_DISPLAY);
+        rev_rotate(&data,  STACK_A, NO_DISPLAY);
         assert(*(data.a + 1) == tmp);
         i++;
     }
@@ -160,7 +160,7 @@ void rotate_short_assert(void)
     while (i < data.size_b)
     {
         tmp = *(data.b);
-        rotate(&data,  STACK_B, NO_DISPLAY);
+        rev_rotate(&data,  STACK_B, NO_DISPLAY);
         assert(*(data.b - 1) == tmp);
         i++;
     }
@@ -169,7 +169,7 @@ void rotate_short_assert(void)
 }
 
 
-void rotate_push_rotate_push_assert(char **argv)
+void rotate_push_rotate_push_assert()
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
@@ -178,7 +178,8 @@ void rotate_push_rotate_push_assert(char **argv)
     int first_value;
     int size_a;
 
-    assert(init_global_data(argv, &data) == OK);
+    char *arg[] = {"--simple -126 -717 -1185 -2219 -2402 -2471 -1055 -3238 -3994 631", NULL};
+    assert(init_global_data(arg, &data) == OK);
     assert(data.b  == NULL);
     size_a = data.size_a;
     first_value = *(data.a);
@@ -248,7 +249,7 @@ void rotate_push_rotate_push_assert(char **argv)
     ASSERT_END(__func__);
 }
 
-void double_rotation_assert(char **argv)
+void double_rotation_assert(void)
 {
     
     ASSERT_START(__func__, __LINE__);
@@ -256,8 +257,8 @@ void double_rotation_assert(char **argv)
     int first_el_a;
     int first_el_b;
     int i;
-
-    assert(init_global_data(argv, &data) == OK);
+    char *arg[] = {"--simple -126 -717 -1185 -2219 -2402 -2471 -1055 -3238 -3994 631", NULL};
+    assert(init_global_data(arg, &data) == OK);
     /* check if we can split the list value int two equal stack*/
     if(data.size_a % 2 != 0)
     {
@@ -275,11 +276,11 @@ void double_rotation_assert(char **argv)
     assert(double_rotation(&data,P, NO_DISPLAY) == NO_MOVE);
     
     /* check for single rotation */
-    assert(double_rotation(&data, RR, NO_DISPLAY) == OK);
+    assert(double_rotation(&data, R, NO_DISPLAY) == OK);
     assert(*(data.a + 1) == first_el_a);
     assert(*(data.b - 1) == first_el_b);
     /* check for single rev_rotation */
-    assert(double_rotation(&data, RRR, NO_DISPLAY) == OK);
+    assert(double_rotation(&data, RR, NO_DISPLAY) == OK);
     assert(*(data.a) == first_el_a);
     assert(*(data.b) == first_el_b);
     
@@ -316,11 +317,12 @@ void double_rotation_assert(char **argv)
 void move_assertions(int argc, char **argv)
 {
     (void)argc;
+    (void)argv;
     
     push_assert();
     swap_assert();
-    rev_rotate_short_assert();
     rotate_short_assert();
-    rotate_push_rotate_push_assert(&argv[1]);
-    double_rotation_assert(&argv[1]);
+    rev_rotate_short_assert();
+    rotate_push_rotate_push_assert();
+    double_rotation_assert();
 }
