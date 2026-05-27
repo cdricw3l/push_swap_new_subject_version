@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 09:41:37 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:21:38 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../lib/libft.h"
+
+#define RED  "\033[0;31m"
+#define YELLOW  "\033[0;33m"
+#define GREEN   "\033[0;32m"
+#define RESET   "\033[0m"
+
+
+#define ASSERT_DEBBUG(line) printf(RED"WE ARE HERE ligne:%d"RESET"\n", line)
 
 #define OK 0
 #define ERR -1
@@ -72,6 +80,18 @@ typedef struct s_stack_data
     
 } t_stack_data;
 
+typedef struct s_best_move
+{
+    int number;
+    int (*move)(t_global_data *, int, int);
+
+} t_best_move;
+
+/*
+
+    rotate -> the last become the first
+    rev_rotate <- the first become the last
+*/
 
 /* movement */
 
@@ -97,21 +117,15 @@ float   compute_disorder(t_global_data *data);
 void    put_float(float nb);
 int     get_complexity(char *arg);
 int     ft_is_sort(t_global_data *data, int stack);
-int     *get_smalest_value(t_global_data *data, int stack);
+int     *smalest_value(t_global_data *data, int stack);
+int     *bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
-int     min_at_beginning(t_global_data *data, int stack);
 
-/* check_init */
-
-int check_digit(char *str);
-int	check_args(char **argv, t_global_data *data);
-int	create_stack(char **argv, t_global_data *data);
-int	check_duplicate(t_global_data *data);
-int	init_global_data(char **argv, t_global_data *data);
-int selection_sort(t_global_data *data);
+int	    at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int));
 
 #endif
 
 
 
 
+//Doxygen
