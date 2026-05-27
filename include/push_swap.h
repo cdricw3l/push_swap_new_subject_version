@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 10:21:38 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/05/27 10:30:30 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ typedef struct s_best_move
     rev_rotate <- the first become the last
 */
 
+/* initialisation */
+int	check_digit(char *str);
+int	check_args(char **argv, t_global_data *data);
+int	create_stack(char **argv, t_global_data *data);
+int	check_duplicate(t_global_data *data);
+int	init_global_data(char **argv, t_global_data *data);
+
 /* movement */
 
 int push(t_global_data *data, int src, int dst, int mode);
@@ -106,6 +113,7 @@ int double_rotation(t_global_data *data, int move, int mode);
 int three_values(t_global_data *data, int stack);
 void five_values(t_global_data *data, int stk_src, int stk_dst);
 int ft_buble_sort_push(t_global_data *data);
+int selection_sort(t_global_data *data);
 
 /* utils */
 
