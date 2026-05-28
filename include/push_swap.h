@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/29 00:03:12 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 00:19:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #define PUSH_SWAP_H
 
 #include <stdio.h>
+#include <assert.h>
 #include <unistd.h>
 #include "../lib/libft.h"
 

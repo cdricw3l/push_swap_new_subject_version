@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Push Swap Generator - By Akailany</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root,
+    [data-theme="light"] {
+      --bg: #f4f3f0;
+      --surface: #f9f8f6;
+      --surface-2: #ffffff;
+      --surface-off: #eceae5;
+      --surface-dyn: #e2e0db;
+      --border: oklch(0.3 0.01 80/0.12);
+      --divider: #dcdad5;
+      --text: #1e1c18;
+      --muted: #706e69;
+      --faint: #b8b6b1;
+      --inverse: #f9f8f4;
+      --primary: #01696f;
+      --primary-h: #0c4e54;
+      --primary-hi: #d0dedd;
+      --success: #437a22;
+      --success-hi: #d4dfcc;
+      --error: #c0392b;
+      --error-hi: #fce8e6;
+      --orange: #da7101;
+      --blue: #006494;
+      --blue-hi: #c6d8e4;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --r-sm: 0.375rem;
+      --r-md: 0.5rem;
+      --r-lg: 0.75rem;
+      --r-xl: 1rem;
+      --r-full: 9999px;
+      --sh-sm: 0 1px 2px oklch(0.2 0.01 80/0.06);
+      --sh-md: 0 4px 12px oklch(0.2 0.01 80/0.08);
+      --tr: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #131211;
+      --surface: #1a1917;
+      --surface-2: #201f1d;
+      --surface-off: #252320;
+      --surface-dyn: #2d2c2a;
+      --border: oklch(0.9 0.01 80/0.1);
+      --divider: #2a2825;
+      --text: #cccac6;
+      --muted: #797672;
+      --faint: #504e4a;
+      --inverse: #2b2a28;
+      --primary: #4f98a3;
+      --primary-h: #3d8591;
+      --primary-hi: #1e3335;
+      --success: #6daa45;
+      --success-hi: #1e2e15;
+      --error: #e57373;
+      --error-hi: #2d1515;
+      --orange: #fdab43;
+      --blue: #5591c7;
+      --blue-hi: #1e2e3a;
+      --sh-sm: 0 1px 2px oklch(0 0 0/0.25);
+      --sh-md: 0 4px 12px oklch(0 0 0/0.35);
+    }
+
+    @media(prefers-color-scheme:dark) {
+      :root:not([data-theme]) {
+        --bg: #131211;
+        --surface: #1a1917;
+        --surface-2: #201f1d;
+        --surface-off: #252320;
+        --surface-dyn: #2d2c2a;
+        --border: oklch(0.9 0.01 80/0.1);
+        --divider: #2a2825;
+        --text: #cccac6;
+        --muted: #797672;
+        --faint: #504e4a;
+        --inverse: #2b2a28;
+        --primary: #4f98a3;
+        --primary-h: #3d8591;
+        --primary-hi: #1e3335;
+        --success: #6daa45;
+        --success-hi: #1e2e15;
+        --error: #e57373;
+        --error-hi: #2d1515;
+        --orange: #fdab43;
+        --blue: #5591c7;
+        --blue-hi: #1e2e3a;
+        --sh-sm: 0 1px 2px oklch(0 0 0/0.25);
+        --sh-md: 0 4px 12px oklch(0 0 0/0.35);
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth
+    }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--font);
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem 2rem
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font: inherit;
+      color: inherit
+    }
+
+    input,
+    select,
+    textarea {
+      font: inherit;
+      color: inherit
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* NAV */
+    nav {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      margin-bottom: 0.5rem
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem
+    }
+
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+      color: var(--primary)
+    }
+
+    .logo-text {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.01em
+    }
+
+    .logo-text span {
+      color: var(--primary)
+    }
+
+    .theme-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: color var(--tr), background var(--tr)
+    }
+
+    .theme-btn:hover {
+      color: var(--text);
+      background: var(--surface-off)
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 0 1rem
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.625rem
+    }
+
+    .hero h1 span {
+      color: var(--primary)
+    }
+
+    .hero p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      max-width: 46ch;
+      margin: 0 auto;
+      line-height: 1.6
+    }
+
+    /* CARD */
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      box-shadow: var(--sh-md);
+      overflow: hidden;
+      margin-bottom: 1.25rem
+    }
+
+    .card-head {
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      gap: 0.625rem
+    }
+
+    .head-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--r-md);
+      background: var(--primary-hi);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .head-icon.blue {
+      background: var(--blue-hi);
+      color: var(--blue)
+    }
+
+    .card-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.01em
+    }
+
+    .card-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 0.125rem
+    }
+
+    .card-body {
+      padding: 1.25rem 1.5rem
+    }
+
+    /* FORM */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.875rem;
+      margin-bottom: 1rem
+    }
+
+    @media(max-width:540px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:380px) {
+      .form-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted)
+    }
+
+    .input-hint {
+      font-size: 0.68rem;
+      color: var(--faint);
+      margin-top: 0.1rem
+    }
+
+    input[type="number"] {
+      padding: 0.5625rem 0.75rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      outline: none;
+      transition: border-color var(--tr), box-shadow var(--tr);
+      -moz-appearance: textfield;
+      width: 100%
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 18%, transparent)
+    }
+
+    input.err {
+      border-color: var(--error)
+    }
+
+    .field-err {
+      font-size: 0.7rem;
+      color: var(--error);
+      min-height: 1rem
+    }
+
+    /* SLIDER */
+    .disorder-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem
+    }
+
+    .slider-wrap {
+      flex: 1
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      outline: none
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--surface-off)
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--surface-2);
+      box-shadow: var(--sh-sm);
+      margin-top: -6px;
+      transition: box-shadow var(--tr)
+    }
+
+    input[type="range"]::-moz-range-track {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--surface-off)
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--surface-2)
+    }
+
+    .dis-val {
+      min-width: 3.25rem;
+      text-align: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 0.35rem 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary)
+    }
+
+    .badges {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem
+    }
+
+    .badge {
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--r-full);
+      font-size: 0.72rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface-off);
+      color: var(--muted);
+      transition: background var(--tr), color var(--tr), border-color var(--tr)
+    }
+
+    .badge:hover,
+    .badge.on {
+      background: var(--primary-hi);
+      color: var(--primary);
+      border-color: var(--primary)
+    }
+
+    /* GEN BTN */
+    .btn-gen {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--r-lg);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: var(--sh-sm);
+      margin-bottom: 1.25rem;
+      transition: background var(--tr), box-shadow var(--tr), transform var(--tr)
+    }
+
+    .btn-gen:hover {
+      background: var(--primary-h);
+      box-shadow: var(--sh-md)
+    }
+
+    .btn-gen:active {
+      transform: scale(0.99)
+    }
+
+    .btn-gen:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none
+    }
+
+    /* OUTPUT BOX */
+    .out-section {
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--surface-2)
+    }
+
+    .out-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55rem 0.75rem;
+      background: var(--surface-off);
+      border-bottom: 1px solid var(--divider)
+    }
+
+    .out-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem
+    }
+
+    .out-lbl {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em
+    }
+
+    .pill {
+      font-size: 0.68rem;
+      font-family: var(--mono);
+      font-weight: 500;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--r-full);
+      background: var(--primary-hi);
+      color: var(--primary)
+    }
+
+    .out-acts {
+      display: flex;
+      gap: 0.3rem
+    }
+
+    .btn-sm {
+      padding: 0.28rem 0.55rem;
+      border-radius: var(--r-sm);
+      font-size: 0.72rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: background var(--tr), color var(--tr);
+      white-space: nowrap
+    }
+
+    .btn-sm:hover {
+      background: var(--surface);
+      color: var(--text)
+    }
+
+    .btn-sm.copied {
+      background: var(--success-hi);
+      color: var(--success);
+      border-color: transparent
+    }
+
+    #output {
+      width: 100%;
+      min-height: 90px;
+      max-height: 180px;
+      padding: 0.75rem;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: vertical;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--text);
+      word-break: break-all
+    }
+
+    .empty-st {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      min-height: 90px;
+      padding: 1.5rem;
+      color: var(--faint);
+      font-size: 0.85rem
+    }
+
+    .info-bar {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      padding: 0.55rem 0.75rem;
+      background: var(--surface-off);
+      border-top: 1px solid var(--divider)
+    }
+
+    .ii {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      color: var(--muted)
+    }
+
+    .iv {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 0.72rem;
+      color: var(--text)
+    }
+
+    /* CMD CARD */
+    .cmd-off {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 2rem 1.5rem;
+      color: var(--faint);
+      font-size: 0.875rem;
+      text-align: center
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 0.375rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem
+    }
+
+    .mtab {
+      padding: 0.375rem 0.875rem;
+      border-radius: var(--r-full);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface-off);
+      color: var(--muted);
+      transition: background var(--tr), color var(--tr), border-color var(--tr)
+    }
+
+    .mtab:hover {
+      background: var(--surface-dyn);
+      color: var(--text)
+    }
+
+    .mtab.on {
+      background: var(--primary-hi);
+      color: var(--primary);
+      border-color: var(--primary);
+      font-weight: 600
+    }
+
+    .flags-lbl {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 0.5rem
+    }
+
+    .flags-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem
+    }
+
+    .fchip {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--r-full);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface-off);
+      color: var(--muted);
+      font-family: var(--mono);
+      transition: background var(--tr), color var(--tr), border-color var(--tr);
+      user-select: none
+    }
+
+    .fchip:hover {
+      background: var(--surface-dyn);
+      color: var(--text)
+    }
+
+    .fchip.on {
+      background: var(--blue-hi);
+      color: var(--blue);
+      border-color: var(--blue)
+    }
+
+    .fchip .ck {
+      opacity: 0;
+      transition: opacity var(--tr);
+      width: 12px;
+      height: 12px
+    }
+
+    .fchip.on .ck {
+      opacity: 1
+    }
+
+    .cmd-block {
+      margin-bottom: 0.75rem
+    }
+
+    .cmd-block-lbl {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--faint);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .dg {
+      background: var(--success)
+    }
+
+    .db {
+      background: var(--blue)
+    }
+
+    .do {
+      background: var(--orange)
+    }
+
+    .cmd-row {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--surface-2)
+    }
+
+    .cmd-ta {
+      flex: 1;
+      padding: 0.625rem 0.875rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text);
+      word-break: break-all;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      min-height: 44px
+    }
+
+    .cmd-cp {
+      padding: 0 0.875rem;
+      background: var(--surface-off);
+      border-left: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: background var(--tr), color var(--tr);
+      flex-shrink: 0;
+      white-space: nowrap
+    }
+
+    .cmd-cp:hover {
+      background: var(--surface-dyn);
+      color: var(--text)
+    }
+
+    .cmd-cp.copied {
+      background: var(--success-hi);
+      color: var(--success)
+    }
+
+    /* FOOTER */
+    footer {
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--faint);
+      border-top: 1px solid var(--divider);
+      margin-top: 0.5rem
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--tr)
+    }
+
+    footer a:hover {
+      color: var(--primary-h);
+      text-decoration: underline
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(1rem);
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.55rem 1.1rem;
+      border-radius: var(--r-full);
+      font-size: 0.825rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 999;
+      white-space: nowrap
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+
+      <span class="logo-text">Push<span>Swap</span></span>
+    </div>
+    <button class="theme-btn" data-theme-toggle aria-label="Toggle theme">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Push Swap<br><span>Generator</span></h1>
+    <p>Generate precise disorder-ratio sequences for push_swap testing. Build and copy terminal commands instantly.</p>
+  </div>
+
+  <!-- GENERATOR CARD -->
+  <div class="card">
+    <div class="card-head">
+      <div class="head-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Disorder Generator</div>
+        <div class="card-desc">Set range, count, and disorder ratio — generates a unique shuffled sequence</div>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <!-- Range + Count inputs -->
+      <div class="form-grid">
+        <div class="field">
+          <label for="range-min">Min value</label>
+          <input type="number" id="range-min" value="-500" autocomplete="off">
+          <span class="field-err" id="err-min"></span>
+        </div>
+        <div class="field">
+          <label for="range-max">Max value</label>
+          <input type="number" id="range-max" value="500" autocomplete="off">
+          <span class="field-err" id="err-max"></span>
+        </div>
+        <div class="field">
+          <label for="count">How many numbers</label>
+          <input type="number" id="count" value="100" min="2" autocomplete="off" placeholder="e.g. 100">
+          <span class="input-hint" id="count-hint">Range has 1001 values</span>
+          <span class="field-err" id="err-count"></span>
+        </div>
+      </div>
+
+      <!-- Disorder slider -->
+      <div class="field" style="margin-bottom:0.5rem">
+        <label>Disorder ratio</label>
+        <div class="disorder-row">
+          <div class="slider-wrap">
+            <input type="range" id="disorder-slider" min="0.01" max="1.00" step="0.01" value="0.30">
+          </div>
+          <div class="dis-val" id="disorder-display">0.30</div>
+        </div>
+      </div>
+
+      <!-- Quick presets -->
+      <div class="badges" id="preset-badges">
+        <button class="badge" data-val="0.05">0.05</button>
+        <button class="badge" data-val="0.10">0.10</button>
+        <button class="badge" data-val="0.20">0.20</button>
+        <button class="badge on" data-val="0.30">0.30</button>
+        <button class="badge" data-val="0.50">0.50</button>
+        <button class="badge" data-val="0.75">0.75</button>
+        <button class="badge" data-val="1.00">1.00</button>
+      </div>
+
+      <button class="btn-gen" id="btn-gen" onclick="generate()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path
+            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+        </svg>
+        Generate Sequence
+      </button>
+
+      <!-- Output -->
+      <div class="out-section">
+        <div class="out-head">
+          <div class="out-meta">
+            <span class="out-lbl">Output</span>
+            <span class="pill" id="count-pill" style="display:none">0 numbers</span>
+          </div>
+          <div class="out-acts">
+            <button class="btn-sm" id="btn-copy-out" onclick="copyOutput()" style="display:none">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copy
+            </button>
+            <button class="btn-sm" id="btn-clear-out" onclick="clearOutput()" style="display:none">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+              Clear
+            </button>
+          </div>
+        </div>
+        <div id="empty-st" class="empty-st">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="7" width="20" height="14" rx="2" />
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+            <line x1="12" y1="12" x2="12" y2="16" />
+            <line x1="10" y1="14" x2="14" y2="14" />
+          </svg>
+          <span>Set parameters and click Generate</span>
+        </div>
+        <textarea id="output" style="display:none" readonly spellcheck="false"
+          aria-label="Generated sequence"></textarea>
+        <div class="info-bar" id="info-bar" style="display:none">
+          <div class="ii"><span>Count</span><span class="iv" id="i-count">—</span></div>
+          <div class="ii"><span>Range</span><span class="iv" id="i-range">—</span></div>
+          <div class="ii"><span>Target</span><span class="iv" id="i-target">—</span></div>
+          <div class="ii"><span>Actual disorder</span><span class="iv" id="i-actual">—</span></div>
+          <div class="ii"><span>Inversions</span><span class="iv" id="i-inv">—</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMMAND BUILDER CARD -->
+  <div class="card">
+    <div class="card-head">
+      <div class="head-icon blue">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="4 17 10 11 4 5" />
+          <line x1="12" y1="19" x2="20" y2="19" />
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Command Builder</div>
+        <div class="card-desc">Build ready-to-paste terminal commands with the full sequence</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div id="cmd-off" class="cmd-off">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+          opacity="0.35">
+          <polyline points="4 17 10 11 4 5" />
+          <line x1="12" y1="19" x2="20" y2="19" />
+        </svg>
+        <span>Generate a sequence first to build commands</span>
+      </div>
+      <div id="cmd-on" style="display:none">
+
+        <!-- Mode tabs -->
+        <div style="margin-bottom:0.625rem">
+          <div class="flags-lbl">Mode</div>
+          <div class="mode-tabs" id="mode-tabs">
+            <button class="mtab on" data-mode="basic">Basic</button>
+            <button class="mtab" data-mode="checker">With checker</button>
+            <button class="mtab" data-mode="bench">Bench</button>
+            <button class="mtab" data-mode="bench-algo">Bench + Algorithm</button>
+          </div>
+        </div>
+
+        <!-- Algorithm flags (bench-algo only) -->
+        <div id="flag-sec" style="display:none">
+          <div class="flags-lbl">Algorithm</div>
+          <div class="flags-row">
+            <button class="fchip" data-flag="--simple" onclick="toggleFlag(this)">
+              <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>--simple
+            </button>
+            <button class="fchip" data-flag="--medium" onclick="toggleFlag(this)">
+              <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>--medium
+            </button>
+            <button class="fchip" data-flag="--complex" onclick="toggleFlag(this)">
+              <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>--complex
+            </button>
+          </div>
+        </div>
+
+        <!-- Commands preview -->
+        <div id="cmd-preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Built by <a href="https://ahmadkailany.com" target="_blank" rel="noopener noreferrer">Ahmad Kailany</a> for 42
+      network &mdash;
+      Push Swap Tester Tool &copy; 2026</p>
+    <p>Feel free to follow me on <a href="https://github.com/ahmadkailany" target="_blank"
+        rel="noopener noreferrer">GitHub</a></p>
+  </footer>
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ── Theme ──
+    (function () {
+      const t = document.querySelector('[data-theme-toggle]'), r = document.documentElement;
+      let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+      r.setAttribute('data-theme', d); upIcon();
+      function upIcon() {
+        t.innerHTML = d === 'dark'
+          ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      }
+      t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); upIcon(); });
+    })();
+
+    // ── State ──
+    let genNums = '';   // full space-separated string — ALWAYS full, never truncated
+    let curMode = 'basic';
+    let activeFlags = new Set();
+
+    // ── Range hint update ──
+    const rMin = document.getElementById('range-min');
+    const rMax = document.getElementById('range-max');
+    const cntIn = document.getElementById('count');
+    function updateHint() {
+      const mn = parseInt(rMin.value), mx = parseInt(rMax.value);
+      const hint = document.getElementById('count-hint');
+      if (!isNaN(mn) && !isNaN(mx) && mx > mn) {
+        const sz = mx - mn + 1;
+        hint.textContent = 'Range has ' + sz.toLocaleString() + ' unique values (max count: ' + sz.toLocaleString() + ')';
+      } else {
+        hint.textContent = '';
+      }
+    }
+    rMin.addEventListener('input', updateHint);
+    rMax.addEventListener('input', updateHint);
+    updateHint();
+
+    // ── Slider ──
+    const slider = document.getElementById('disorder-slider');
+    const dispEl = document.getElementById('disorder-display');
+    slider.addEventListener('input', () => {
+      const v = parseFloat(slider.value).toFixed(2);
+      dispEl.textContent = v;
+      syncBadges(v);
+    });
+    document.querySelectorAll('#preset-badges .badge').forEach(b => {
+      b.addEventListener('click', () => {
+        slider.value = b.dataset.val;
+        dispEl.textContent = parseFloat(b.dataset.val).toFixed(2);
+        syncBadges(b.dataset.val);
+      });
+    });
+    function syncBadges(val) {
+      document.querySelectorAll('#preset-badges .badge').forEach(b =>
+        b.classList.toggle('on', parseFloat(b.dataset.val).toFixed(2) === parseFloat(val).toFixed(2)));
+    }
+
+    // ── Inversion count O(n log n) ──
+    function countInversions(arr) {
+      let c = 0;
+      function mg(a) {
+        if (a.length <= 1) return a;
+        const m = a.length >> 1, L = mg(a.slice(0, m)), R = mg(a.slice(m)), o = [];
+        let i = 0, j = 0;
+        while (i < L.length && j < R.length) {
+          if (L[i] <= R[j]) o.push(L[i++]);
+          else { o.push(R[j++]); c += L.length - i; }
+        }
+        while (i < L.length) o.push(L[i++]);
+        while (j < R.length) o.push(R[j++]);
+        return o;
+      }
+      mg(arr.slice()); return c;
+    }
+
+    // ── Disorder generation (adjacent-swap, exact) ──
+    function genDisorder(size, ratio) {
+      const arr = Array.from({ length: size }, (_, i) => i + 1);
+      const tp = (size * (size - 1)) / 2;
+      const ti = Math.floor(ratio * tp);
+      if (ti <= 0) return arr;
+      if (ti >= tp) return arr.slice().reverse();
+      let ci = 0, att = 0, max = ti * 6 + size * 4;
+      while (ci < ti && att < max) {
+        const i = Math.floor(Math.random() * (size - 1));
+        if (arr[i] < arr[i + 1]) { [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; ci++; }
+        att++;
+      }
+      for (let i = 0; i < size - 1 && ci < ti; i++)
+        if (arr[i] < arr[i + 1]) { [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]; ci++; }
+      return arr;
+    }
+
+    // ── Pick `count` random unique integers from [min, max] ──
+    function pickRandom(min, max, count) {
+      const rangeSize = max - min + 1;
+      if (count >= rangeSize) {
+        // use all values
+        return Array.from({ length: rangeSize }, (_, i) => min + i);
+      }
+      // Fisher-Yates partial shuffle on the range
+      const pool = Array.from({ length: rangeSize }, (_, i) => min + i);
+      for (let i = 0; i < count; i++) {
+        const j = i + Math.floor(Math.random() * (rangeSize - i));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      return pool.slice(0, count);
+    }
+
+    // ── Validate ──
+    function validate() {
+      const ids = ['err-min', 'err-max', 'err-count'];
+      ids.forEach(id => document.getElementById(id).textContent = '');
+      [rMin, rMax, cntIn].forEach(el => el.classList.remove('err'));
+      const mn = parseInt(rMin.value), mx = parseInt(rMax.value), cnt = parseInt(cntIn.value);
+      let ok = true;
+      if (isNaN(mn)) { document.getElementById('err-min').textContent = 'Required'; rMin.classList.add('err'); ok = false; }
+      if (isNaN(mx)) { document.getElementById('err-max').textContent = 'Required'; rMax.classList.add('err'); ok = false; }
+      if (ok && mx <= mn) { document.getElementById('err-max').textContent = 'Must be > min'; rMax.classList.add('err'); ok = false; }
+      if (isNaN(cnt) || cnt < 2) { document.getElementById('err-count').textContent = 'Min 2'; cntIn.classList.add('err'); ok = false; }
+      if (ok && !isNaN(cnt)) {
+        const sz = mx - mn + 1;
+        if (cnt > sz) { document.getElementById('err-count').textContent = 'Max ' + sz + ' for this range'; cntIn.classList.add('err'); ok = false; }
+        if (cnt > 10000) { document.getElementById('err-count').textContent = 'Max 10,000'; cntIn.classList.add('err'); ok = false; }
+      }
+      return ok ? { mn, mx, cnt } : null;
+    }
+
+    // ── Generate ──
+    function generate() {
+      const p = validate(); if (!p) return;
+      const { mn, mx, cnt } = p;
+      const ratio = parseFloat(slider.value);
+      const btn = document.getElementById('btn-gen');
+      btn.disabled = true;
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.7s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>Generating…';
+
+      setTimeout(() => {
+        // 1. Pick `cnt` unique values from [mn, mx]
+        const picked = pickRandom(mn, mx, cnt);
+        // 2. Sort them to get rank order
+        const sorted = picked.slice().sort((a, b) => a - b);
+        // 3. Generate disorder permutation of indices 0..cnt-1
+        const perm = genDisorder(cnt, ratio);
+        // 4. Map permutation indices to actual picked values
+        // perm[i] is rank (1-based), so the value at position i = sorted[perm[i]-1]
+        const result = perm.map(rank => sorted[rank - 1]);
+
+        // 5. Compute actual disorder
+        const tp = (cnt * (cnt - 1)) / 2;
+        const actualInv = countInversions(perm);
+        const actualDis = tp > 0 ? (actualInv / tp) : 0;
+
+        // FULL sequence — no truncation
+        genNums = result.join(' ');
+
+        // Show output
+        document.getElementById('empty-st').style.display = 'none';
+        const ta = document.getElementById('output');
+        ta.style.display = 'block';
+        ta.value = genNums;
+        document.getElementById('btn-copy-out').style.display = '';
+        document.getElementById('btn-clear-out').style.display = '';
+        document.getElementById('count-pill').style.display = '';
+        document.getElementById('count-pill').textContent = cnt + ' numbers';
+        document.getElementById('info-bar').style.display = '';
+        document.getElementById('i-count').textContent = cnt.toLocaleString();
+        document.getElementById('i-range').textContent = mn + ' → ' + mx;
+        document.getElementById('i-target').textContent = ratio.toFixed(2);
+        document.getElementById('i-actual').textContent = actualDis.toFixed(4);
+        document.getElementById('i-inv').textContent = actualInv.toLocaleString();
+
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>Generate Sequence';
+
+        document.getElementById('cmd-off').style.display = 'none';
+        document.getElementById('cmd-on').style.display = 'block';
+        renderCommands();
+      }, 20);
+    }
+
+    function clearOutput() {
+      genNums = '';
+      document.getElementById('output').style.display = 'none';
+      document.getElementById('output').value = '';
+      document.getElementById('empty-st').style.display = '';
+      document.getElementById('btn-copy-out').style.display = 'none';
+      document.getElementById('btn-clear-out').style.display = 'none';
+      document.getElementById('count-pill').style.display = 'none';
+      document.getElementById('info-bar').style.display = 'none';
+      document.getElementById('cmd-off').style.display = '';
+      document.getElementById('cmd-on').style.display = 'none';
+    }
+
+    function copyOutput() {
+      if (!genNums) return;
+      navigator.clipboard.writeText(genNums).then(() => {
+        const b = document.getElementById('btn-copy-out');
+        b.classList.add('copied');
+        b.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Copied!';
+        showToast('Sequence copied');
+        setTimeout(() => { b.classList.remove('copied'); b.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/></svg>Copy'; }, 2000);
+      });
+    }
+
+    // ── Command Builder ──
+    document.querySelectorAll('.mtab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        curMode = tab.dataset.mode;
+        document.querySelectorAll('.mtab').forEach(t => t.classList.remove('on'));
+        tab.classList.add('on');
+        document.getElementById('flag-sec').style.display = curMode === 'bench-algo' ? '' : 'none';
+        if (curMode !== 'bench-algo') {
+          activeFlags.clear();
+          document.querySelectorAll('.fchip').forEach(c => { c.classList.remove('on'); c.querySelector('.ck').style.opacity = '0'; });
+        }
+        renderCommands();
+      });
+    });
+
+    function toggleFlag(chip) {
+      const f = chip.dataset.flag;
+      if (activeFlags.has(f)) { activeFlags.delete(f); chip.classList.remove('on'); chip.querySelector('.ck').style.opacity = '0'; }
+      else { activeFlags.add(f); chip.classList.add('on'); chip.querySelector('.ck').style.opacity = '1'; }
+      renderCommands();
+    }
+
+    function buildCmds(mode, nums) {
+      const flags = Array.from(activeFlags).join(' ');
+      if (mode === 'basic') return [
+        { lbl: 'Run push_swap', dot: 'dg', cmd: `./push_swap ${nums}` }
+      ];
+      if (mode === 'checker') return [
+        { lbl: 'push_swap only', dot: 'dg', cmd: `./push_swap ${nums}` },
+        { lbl: 'With checker_linux', dot: 'db', cmd: `./push_swap ${nums} | ./checker_linux ${nums}` },
+        { lbl: 'With checker_Mac', dot: 'do', cmd: `./push_swap ${nums} | ./checker_Mac ${nums}` },
+      ];
+      if (mode === 'bench') return [
+        { lbl: 'Bench mode', dot: 'dg', cmd: `./push_swap --bench ${nums}` },
+        { lbl: 'Bench + checker_linux', dot: 'db', cmd: `./push_swap --bench ${nums} | ./checker_linux ${nums}` },
+      ];
+      if (mode === 'bench-algo') {
+        const f = flags ? ` ${flags}` : '';
+        return [
+          { lbl: `Bench${flags ? ' + ' + flags : ''}`, dot: 'dg', cmd: `./push_swap --bench${f} ${nums}` },
+          { lbl: `Bench${flags ? ' + ' + flags : ''} + checker_linux`, dot: 'db', cmd: `./push_swap --bench${f} ${nums} | ./checker_linux ${nums}` },
+        ];
+      }
+      return [];
+    }
+
+    function renderCommands() {
+      if (!genNums) return;
+      const preview = document.getElementById('cmd-preview');
+      const cmds = buildCmds(curMode, genNums);
+
+      // For display: show first 6 numbers then "..." — but COPY always uses full
+      const parts = genNums.split(' ');
+      const disp = parts.length > 6 ? parts.slice(0, 6).join(' ') + ' ... (' + parts.length + ' numbers)' : genNums;
+
+      preview.innerHTML = cmds.map((c, i) => {
+        const displayCmd = c.cmd.replace(genNums, disp);
+        return `<div class="cmd-block">
+      <div class="cmd-block-lbl"><span class="dot ${c.dot}"></span>${c.lbl}</div>
+      <div class="cmd-row">
+        <textarea class="cmd-ta" id="cta-${i}" readonly spellcheck="false" rows="2">${displayCmd}</textarea>
+        <button class="cmd-cp" id="ccp-${i}" onclick="copyCmd(${i})" aria-label="Copy full command">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/></svg>
+          Copy full
+        </button>
+      </div>
+    </div>`;
+      }).join('');
+
+      preview._cmds = cmds.map(c => c.cmd);  // full commands stored here
+    }
+
+    function copyCmd(i) {
+      const cmds = document.getElementById('cmd-preview')._cmds;
+      if (!cmds || !cmds[i]) return;
+      navigator.clipboard.writeText(cmds[i]).then(() => {
+        const b = document.getElementById('ccp-' + i);
+        b.classList.add('copied');
+        b.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Copied!';
+        showToast('Full command copied to clipboard');
+        setTimeout(() => { b.classList.remove('copied'); b.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/></svg>Copy full'; }, 2000);
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    document.querySelectorAll('input[type="number"]').forEach(el => {
+      el.addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
+    });
+  </script>
+</body>
+
+</html>

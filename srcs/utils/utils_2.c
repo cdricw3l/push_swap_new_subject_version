@@ -6,13 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 16:18:40 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 00:19:23 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int generate_range(int ranges[1024][2], int total_size)
+int generate_range(int ranges[LIMIT][2], int total_size)
 {
     int base;
     int range_start;

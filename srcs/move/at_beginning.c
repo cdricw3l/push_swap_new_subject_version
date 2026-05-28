@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 15:48:06 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 00:19:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ long ABS(long value)
 }
 
 
-#include <assert.h>
 
 /**
  * @brief return if the movement is cheepest to the left or to the right.
@@ -29,8 +28,6 @@ long ABS(long value)
  * @param stack stack to process
  * @return OK, NO_MOVE or ERR.
  */
-
-
 int get_born(long born[2], t_global_data *data, int stack, int *value)
 {
 
