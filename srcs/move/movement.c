@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 15:34:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/28 23:59:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int push(t_global_data *data, int src, int dst, int mode)
 {
 	if (!data)
-		return (NO_MOVE);
+		return (ERR);
 	if(src == STACK_A && dst == STACK_B && data->size_a)
 	{
 		data->b = data->a;
@@ -47,9 +47,9 @@ int swap(t_global_data *data, int stack, int mode)
 {
 	t_stack_data stk;
 
-	if (!data || get_stack_data(*data, stack, &stk) == ERR)
-		return (NO_MOVE);
-	if (!stk.arr && stk.len < 1)
+	if (!data || get_stack_data(data, stack, &stk) == ERR)
+		return (ERR);
+	if (!stk.arr && stk.len < 2)
 		return (NO_MOVE);
 	if (stack == STACK_A)
 		ft_swap(stk.arr, stk.arr + 1);

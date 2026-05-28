@@ -6,9 +6,17 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 23:35:21 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 00:03:12 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/*
+
+    rotate -> the last become the first
+    rev_rotate <- the first become the last
+*/
+
 
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
@@ -90,11 +98,6 @@ typedef struct s_best_move
 
 } t_best_move;
 
-/*
-
-    rotate -> the last become the first
-    rev_rotate <- the first become the last
-*/
 
 /* initialisation */
 // int	check_digit(char *str);
@@ -110,19 +113,21 @@ int swap(t_global_data *data, int stack, int mode);
 int rotate(t_global_data *data, int stack, int mode);
 int rev_rotate(t_global_data *data, int stack, int mode);
 int double_rotation(t_global_data *data, int move, int mode);
+int move(t_global_data *data, int stack, int (f)(t_global_data *, int, int), int counter);
 
 /* algo */
 
 int     three_values(t_global_data *data, int stack);
-void    five_values(t_global_data *data, int stack);
+int     five_values(t_global_data *data, int stack);
 int     selection_sort(t_global_data *data);
 int     medium_rank(t_global_data *data);
 
 /* utils */
 
-void    ft_swap(int *p1, int *p2);
-void    display_data(t_global_data data);
 void    display_stack(t_global_data *data, int stack);
+void    display_data(t_global_data data);
+
+void    ft_swap(int *p1, int *p2);
 void    print_move(int move, int stack);
 float   compute_disorder(t_global_data *data);
 void    put_float(float nb);
@@ -130,12 +135,11 @@ int     get_complexity(char *arg);
 int     ft_is_sort(t_global_data *data, int stack);
 int     *smalest_value(t_global_data *data, int stack);
 int     *bigest_value(t_global_data *data, int stack);
-int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
+int     get_stack_data(t_global_data *data, int stack, t_stack_data *stk);
 int     place_int_stack(t_global_data *data, int value);
 int	    at_beginning(t_global_data *data, int stack, int *value);
 t_best_move *best_move(t_global_data *data, int range[2]);
 int     generate_range(int ranges[1024][2], int list_size);
-int     move(t_global_data *data, int stack, int (f)(t_global_data *, int, int), int counter);
 int     *immediat_superior(t_global_data *data, int stack, int *value);
 #endif
 

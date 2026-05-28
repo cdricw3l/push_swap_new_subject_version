@@ -6,22 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 12:49:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 00:06:40 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
-void	ft_swap(int *p1, int *p2)
-{
-	int	tmp;
-
-	if (!p1 || !p2)
-		return ;
-	tmp = *p1;
-	*p1 = *p2;
-	*p2 = tmp;
-}
 
 
 int	get_complexity(char *arg)
@@ -71,7 +60,7 @@ int ft_is_sort(t_global_data *data, int stack)
 	int				i;
 	t_stack_data	stk;
 	
-	if(get_stack_data(*data, stack, &stk) == ERR)
+	if(get_stack_data(data, stack, &stk) == ERR)
 		return (-1);
 	i = 0;
 	while (i < stk.len - 1)
@@ -94,28 +83,19 @@ int ft_is_sort(t_global_data *data, int stack)
 }
 
 
-int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
+int get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
 {
+	if(!data || (stack != STACK_A && stack != STACK_B))
+		return (ERR);
 	if(stack == STACK_A)
 	{
-		stk->arr = data.a;
-		stk->len = data.size_a;
+		stk->arr = data->a;
+		stk->len = data->size_a;
 	}
 	else if(stack == STACK_B)
 	{
-		stk->arr = data.b;
-		stk->len = data.size_b;
+		stk->arr = data->b;
+		stk->len = data->size_b;
 	}
-	else
-		return (ERR);
 	return (OK);
 }
-
-/*
-
-    rotate -> the last become the first
-    rev_rotate <- the first become the last
-*/
-
-
-

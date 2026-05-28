@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 06:46:50 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/20 09:39:55 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/29 00:09:42 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ size_t	ft_split_len(char **split);
 void	ft_split_display(char **split, int fd);
 size_t	ft_strlen_longest(char *s1, char *s2);
 long long ft_atoi_long_long(char *str);
-
+void	ft_swap(int *a, int *b);
 #endif
