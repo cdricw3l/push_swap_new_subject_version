@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   five.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:32:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 13:55:24 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 17:46:09 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	five_values(t_global_data *data, int stack)
 		return ;
 	if(stack == STACK_A)
 	{
-		at_beginning(data, stack, smalest_value);
+		at_beginning(data, stack, smalest_value(data, STACK_A));
 		push(data, stack, STACK_B, DISPLAY);
-		at_beginning(data, stack, smalest_value);
+		at_beginning(data, stack, smalest_value(data, STACK_A));
 		push(data, stack, STACK_B, DISPLAY);
 		three_values(data, stack);
 		push(data, STACK_B, stack, DISPLAY);
@@ -29,9 +29,9 @@ void	five_values(t_global_data *data, int stack)
 	}
 	else if (stack == STACK_B)
 	{
-		at_beginning(data, stack, bigest_value);
+		at_beginning(data, stack, bigest_value(data, STACK_B));
 		push(data, stack, STACK_A, DISPLAY);
-		at_beginning(data, stack, bigest_value);
+		at_beginning(data, stack, bigest_value(data, STACK_B));
 		push(data, stack, STACK_A, DISPLAY);
 		three_values(data, stack);
 		push(data, STACK_A, STACK_B, DISPLAY);

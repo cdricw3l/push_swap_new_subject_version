@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 12:49:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 17:11:18 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,100 @@ int get_stack_data(t_global_data data, int stack, t_stack_data *stk)
 		return (ERR);
 	return (OK);
 }
+
+
+int get_target_number(t_global_data *data, int stack, t_list **lst)
+{
+	t_stack_data stk;
+	t_list *new_node;
+	t_best_cost *best;
+	int i;
+	long born[2];
+	
+	i = 0; 
+	get_stack_data(*data, stack, &stk);
+	while(i < stk.len)
+	{
+		best = malloc(sizeof(t_best_cost));
+		/*cleanning */
+		if(!best)
+			return (ERR);
+		if(stack == STACK_A)
+		{
+			get_born(born, data, stack, stk.arr + i);
+			best->value = *(stk.arr + i);
+			best->address_ptr_value = stk.arr + i;
+		}
+		else if(stack == STACK_B)
+		{
+			get_born(born, data, stack, stk.arr - i);
+			best->value = *(stk.arr - i);
+			best->address_ptr_value = stk.arr - i;
+		}
+		if (born[LEFT] <= born[RIGHT])
+		{
+			best->move = rev_rotate;
+			best->number_of_move = born[LEFT];
+		}
+		if (born[RIGHT] < born[LEFT])
+		{
+			best->move = rotate;
+			best->number_of_move = born[RIGHT];
+		}
+		best->stack = stack;
+		new_node = ft_lstnew(best);
+		if(!new_node)
+			return (ERR);
+		ft_lstadd_back(lst, new_node);
+		i++;
+	}
+	return(OK);
+}
+
+void free_list(t_list **list)
+{
+    t_list *tmp;
+    t_best_cost *content;
+
+    while (*list)
+    {
+        tmp = (*list)->next;
+        content = (*list)->content;
+        free(content);
+        free(*list);
+        *list = tmp;
+    }
+    *list = NULL;
+}
+
+// void ft_lstremove_if(t_list **lst, int stack)
+// {
+//     t_list      *cur;
+//     t_list      *prev;
+//     t_list      *tmp;
+
+//     cur = *lst;
+//     prev = NULL;
+
+//     while (cur)
+//     {
+//         if (((t_best_cost *)cur->content)->stack == stack)
+//         {
+//             tmp = cur;
+//             cur = cur->next;
+//             if (prev)
+//                 prev->next = cur;
+//             else
+//                 *lst = cur;
+//             ft_lstdelone(tmp, free);
+//         }
+//         else
+//         {
+//             prev = cur;
+//             cur = cur->next;
+//         }
+//     }
+// }
 
 /*
 

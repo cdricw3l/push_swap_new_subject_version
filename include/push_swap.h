@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 13:55:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 18:03:05 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../lib/libft.h"
+#include <stdbool.h>
 
 #define RED  "\033[0;31m"
 #define YELLOW  "\033[0;33m"
@@ -87,6 +88,20 @@ typedef struct s_best_move
 
 } t_best_move;
 
+typedef struct s_best_cost
+{
+    int value;
+    int stack;
+    int number_of_move;
+    int (*move)(t_global_data *, int, int);
+    int target_value;
+    int best_move;
+    int processed;
+    int *address_ptr_value;
+    int *address_ptr_target_value;
+} t_best_cost;
+
+
 /*
 
     rotate -> the last become the first
@@ -114,6 +129,9 @@ int three_values(t_global_data *data, int stack);
 void five_values(t_global_data *data, int stack);
 int selection_sort(t_global_data *data);
 void    middle_rank(t_global_data *data);
+int     turkish(t_global_data *data);
+int     search_best_value(t_list *lst);
+t_best_cost *find_best_value(t_list *list);
 
 /* utils */
 
@@ -128,9 +146,12 @@ int     ft_is_sort(t_global_data *data, int stack);
 int     *smalest_value(t_global_data *data, int stack);
 int     *bigest_value(t_global_data *data, int stack);
 int     get_stack_data(t_global_data data, int stack, t_stack_data *stk);
-
-int	    at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int));
-
+int     get_target_number(t_global_data *data, int stack, t_list **lst);
+int     associate_target(t_list *lst, t_global_data *data);
+int     get_born(long born[2], t_global_data *data, int stack, int *value);
+int	    at_beginning(t_global_data *data, int stack, int *value);
+//void    display_cost_list(void *ptr);
+void    free_list(t_list **list);
 #endif
 
 

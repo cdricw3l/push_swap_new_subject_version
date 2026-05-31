@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   at_beginning.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 15:43:10 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 15:29:36 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,67 @@ int *bigest_value(t_global_data *data, int stack)
 	return (p1);
 }
 
+// int *smalest_value(t_global_data *data, int stack)
+// {
+// 	int *arr;
+// 	int *p1;
+// 	int i = INT_MAX;
+
+// 	p1 = &i;
+// 	if (stack == STACK_A)
+// 	{
+// 		arr = data->a;
+// 		while (arr <= data->end)
+// 		{
+// 			if(*arr < *p1)
+// 				p1 = arr;
+// 			arr++;
+// 		}
+// 	}
+// 	else if(stack == STACK_B)
+// 	{
+// 		arr = data->b;
+// 		while (arr >= data->start)
+// 		{
+// 			if(*arr < *p1)
+// 				p1 = arr;
+// 			arr--;
+// 		}
+// 	}
+// 	return (p1);
+// }
+
 int *smalest_value(t_global_data *data, int stack)
 {
-	int *arr;
-	int *p1;
-	int i = INT_MAX;
+    int *arr;
+    int *p1;
 
-	p1 = &i;
-	if (stack == STACK_A)
-	{
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if(*arr < *p1)
-				p1 = arr;
-			arr++;
-		}
-	}
-	else if(stack == STACK_B)
-	{
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if(*arr < *p1)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
+    p1 = NULL;
+
+    if (stack == STACK_A)
+    {
+        arr = data->a;
+
+        while (arr <= data->end)
+        {
+            if (!p1 || *arr < *p1)
+                p1 = arr;
+            arr++;
+        }
+    }
+    else if (stack == STACK_B)
+    {
+        arr = data->b;
+
+        while (arr >= data->start)
+        {
+            if (!p1 || *arr < *p1)
+                p1 = arr;
+            arr--;
+        }
+    }
+
+    return p1;
 }
 
 
@@ -92,12 +125,10 @@ long ABS(long value)
  */
 
 
-int get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_global_data *, int))
+int get_born(long born[2], t_global_data *data, int stack, int *value)
 {
-	int		*value;
 
-	value = get_value(data, stack);
-	if (!value || (stack != STACK_A && stack != STACK_B))
+	if (!value)
 		return (ERR);
 	if (stack == STACK_A)
 	{
@@ -116,12 +147,12 @@ int get_born(long born[2], t_global_data *data, int stack, int *(get_value)(t_gl
 	return (OK);
 }
 
-int	at_beginning(t_global_data *data, int stack, int *(get_value)(t_global_data *, int))
+int	at_beginning(t_global_data *data, int stack, int *value)
 {
 	long 	born[2];
 	int 	status;
 
-	status = get_born(born, data, stack, get_value);
+	status = get_born(born, data, stack, value);
 	if(status == ERR)
 		return (ERR);
 	else if(status == NO_MOVE)
