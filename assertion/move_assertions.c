@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 19:05:49 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 19:24:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -436,19 +436,16 @@ void min_at_beg_asser(void)
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
         assert(smallest == *data.b);
     }
-    display_stack(&data, STACK_A);
-    display_stack(&data, STACK_B);
     at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
-    display_stack(&data, STACK_B);
-    // while (data.b)
-    // {
-    //     smallest = *smalest_value(&data, STACK_B);
-    //     display_stack(&data, STACK_B);
-    //     at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
-    //     push(&data, STACK_B, STACK_A, NO_DISPLAY);
-    //     display_stack(&data, STACK_B);
-    //     //assert(smallest == *data.a);
-    // }
+    while (data.b)
+    {
+        smallest = *smalest_value(&data, STACK_B);
+        display_stack(&data, STACK_B);
+        at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
+        push(&data, STACK_B, STACK_A, NO_DISPLAY);
+        display_stack(&data, STACK_B);
+        //assert(smallest == *data.a);
+    }
     ASSERT_END(__func__);
 }
 void immediat_superior_assert(void)
@@ -515,13 +512,13 @@ void move_assertions(int argc, char **argv)
     (void)argc;
     (void)argv;
     
-    // push_assert();
-    // swap_assert();
-    // rotate_short_assert();
-    // rev_rotate_short_assert();
-    // rotate_push_rotate_push_assert();
-    // double_rotation_assert();
+    push_assert();
+    swap_assert();
+    rotate_short_assert();
+    rev_rotate_short_assert();
+    rotate_push_rotate_push_assert();
+    double_rotation_assert();
     min_at_beg_asser();
-    // max_at_beg_asser();
-    // immediat_superior_assert();
+    max_at_beg_asser();
+    immediat_superior_assert();
 }

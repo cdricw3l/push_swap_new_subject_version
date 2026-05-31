@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 19:07:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 19:24:00 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,9 @@ int	at_beginning(t_global_data *data, int stack, int *value)
 	else if(status == NO_MOVE)
 		return (NO_MOVE);
 	if (born[LEFT] > born[RIGHT] || born[LEFT] == born[RIGHT])
-		while (born[RIGHT] > 0)
-		{
-			rev_rotate(data, stack, DISPLAY);
-			born[RIGHT]--;
-		}
+		move(data, stack, rev_rotate, born[RIGHT]);
 	else if(born[RIGHT] > born[LEFT])
-		while (born[LEFT] > 0)
-		{
-			rotate(data, stack, DISPLAY);
-			born[LEFT]--;
-		}
+		move(data, stack, rotate, born[LEFT]);
 	return (OK);
 }
 
