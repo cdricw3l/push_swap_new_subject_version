@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 09:38:04 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/20 09:42:16 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 20:12:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-long long ft_atoi_long_long(char *str)
+long long	ft_atoi_long(char *str)
 {
-    long long   result;
-	int         minus;
+	long long	result;
+	int			minus;
 
 	minus = 0;
 	result = 0;

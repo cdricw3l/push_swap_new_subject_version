@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 18:35:58 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 20:09:00 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,9 @@ typedef struct s_best_move
 
 
 /* initialisation */
-// int	check_digit(char *str);
-// int	check_args(char **argv, t_global_data *data);
-// int	create_stack(char **argv, t_global_data *data);
-// int	check_duplicate(t_global_data *data);
+int	check_args(char **argv, t_global_data *data);
+int	create_stack(char **argv, t_global_data *data);
+int	check_duplicate(t_global_data *data);
 int	init_global_data(char **argv, t_global_data *data);
 
 /* movement */
