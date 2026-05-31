@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 22:47:35 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 00:08:25 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int     three_values(t_global_data *data, int stack);
 int     five_values(t_global_data *data, int stack);
 int     selection_sort(t_global_data *data);
 int     medium_rank(t_global_data *data);
-
+int medium_v2(t_global_data *data);
 /* utils */
 
 void    display_stack(t_global_data *data, int stack);
@@ -141,6 +141,7 @@ int	    at_beginning(t_global_data *data, int stack, int *value);
 t_best_move *best_move(t_global_data *data, int range[2]);
 int     generate_range(int ranges[1024][2], int list_size);
 int     *immediat_superior(t_global_data *data, int stack, int *value);
+int *immediat_inferior(t_global_data *data, int stack, int *value);
 int     generate_range_v2(int ranges[LIMIT][2], int total_size);
 #endif
 

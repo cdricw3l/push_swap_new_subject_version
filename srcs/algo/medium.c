@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 19:27:37 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 00:08:57 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_best_move *best_move(t_global_data *data, int range[2])
     
     p_start = data->a;
     p_end = data->a + (data->size_a - 1);
-    
+    if(!data->a)
+        return (NULL);
     while (p_start < p_end)
     {
         place = place_int_stack(data, *p_start);
@@ -140,5 +141,71 @@ int medium_rank(t_global_data *data)
         at_beginning(data, STACK_A, smalest_value(data, STACK_A));
         i++;
     }
+    return (OK);
+}
+
+
+int medium_v2(t_global_data *data)
+{
+    int i;
+    int nb_range;
+    int ranges[LIMIT][2];
+    t_best_move *best;
+    
+    if(ft_is_sort(data, STACK_A))
+        return (OK);
+
+    nb_range = generate_range(ranges, data->size_a);
+    i = 0;
+    while (i < nb_range)
+    {
+        if(data->size_a == 2)
+            two_values(data, STACK_A);
+        else if(data->size_a == 3)
+            three_values(data, STACK_A);
+        else
+        {
+            best = best_move(data, ranges[i]);
+            while(best != NULL)
+            {
+                move(data, STACK_A, best->move, best->number);
+                free(best);
+                push(data, STACK_A, STACK_B, DISPLAY);
+
+                best = best_move(data, ranges[i]);
+            }
+            push(data, STACK_B, STACK_A, DISPLAY);
+            push(data, STACK_B, STACK_A, DISPLAY);
+            
+            if(data->a && *(data->a) < *(data->a + 1))
+                swap(data, STACK_A, DISPLAY);
+            if(data->b && *(data->b) < *(data->b - 1))
+                swap(data, STACK_B, DISPLAY);
+            
+            // display_stack(&data, STACK_B);
+            // display_stack(&data, STACK_A);
+            at_beginning(data, STACK_B, immediat_inferior(data, STACK_B, data->a));
+            
+            push(data, STACK_A, STACK_B,DISPLAY);
+            at_beginning(data, STACK_B, immediat_inferior(data, STACK_B, data->a));
+            push(data, STACK_A, STACK_B,DISPLAY);
+            at_beginning(data, STACK_B, bigest_value(data, STACK_B));
+            // display_stack(&data, STACK_B);
+            // display_stack(&data, STACK_A);
+            
+           
+
+            
+          
+        }
+        
+        i++;
+    }
+    at_beginning(data, STACK_B, bigest_value(data,STACK_B));
+    while (data->b)
+        push(data, STACK_B, STACK_A, DISPLAY);
+    
+    //display_stack(&data, STACK_A);
+
     return (OK);
 }

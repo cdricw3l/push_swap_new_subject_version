@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 07:54:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/31 23:24:36 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 00:04:06 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void display_ranges(int ranges[1024][2], int size)
     }
     
 }
-
+/*11 6 17 10 1 9 15 20 21  18 14 19 16 13*/
 int four(void)
 {
     t_global_data data;
@@ -58,16 +58,13 @@ int four(void)
     int nb_range;
     int i;
 
-    char *str[] = {"8 5 7 4 12 3 2 22 11 6 17 10 1 9 15 20 21  18 14 19 16 13", NULL};
+    char *str[] = {"8 5 7 4 12 3 2 22 ", NULL};
     assert(init_global_data(str,&data) == OK);
-    assert(data.size_a == 22);
-    nb_range = generate_range_v2(ranges, data.size_a);
-    display_ranges(ranges, nb_range);
+    nb_range = generate_range(ranges, data.size_a);
     check_range_assert_v2(ranges, data.size_a,  nb_range);
     i = 0;
     while (i < nb_range)
     {
-        printf("range: %d to %d\n", ranges[i][0] , ranges[i][1]);
         if(data.size_a == 2)
             two_values(&data, STACK_A);
         else if(data.size_a == 3)
@@ -83,7 +80,6 @@ int four(void)
 
                 best = best_move(&data, ranges[i]);
             }
-
             push(&data, STACK_B, STACK_A, DISPLAY);
             push(&data, STACK_B, STACK_A, DISPLAY);
             
@@ -92,17 +88,17 @@ int four(void)
             if(data.b && *(data.b) < *(data.b - 1))
                 swap(&data, STACK_B, DISPLAY);
             
-            display_stack(&data, STACK_B);
-            display_stack(&data, STACK_A);
-            printf("voici imedia %d de %d\n", *immediat_superior(&data, STACK_B, data.a), *data.a);
-            at_beginning(&data, STACK_B, immediat_superior(&data, STACK_B, data.a));
-           
+            // display_stack(&data, STACK_B);
+            // display_stack(&data, STACK_A);
+            at_beginning(&data, STACK_B, immediat_inferior(&data, STACK_B, data.a));
+            
             push(&data, STACK_A, STACK_B,DISPLAY);
+            at_beginning(&data, STACK_B, immediat_inferior(&data, STACK_B, data.a));
             push(&data, STACK_A, STACK_B,DISPLAY);
-            display_stack(&data, STACK_B);
-            display_stack(&data, STACK_A);
-            if(i == 1)
-                assert(1 == 2);
+            at_beginning(&data, STACK_B, bigest_value(&data, STACK_B));
+            // display_stack(&data, STACK_B);
+            // display_stack(&data, STACK_A);
+            
            
 
             
@@ -112,8 +108,10 @@ int four(void)
         i++;
     }
     at_beginning(&data, STACK_B, bigest_value(&data,STACK_B));
+    while (data.b)
+        push(&data, STACK_B, STACK_A, DISPLAY);
     
-    display_stack(&data, STACK_B);
+    //display_stack(&data, STACK_A);
 
     return (OK);
 }

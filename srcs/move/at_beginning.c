@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 23:22:04 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 00:13:16 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ int	at_beginning(t_global_data *data, int stack, int *value)
 	if (born[LE] > born[RI] || born[LE] == born[RI])
 		move(data, stack, rev_rotate, born[RI]);
 	else if (born[RI] > born[LE])
+	{
+		display_stack(data, STACK_A);
+		printf("voici les borne left: %ld et right: %ld\n", born[RI], born[LE]);
 		move(data, stack, rotate, born[LE]);
+	}
 	return (OK);
 }
 
