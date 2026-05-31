@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 20:09:00 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 20:38:03 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
 #define DISPLAY 0
 #define NO_DISPLAY 1
 #define NL printf("\n")
-#define LEFT 0
-#define RIGHT 1
+#define LE 0
+#define RI 1
 #define RANGE_SIZE 5
 
 enum e_algo

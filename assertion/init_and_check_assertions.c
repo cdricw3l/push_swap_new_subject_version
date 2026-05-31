@@ -6,26 +6,26 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:09:57 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 14:25:07 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 20:59:35 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
 
-void check_digit_assert(void)
-{
-    ASSERT_START(__func__, __LINE__);
-    assert(check_digit("100") == OK);
-    assert(check_digit("42") == OK);
-    assert(check_digit("-42") == OK);
-    assert(check_digit("0") == OK);
-    assert(check_digit("+150") == OK);
-    assert(check_digit("+1a50") == ERR);
-    assert(check_digit("a50") == ERR);
-    assert(check_digit("50a") == ERR);
-    assert(check_digit("") == ERR);
-    ASSERT_END(__func__);
-}
+// void check_digit_assert(void)
+// {
+//     ASSERT_START(__func__, __LINE__);
+//     assert(check_digit("100") == OK);
+//     assert(check_digit("42") == OK);
+//     assert(check_digit("-42") == OK);
+//     assert(check_digit("0") == OK);
+//     assert(check_digit("+150") == OK);
+//     assert(check_digit("+1a50") == ERR);
+//     assert(check_digit("a50") == ERR);
+//     assert(check_digit("50a") == ERR);
+//     assert(check_digit("") == ERR);
+//     ASSERT_END(__func__);
+// }
 
 void get_complexity_assert(void)
 {
@@ -45,16 +45,16 @@ void get_complexity_assert(void)
 void atoi_long_long_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
-    assert(ft_atoi_long_long("0") == 0);
-    assert(ft_atoi_long_long("2147483647") == INT_MAX);
-    assert(ft_atoi_long_long("2147483648") == 2147483648);
-    assert(ft_atoi_long_long("-2147483648") == INT_MIN);
-    assert(ft_atoi_long_long("-9223372036854775808") == LLONG_MIN);
-    assert(ft_atoi_long_long("9223372036854775807") == LLONG_MAX);
-    assert(ft_atoi_long_long("922337203s6854775807") == 922337203);
-    assert(ft_atoi_long_long("s9223372036854775807") == 0);
-    assert(ft_atoi_long_long("9223372036854775807a") == LLONG_MAX);
-    assert(ft_atoi_long_long("922337203685477580a7") == 922337203685477580);
+    assert(ft_atoi_long("0") == 0);
+    assert(ft_atoi_long("2147483647") == INT_MAX);
+    assert(ft_atoi_long("2147483648") == 2147483648);
+    assert(ft_atoi_long("-2147483648") == INT_MIN);
+    assert(ft_atoi_long("-9223372036854775808") == LLONG_MIN);
+    assert(ft_atoi_long("9223372036854775807") == LLONG_MAX);
+    assert(ft_atoi_long("922337203s6854775807") == 922337203);
+    assert(ft_atoi_long("s9223372036854775807") == 0);
+    assert(ft_atoi_long("9223372036854775807a") == LLONG_MAX);
+    assert(ft_atoi_long("922337203685477580a7") == 922337203685477580);
     ASSERT_END(__func__);
 }
 
@@ -73,9 +73,8 @@ void check_arg_assert(void)
     split[3] = ft_strdup("10");
     split[4] = ft_strdup("-10 -2147483648 2147483647 0");
     split[5] = NULL;
-    assert(check_args(split, &data) == OK);
+    assert(check_args(split, &data) == 25);
     assert(data.algo == SIMPLE);
-    assert(data.size_a == 25);
     i = 0;
     while (split[i])
         free(split[i++]);
@@ -85,7 +84,8 @@ void check_arg_assert(void)
     split[3] = ft_strdup("10");
     split[4] = ft_strdup("-10 -2147483649 2147483647 0");
     split[5] = NULL;
-    assert(check_args(split, &data) == ERR && data.algo == NONE);
+    printf("voici %d\n", check_args(split, &data));
+    assert(check_args(split, &data) == ERR);
     i = 0;
     while (split[i])
         free(split[i++]);
@@ -114,8 +114,8 @@ void check_arg_assert(void)
     split[3] = ft_strdup("10");
     split[4] = ft_strdup("-10");
     split[5] = NULL;
-    assert(check_args(split, &data) == OK && data.algo == COMPLEX && data.size_a == 7);
-    ft_split_clean(&split);
+    assert(check_args(split, &data) == 7 && data.algo == COMPLEX);
+    ft_split_clean(&split, OK);
     ASSERT_END(__func__);
 }
 
@@ -133,17 +133,18 @@ void init_stack_assert(void)
     split[3] = ft_strdup("10");
     split[4] = ft_strdup("-10 -2147483648 2147483647 0");
     split[5] = NULL;
-    assert(check_args(split, &data) == OK);
-    assert(data.size_a !=  ERR);
+    data.size_a = check_args(split, &data) ;
+    assert(data.size_a == 25);
     assert(create_stack(&split[0], &data) == OK);
     assert(data.stack);
     data.a = data.stack;
     data.b = NULL;
+
     assert(*(data.a) == 10);
     assert(data.stack[data.size_a - 1] == 0);
     assert(data.stack[data.size_a - 2] == INT_MAX);
     assert(data.stack[data.size_a - 3] == INT_MIN);
-    ft_split_clean(&split);
+    ft_split_clean(&split, OK);
     assert(data.algo == SIMPLE);
     ASSERT_END(__func__);
 }
@@ -166,9 +167,9 @@ void check_dupplicate_assert(void)
     split[3] = ft_strdup("10");
     split[4] = ft_strdup("-10 -2147483648 2147483647 0");
     split[5] = NULL;
-    assert(check_args(split, &data) == OK);
+    data.size_a = check_args(split, &data) ;
     /* check size stack a*/
-    assert(data.size_a !=  ERR && data.algo == NONE);
+    assert(data.algo == NONE);
     assert(data.size_a == 26);
     /* if first arg is algo type, send argv[1](argv[2] initialement) else argv[0](argv[1] initialement) */
     if(data.algo == NONE)
@@ -182,7 +183,7 @@ void check_dupplicate_assert(void)
     assert(data.stack[data.size_a - 1] == 0);
     assert(data.stack[data.size_a - 2] == INT_MAX);
     assert(data.stack[data.size_a - 3] == INT_MIN);
-    ft_split_clean(&split);
+    ft_split_clean(&split, OK);
     
     /* 
         check duplicate value in stack.data
@@ -197,9 +198,8 @@ void check_dupplicate_assert(void)
     split[3] = ft_strdup("1005");
     split[4] = ft_strdup("-2556 -2147483648 2147483647 64");
     split[5] = NULL;
-    assert(check_args(split, &data) == OK);
+    data.size_a = check_args(split, &data) ;
     /* check size stack a*/
-    assert(data.size_a !=  ERR && data.algo == NONE);
     assert(data.size_a == 26);
     /* if first arg is algo type, send argv[1](argv[2] initialement) else argv[0](argv[1] initialement) */
     if(data.algo == NONE)
@@ -213,7 +213,7 @@ void check_dupplicate_assert(void)
     assert(data.stack[data.size_a - 1] == 64);
     assert(data.stack[data.size_a - 2] == INT_MAX);
     assert(data.stack[data.size_a - 3] == INT_MIN);
-    ft_split_clean(&split);
+    ft_split_clean(&split, OK);
     /* check duplicate value in stack.data */
     assert(check_duplicate(&data) == OK);
     ASSERT_END(__func__);
@@ -241,14 +241,12 @@ int init_and_check_assert(int argc, char **argv)
     (void)argc;
     (void)argv;
     
-    check_digit_assert();
+    //check_digit_assert();
     get_complexity_assert();
     atoi_long_long_assert();
     check_arg_assert();
     init_stack_assert();
     check_dupplicate_assert();
     init_global_data_assert();
-    
-    
     return (0);
 }

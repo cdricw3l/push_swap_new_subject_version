@@ -6,17 +6,19 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 19:22:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 20:46:09 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int push(t_global_data *data, int src, int dst, int mode)
+int	push(t_global_data *data, int src, int dst, int mode)
 {
 	if (!data)
 		return (ERR);
-	if(src == STACK_A && dst == STACK_B && data->size_a)
+	if ((src == STACK_A && data->size_a <= 0) || (src == STACK_B && data->size_b <= 0))
+		return (NO_MOVE);
+	if (src == STACK_A && dst == STACK_B && data->size_a)
 	{
 		data->b = data->a;
 		data->size_b++;
@@ -24,9 +26,6 @@ int push(t_global_data *data, int src, int dst, int mode)
 		data->size_a--;
 		if (data->size_a == 0)
 			data->a = NULL;
-		if (mode == DISPLAY)
-			print_move(P, dst);
-		return (OK);
 	}
 	if (src == STACK_B && dst == STACK_A && data->size_b)
 	{
@@ -36,16 +35,15 @@ int push(t_global_data *data, int src, int dst, int mode)
 		data->size_b--;
 		if (data->size_b == 0)
 			data->b = NULL;
-		if (mode == DISPLAY)
-			print_move(P, dst);
-		return (OK);
 	}
-	return (NO_MOVE);
+	if (mode == DISPLAY)
+		print_move(P, dst);
+	return (OK);
 }
 
-int swap(t_global_data *data, int stack, int mode)
+int	swap(t_global_data *data, int stack, int mode)
 {
-	t_stack_data stk;
+	t_stack_data	stk;
 
 	if (!data || get_stack_data(data, stack, &stk) == ERR)
 		return (ERR);
@@ -53,16 +51,16 @@ int swap(t_global_data *data, int stack, int mode)
 		return (NO_MOVE);
 	if (stack == STACK_A)
 		ft_swap(stk.arr, stk.arr + 1);
-	else if(stack == STACK_B)
+	else if (stack == STACK_B)
 		ft_swap(stk.arr, stk.arr - 1);
 	if (mode == DISPLAY)
 		print_move(S, stack);
 	return (OK);
 }
 
-int rotate(t_global_data *data, int stack, int mode)
+int	rotate(t_global_data *data, int stack, int mode)
 {
-	int tmp;
+	int	tmp;
 
 	if (!data || (stack != STACK_A && stack != STACK_B))
 		return (NO_MOVE);
@@ -75,40 +73,40 @@ int rotate(t_global_data *data, int stack, int mode)
 	else if (stack == STACK_B && data->b && data->size_b > 0)
 	{
 		tmp = *(data->b);
-		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1), (data->size_b - 1) * sizeof(int));
-		*(data->b - (data->size_b  - 1)) = tmp;
+		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1),
+			(data->size_b - 1) * sizeof(int));
+		*(data->b - (data->size_b - 1)) = tmp;
 	}
-	
-	if(mode == DISPLAY)
+	if (mode == DISPLAY)
 		print_move(R, stack);
-	return (OK);    
+	return (OK);
 }
 
-int rev_rotate(t_global_data *data, int stack, int mode)
+int	rev_rotate(t_global_data *data, int stack, int mode)
 {
-	int tmp;
+	int	tmp;
 
 	if (!data || (stack != STACK_A && stack != STACK_B))
 		return (NO_MOVE);
 	if (stack == STACK_A && data->a && data->size_a > 0)
 	{
 		tmp = *(data->a + data->size_a - 1);
-		ft_memmove(data->a + 1, data->a, (data->size_a  - 1) * sizeof(int));
+		ft_memmove(data->a + 1, data->a, (data->size_a - 1) * sizeof(int));
 		*(data->a) = tmp;
 	}
 	else if (stack == STACK_B && data->b && data->size_b > 0)
 	{
 		tmp = *(data->b - (data->size_b - 1));
-		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2), (data->size_b - 1) * sizeof(int));
+		ft_memmove(data->b - (data->size_b - 1), data->b - (data->size_b - 2),
+			(data->size_b - 1) * sizeof(int));
 		*(data->b) = tmp;
 	}
-	
-	if(mode == DISPLAY)
+	if (mode == DISPLAY)
 		print_move(RV, stack);
-	return (OK);    
+	return (OK);
 }
 
-int double_rotation(t_global_data *data, int move, int mode)
+int	double_rotation(t_global_data *data, int move, int mode)
 {
 	if (move != RR && move != RRR)
 		return (NO_MOVE);
@@ -128,4 +126,3 @@ int double_rotation(t_global_data *data, int move, int mode)
 	}
 	return (OK);
 }
-
