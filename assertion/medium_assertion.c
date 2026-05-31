@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 17:33:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 23:39:32 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 18:33:54 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void place_in_stack_assert(void)
     data.start = &arr5[0];
     data.end = &arr5[5];
     
-    assert(place_int_stack(&data, STACK_A, *(data.a)) == 3);
-    assert(place_int_stack(&data, STACK_A, *(data.a + 1)) == 1);
-    assert(place_int_stack(&data, STACK_A, *(data.a + 2)) == 2);
+    assert(place_int_stack(&data, *(data.a)) == 3);
+    assert(place_int_stack(&data, *(data.a + 1)) == 1);
+    assert(place_int_stack(&data, *(data.a + 2)) == 2);
 
-    assert(place_int_stack(&data, STACK_B, *(data.b)) == 3);
-    assert(place_int_stack(&data, STACK_B, *(data.b - 1)) == 1);
-    assert(place_int_stack(&data, STACK_B, *(data.b - 2)) == 2);
+    assert(place_int_stack(&data, *(data.b)) == 3);
+    assert(place_int_stack(&data, *(data.b - 1)) == 1);
+    assert(place_int_stack(&data, *(data.b - 2)) == 2);
 
     int arr6[9] = {50, 78, 7, -125 ,40 , -6, 310, 1, 2};
     data.a = &arr6[4];
@@ -40,20 +40,20 @@ void place_in_stack_assert(void)
     data.size_b = 4;
     data.start = &arr6[0];
     data.end = &arr6[8];
-    assert(place_int_stack(&data, STACK_A, *(data.a)) == 4);
-    assert(place_int_stack(&data, STACK_A, *(data.a + 1)) == 1);
-    assert(place_int_stack(&data, STACK_A, *(data.a + 2)) == 5);
-    assert(place_int_stack(&data, STACK_A, *(data.a + 3)) == 2);
-    assert(place_int_stack(&data, STACK_A, *(data.a + 4)) == 3);
+    assert(place_int_stack(&data, *(data.a)) == 4);
+    assert(place_int_stack(&data, *(data.a + 1)) == 1);
+    assert(place_int_stack(&data, *(data.a + 2)) == 5);
+    assert(place_int_stack(&data, *(data.a + 3)) == 2);
+    assert(place_int_stack(&data, *(data.a + 4)) == 3);
 
-    assert(place_int_stack(&data, STACK_B, *(data.b)) == 1);
-    assert(place_int_stack(&data, STACK_B, *(data.b - 1)) == 2);
-    assert(place_int_stack(&data, STACK_B, *(data.b - 2)) == 4);
-    assert(place_int_stack(&data, STACK_B, *(data.b - 3)) == 3);
+    assert(place_int_stack(&data, *(data.b)) == 1);
+    assert(place_int_stack(&data, *(data.b - 1)) == 2);
+    assert(place_int_stack(&data, *(data.b - 2)) == 4);
+    assert(place_int_stack(&data, *(data.b - 3)) == 3);
 
     char *s[] = {"8 4 2 1 7 14 5 0 11 10 3 19 15 13 20 17 6 18 16 12" , NULL};
     assert(init_global_data(s, &data) == OK);
-    int place = place_int_stack(&data, STACK_A, *(data.a + 18));
+    int place = place_int_stack(&data, *(data.a + 18));
     int range[LIMIT][2];
      generate_range(range, data.size_a);
     printf("value: %d la place %d in range %d to %d\n", *(data.a + 18), place , range[1][0], range[1][1]);

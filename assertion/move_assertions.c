@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 17:06:09 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 19:05:49 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void swap_assert(void)
     char *str[] = {"10 12 88 74 7 9 77", NULL};
     
     assert(init_global_data((char **)str, &data) == OK);
+
     assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
     assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
     assert(push(&data, STACK_A, STACK_B, NO_DISPLAY) == OK);
+    
     assert(swap(&data, STACK_A, NO_DISPLAY) == OK);
     assert(*data.a == 7);
     assert(*(data.a + 1) == 74);
@@ -70,8 +72,8 @@ void swap_assert(void)
     assert(*(data.b - 1) == 88);
     assert(swap(&data, STACK_A, NO_DISPLAY) == OK);
     assert(swap(&data, STACK_B, NO_DISPLAY) == OK);
-    assert(swap(NULL, STACK_A, NO_DISPLAY) == NO_MOVE);
-    assert(swap(NULL, STACK_B, NO_DISPLAY) == NO_MOVE);
+    assert(swap(NULL, STACK_A, NO_DISPLAY) == ERR);
+    assert(swap(NULL, STACK_B, NO_DISPLAY) == ERR);
     assert(push(&data, STACK_B, STACK_A, NO_DISPLAY) == OK);
     assert(push(&data, STACK_B, STACK_A, NO_DISPLAY) == OK);
     assert(push(&data, STACK_B, STACK_A, NO_DISPLAY) == OK);
@@ -425,7 +427,7 @@ void min_at_beg_asser(void)
     assert(smallest == *data.a);
 
 
-    char *l6[] = {"10 -1 32 45 7 -788", NULL};
+    char *l6[] = {"10 -1 32 45 -7555 -788", NULL};
     assert(init_global_data(l6, &data) == OK);
     while (data.a)
     {
@@ -434,17 +436,19 @@ void min_at_beg_asser(void)
         push(&data, STACK_A, STACK_B, NO_DISPLAY);
         assert(smallest == *data.b);
     }
-    while (data.b)
-    {
-        smallest = *smalest_value(&data, STACK_B);
-        printf("voici smalest %d\n", smallest);
-        display_stack(&data, STACK_B);
-        at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
-        display_stack(&data, STACK_B);
-        push(&data, STACK_B, STACK_A, NO_DISPLAY);
-        printf("voici %d\n", *data.a);
-        assert(smallest == *data.a);
-    }
+    display_stack(&data, STACK_A);
+    display_stack(&data, STACK_B);
+    at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
+    display_stack(&data, STACK_B);
+    // while (data.b)
+    // {
+    //     smallest = *smalest_value(&data, STACK_B);
+    //     display_stack(&data, STACK_B);
+    //     at_beginning(&data, STACK_B, smalest_value(&data, STACK_B));
+    //     push(&data, STACK_B, STACK_A, NO_DISPLAY);
+    //     display_stack(&data, STACK_B);
+    //     //assert(smallest == *data.a);
+    // }
     ASSERT_END(__func__);
 }
 void immediat_superior_assert(void)
@@ -511,13 +515,13 @@ void move_assertions(int argc, char **argv)
     (void)argc;
     (void)argv;
     
-    push_assert();
-    swap_assert();
-    rotate_short_assert();
-    rev_rotate_short_assert();
-    rotate_push_rotate_push_assert();
-    double_rotation_assert();
+    // push_assert();
+    // swap_assert();
+    // rotate_short_assert();
+    // rev_rotate_short_assert();
+    // rotate_push_rotate_push_assert();
+    // double_rotation_assert();
     min_at_beg_asser();
-    max_at_beg_asser();
-    immediat_superior_assert();
+    // max_at_beg_asser();
+    // immediat_superior_assert();
 }

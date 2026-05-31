@@ -6,14 +6,12 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 11:25:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/28 15:47:03 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 18:32:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
 
-int             place_int_stack(t_global_data *data, int stack, int value);
-t_best_move     *best_move(t_global_data data, int range[2]);
 /*
 
     rotate -> the last become the first
@@ -29,9 +27,6 @@ t_best_move     *best_move(t_global_data data, int range[2]);
     case 4: 5 3 4; 
     case 5: 5 4 3
 */
-
-
-
 
 
 void find_best_value_of_range_assert(void)
@@ -50,7 +45,7 @@ void find_best_value_of_range_assert(void)
     display_stack(&data, STACK_A);
     while (data.a)
     {
-        best = best_move(data, range);
+        best = best_move(&data, range);
         while (best->number > 0)
         {
             best->move(&data, STACK_A, DISPLAY);

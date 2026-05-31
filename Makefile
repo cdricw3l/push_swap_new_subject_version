@@ -34,7 +34,8 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				srcs/algo/two.c \
 				srcs/algo/three.c \
 				srcs/algo/five.c \
-				srcs/algo/medium.c 
+				srcs/algo/medium.c \
+				srcs/algo/sorting_values.c 
 
 SRCS_OBJS=$(SRCS:.c=.o)
 ASSERT_OBJS=$(SRCS_ASSERT:.c=.o)
