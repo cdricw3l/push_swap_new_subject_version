@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 20:38:03 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/05/31 22:47:35 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 #define NL printf("\n")
 #define LE 0
 #define RI 1
-#define RANGE_SIZE 5
+#define RANGE_SIZE 4
 
 enum e_algo
 {
@@ -141,6 +141,7 @@ int	    at_beginning(t_global_data *data, int stack, int *value);
 t_best_move *best_move(t_global_data *data, int range[2]);
 int     generate_range(int ranges[1024][2], int list_size);
 int     *immediat_superior(t_global_data *data, int stack, int *value);
+int     generate_range_v2(int ranges[LIMIT][2], int total_size);
 #endif
 
 

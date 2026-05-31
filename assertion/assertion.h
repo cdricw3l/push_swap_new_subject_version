@@ -32,5 +32,6 @@ void middle_algo_assert(void);
 void three_value_assert(void);
 void five_value_assert();
 void generate_range_assert();
+int four(void);
 
 #endif

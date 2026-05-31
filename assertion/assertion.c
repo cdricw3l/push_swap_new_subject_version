@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assertion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:03:17 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/28 08:58:26 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/05/31 22:20:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
     (void)argc;
     char buffer[3];
-    char intro[] = "Witch test yould you want to launch:\n["GREEN"0"RESET"] = init_and_check_assertion\n["GREEN"1"RESET"] = move_assertion\n["GREEN"2"RESET"] = algo_assertion\n["GREEN"3"RESET"] = middle_algo_assertion\n["GREEN"4"RESET"] = generate_range\ninput: ";
+    char intro[] = "Witch test yould you want to launch:\n["GREEN"0"RESET"] = init_and_check_assertion\n["GREEN"1"RESET"] = move_assertion\n["GREEN"2"RESET"] = algo_assertion\n["GREEN"3"RESET"] = middle_algo_assertion\n["GREEN"4"RESET"] = generate_range\n["GREEN"5"RESET"] = four\ninput: ";
     int b_read;
 
     write(STDOUT_FILENO, intro, ft_strlen(intro));
@@ -37,6 +37,8 @@ int main(int argc, char **argv)
         middle_algo_assert();
     else if(!ft_strncmp("4", buffer, 2))
         generate_range_assert();
+    else if(!ft_strncmp("5", buffer, 2))
+        four();
 
     return (0);
 }
