@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 22:55:27 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 23:06:31 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../checker.h"
+
+int	get_complexity(char *arg)
+{
+	if (ft_strncmp(arg, "--simple",
+			ft_strlen_longest("--simple", arg)) == OK)
+		return (SIMPLE);
+	else if (ft_strncmp(arg, "--medium",
+			ft_strlen_longest("--medium", arg)) == OK)
+		return (MEDIUM);
+	else if (ft_strncmp(arg, "--complex",
+			ft_strlen_longest("--complex", arg)) == OK)
+		return (COMPLEX);
+	else if (ft_strncmp(arg, "--adaptive",
+			ft_strlen_longest("--adaptive", arg)) == OK)
+		return (ADAPTATIVE);
+	return (NONE);
+}
 
 static int	check_digit(char *str)
 {
@@ -41,22 +58,19 @@ static int	check_arg(char *arg)
 }
 /* idx[0]= couter_input idx[1] = idx i idx[2] = idx j*/
 
-int	check_args(char **argv, t_global_data *data)
+int	check_args(char **argv)
 {
 	size_t	idx[3];
 	char	**split;
 
 	ft_bzero(&idx, sizeof(size_t) * 3); 
+	
 	while (argv[idx[1]])
 	{
 		split = ft_split(argv[idx[1]], SPACE);
 		if (!split)
 			return (ERR);
 		idx[2] = 0;
-		if (idx[1] == 0)
-			data->algo = get_complexity(split[0]);
-		if (idx[1] == 0 && data->algo != NONE)
-			idx[2]++;
 		while (split[idx[2]])
 		{
 			if (check_arg(split[idx[2]++]) == ERR)

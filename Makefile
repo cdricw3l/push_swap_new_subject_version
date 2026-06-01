@@ -1,5 +1,5 @@
 NAME=push_swap
-BONUS_NAME=checker
+BONUS_NAME=checker/checker
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/main.c \
@@ -19,9 +19,13 @@ SRCS= 	srcs/main.c \
 		srcs/algo/medium.c \
 		srcs/algo/sorting_values.c
 
-SRCS_BONUS= checker/checker.c \
-			checker/initialisation/init.c \
-			checker/initialisation/check.c \
+SRCS_BONUS= checker/checker_bonus.c \
+			checker/move/movement.c \
+			checker/move/utils.c \
+			checker/initialisation/init_bonus.c \
+			checker/initialisation/check_bonus.c \
+			checker/gnl/get_next_line_bonus.c \
+			checker/gnl/get_next_line_utils_bonus.c
 
 SRCS_OBJS=$(SRCS:.c=.o)
 BONUS_OBJS=$(SRCS_BONUS:.c=.o)
@@ -43,10 +47,10 @@ simple: $(NAME)
 
 simple_check: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./checker/checker_Mac $(ARG_SIMPLE_500)
+	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./42_checker/checker_Mac $(ARG_SIMPLE_500)
 endif
 ifeq ($(OS), Linux)
-	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./checker/checker_linux $(ARG_SIMPLE_500)
+	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./42_checker/checker_linux $(ARG_SIMPLE_500)
 endif
 
 
@@ -60,24 +64,27 @@ middle: $(NAME)
 
 middle_check: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_Mac $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./42_checker/checker_Mac $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_Mac $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./42_checker/checker_Mac $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 ifeq ($(OS), Linux)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_linux $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./42_checker/checker_linux $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_linux $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./42_checker/checker_linux $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 
 bonus: $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) -Llib -lft -o $(BONUS_NAME)
 
+br: bonus
+	@./checker/checker "12 12 587"
+
 clean:
 	make clean -C $(LIBFT)
-	rm -rf $(SRCS_OBJS) $(ASSERT_OBJS) $(VALGRIND_LOG)
+	rm -rf $(SRCS_OBJS) $(BONUS_OBJS) $(VALGRIND_LOG)
 
 fclean: clean
 	rm -rf $(NAME) $(BONUS_NAME)
