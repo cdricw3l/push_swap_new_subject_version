@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:43:11 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:46:43 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int     generate_range(int ranges[1024][2], int list_size);
 int     *immediat_superior(t_global_data *data, int stack, int *value);
 int *immediat_inferior(t_global_data *data, int stack, int *value);
 int     generate_range(int ranges[LIMIT][2], int total_size);
-
+int	check_push_input(t_global_data *data, int src, int dst);
 int	get_born(long born[2], t_global_data *data, int stack, int *value);
 
 #endif

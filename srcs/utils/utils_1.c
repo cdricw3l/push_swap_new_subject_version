@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:45:01 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:48:08 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,18 @@ int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
 		stk->arr = data->b;
 		stk->len = data->size_b;
 	}
+	return (OK);
+}
+
+int	check_push_input(t_global_data *data, int src, int dst)
+{
+	if (!data)
+		return (ERR);
+	else if ((src != STACK_A && src != STACK_B)
+		|| (dst != STACK_A && dst != STACK_B))
+		return (ERR);
+	else if ((src == STACK_A && data->size_a <= 0)
+		|| (src == STACK_B && data->size_b <= 0))
+		return (NO_MOVE);
 	return (OK);
 }

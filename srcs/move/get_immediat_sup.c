@@ -6,45 +6,58 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 18:41:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:42:08 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:36:11 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	*immediat_superior(t_global_data *data, int stack, int *value)
+static int	*process_immediat_sup_in_a(t_global_data *data, int *value)
 {
 	int	*arr;
-	int	*p1;
+	int	*ptr_ref;
 	int	i;
 
 	i = INT_MAX;
-	p1 = &i;
-	// if (bigest_value(data, stack) == value)
-	// 	return (value);
-	if (stack == STACK_A)
+	arr = data->a;
+	ptr_ref = &i;
+	while (arr <= data->end)
 	{
-		if (!data->a)
-			return (NULL);
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if (*arr < *p1 && *arr > *value)
-				p1 = arr;
-			arr++;
-		}
+		if (*arr < *ptr_ref && *arr > *value)
+			ptr_ref = arr;
+		arr++;
 	}
+	return (ptr_ref);
+}
+
+static int	*process_immediat_sup_in_b(t_global_data *data, int *value)
+{
+	int	*arr;
+	int	*ptr_ref;
+	int	i;
+
+	i = INT_MAX;
+	arr = data->a;
+	ptr_ref = &i;
+	while (arr <= data->end)
+	{
+		if (*arr < *ptr_ref && *arr > *value)
+			ptr_ref = arr;
+		arr++;
+	}
+	return (ptr_ref);
+}
+
+int	*immediat_superior(t_global_data *data, int stack, int *value)
+{
+	int	*ptr_ref;
+
+	ptr_ref = NULL;
+	if (bigest_value(data, stack) == value)
+		return (value);
+	if (stack == STACK_A && data->a)
+		ptr_ref = process_immediat_sup_in_a(data, value);
 	else if (stack == STACK_B)
-	{
-		if (!data->b)
-			return (NULL);
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if (*arr < *p1 && *arr > *value)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
+		ptr_ref = process_immediat_sup_in_b(data, value);
+	return (ptr_ref);
 }

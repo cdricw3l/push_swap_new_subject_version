@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 19:18:30 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:29:08 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int medium_rank(t_global_data *data)
         at_beginning(data, STACK_A, immediat_superior(data, STACK_A, data->b));
         push(data, STACK_B, STACK_A, DISPLAY);
     }
-    at_beginning(data, STACK_A, smalest_value(data, STACK_A));
+    if(smalest_value(data, STACK_A))
+        at_beginning(data, STACK_A, smalest_value(data, STACK_A));
     return (OK);
 }

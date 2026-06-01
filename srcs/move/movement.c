@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:25:03 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:48:17 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	push(t_global_data *data, int src, int dst, int mode)
 {
-	if (!data)
-		return (ERR);
-	if ((src == STACK_A && data->size_a <= 0) || (src == STACK_B && data->size_b <= 0))
-		return (NO_MOVE);
+	if (check_push_input(data, src, dst) != OK)
+		return (check_push_input(data, src, dst));
 	if (src == STACK_A && dst == STACK_B && data->size_a)
 	{
 		data->b = data->a;
