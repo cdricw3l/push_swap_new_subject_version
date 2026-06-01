@@ -6,11 +6,26 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:45:34 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 20:58:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+t_best_move	*build_best_move(int value, int counter,
+	int (f)(t_global_data *, int, int)
+)
+{
+	t_best_move	*best_move;
+
+	best_move = malloc(sizeof(t_best_move));
+	if (!best_move)
+		return (NULL);
+	best_move->value = value;
+	best_move->number = counter;
+	best_move->move = f;
+	return (best_move);
+}
 
 int	generate_range(int ranges[LIMIT][2], int total_size)
 {
