@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 22:17:02 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:20:36 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ int	generate_range(int ranges[LIMIT][2], int total_size)
 	int	range_end;
 	int	i;
 
-
 	if (total_size > LIMIT || total_size <= 2)
 		return (ERR);
 	range_start = 1;
 	range_end = total_size / RANGE_SIZE;
 	base = total_size / (total_size / RANGE_SIZE);
 	i = 0;
-
 	if (total_size % RANGE_SIZE)
 		base += 1;
 	while (i < base)

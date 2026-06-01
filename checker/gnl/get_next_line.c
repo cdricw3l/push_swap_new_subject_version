@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 21:02:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 00:07:53 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:17:09 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static int	init_gnl(t_gnl *gnl, int fd)
 {
@@ -103,11 +103,16 @@ static int	process_buffer(char **stash, t_gnl *gnl)
 	return (clean_data(stash, gnl, BUFFER, NOREAD));
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int mode)
 {
 	t_gnl		gnl;
 	static char	*stash[MAX_FD];
 
+	if (mode == CLEAN_MODE)
+	{
+		free(stash[fd]);
+		return (NULL);
+	}
 	if (init_gnl(&gnl, fd) == ERR)
 		return (NULL);
 	if (stash[gnl.fd] && process_stash(stash, &gnl,

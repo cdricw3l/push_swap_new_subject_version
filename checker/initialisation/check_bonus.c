@@ -6,28 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 23:06:31 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:16:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker.h"
-
-int	get_complexity(char *arg)
-{
-	if (ft_strncmp(arg, "--simple",
-			ft_strlen_longest("--simple", arg)) == OK)
-		return (SIMPLE);
-	else if (ft_strncmp(arg, "--medium",
-			ft_strlen_longest("--medium", arg)) == OK)
-		return (MEDIUM);
-	else if (ft_strncmp(arg, "--complex",
-			ft_strlen_longest("--complex", arg)) == OK)
-		return (COMPLEX);
-	else if (ft_strncmp(arg, "--adaptive",
-			ft_strlen_longest("--adaptive", arg)) == OK)
-		return (ADAPTATIVE);
-	return (NONE);
-}
 
 static int	check_digit(char *str)
 {
@@ -64,7 +47,6 @@ int	check_args(char **argv)
 	char	**split;
 
 	ft_bzero(&idx, sizeof(size_t) * 3); 
-	
 	while (argv[idx[1]])
 	{
 		split = ft_split(argv[idx[1]], SPACE);

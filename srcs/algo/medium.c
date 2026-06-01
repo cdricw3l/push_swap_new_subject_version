@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 22:15:56 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:20:11 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ static int	process_best_move(t_global_data *data)
 
 int	medium_rank(t_global_data *data)
 {
-	
 	if (process_best_move(data) == ERR)
 		return (ERR);
 	while (data->size_a < 3)

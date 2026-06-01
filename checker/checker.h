@@ -6,19 +6,19 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:35:38 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 00:35:25 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:19:38 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
-#	define CHECKER_H
+# define CHECKER_H
 
 # include <stdio.h>
 # include <assert.h>
 # include <limits.h>
 # include <unistd.h>
 # include "lib/libft.h"
-# include "gnl/get_next_line_bonus.h"
+# include "gnl/get_next_line.h"
 
 # define OK 0
 # define ERR -1
@@ -44,7 +44,6 @@ enum e_algo
 	COMPLEX,
 	ADAPTATIVE
 };
-
 
 typedef struct s_global_data
 {

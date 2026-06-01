@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/01 22:08:22 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:21:00 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	processing_error_message(int code)
 	}
 	return (0);
 }
-#include <assert.h>
+
 int	main(int argc, char **argv)
 {
 	t_global_data	data;
 	int				r;
-	
+
 	(void)argc;
 	r = OK;
 	if (init_global_data(&argv[1], &data) == ERR)
