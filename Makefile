@@ -16,6 +16,7 @@ SRCS= 	srcs/main.c \
 		srcs/algo/three.c \
 		srcs/algo/five.c \
 		srcs/algo/medium.c \
+		srcs/algo/sorting_values.c
 
 
 SRCS_OBJS=$(SRCS:.c=.o)
@@ -50,7 +51,7 @@ ARG_MIDDLE_500="-64 -83 -92 -131 -139 -150 -172 -182 -76 -196 -93 -201 -233 -244
 ARG_MIDDLE_100="-3 -136 -166 -181 -224 -34 23 -268 -94 -226 -281 -297 -362 -379 -445 -194 -254 -280 -458 -299 147 -460 -303 93 -14 -20 -325 -110 -332 -363 245 -292 -37 -45 -89 -102 -492 -300 305 -122 164 -345 -126 -411 88 355 283 -352 -428 34 189 -143 -430 159 -179 277 156 135 -210 -8 241 -30 -39 -41 -230 -257 -53 454 406 185 148 485 127 -164 -177 473 471 106 169 466 131 345 450 331 436 92 328 309 295 186 178 100 59 429 19 418 405 385 319 129 -29 279 266 255 253 76 239 200 167"
 ARG_MIDDLE_6="-94 -97 -218 -288 -7 -296 -299 -32 -304 -171 -35 -323 -352"
 middle: $(NAME)
-	@./push_swap --medium $(ARG_MIDDLE_500)
+	@valgrind --leak-check=full --leak-resolution=high --log-file=$(VALGRIND_LOG) ./push_swap --medium $(ARG_MIDDLE_500)
 
 middle_check: $(NAME)
 ifeq ($(shell uname), Darwin)

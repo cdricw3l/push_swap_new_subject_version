@@ -6,21 +6,11 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:31:22 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 15:45:52 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 20:25:28 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
-/*
-	case 0: 3 4 5; 
-	case 1: 3 5 4; 
-	case 2: 4 3 5;
-
-	case 3: 4 5 3;
-	case 4: 5 3 4; 
-	case 5: 5 4 3
-*/
 
 static int	three_value_data(t_global_data *data, int stack, int idx[3])
 {
@@ -41,7 +31,7 @@ static int	three_value_data(t_global_data *data, int stack, int idx[3])
 	return (OK);
 }
 
-static int	three_values_stack_A(t_global_data *data, int stack)
+static int	three_values_stack_a(t_global_data *data, int stack)
 {
 	int	idx[3];
 
@@ -65,7 +55,8 @@ static int	three_values_stack_A(t_global_data *data, int stack)
 		rotate(data, stack, DISPLAY);
 	return (OK);
 }
-static int	three_values_stack_B(t_global_data *data, int stack)
+
+static int	three_values_stack_b(t_global_data *data, int stack)
 {
 	int	idx[3];
 
@@ -95,8 +86,8 @@ int	three_values(t_global_data *data, int stack)
 	if (ft_is_sort(data, stack))
 		return (NO_MOVE);
 	if (stack == STACK_A)
-		return (three_values_stack_A(data, stack));
+		return (three_values_stack_a(data, stack));
 	if (stack == STACK_B)
-		return (three_values_stack_B(data, stack));
+		return (three_values_stack_b(data, stack));
 	return (ERR);
 }
