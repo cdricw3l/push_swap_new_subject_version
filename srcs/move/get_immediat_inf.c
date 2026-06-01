@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 18:42:36 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:42:53 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 21:46:16 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	*immediat_inferior(t_global_data *data, int stack, int *value)
 
 	p1 = &i;
 	i = INT_MIN;
-	// if (bigest_value(data, stack) == value)
-	// 	return (value);
 	if (stack == STACK_A)
 	{
 		arr = data->a;
