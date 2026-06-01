@@ -31,6 +31,7 @@ SRCS_OBJS=$(SRCS:.c=.o)
 BONUS_OBJS=$(SRCS_BONUS:.c=.o)
 LIBFT_PATH=lib
 CHECKER_PATH=checker/checker
+CHECKER_42=42_checker/checker_linux
 VALGRIND_LOG=valgrind.log
 OS=$(shell uname)
 

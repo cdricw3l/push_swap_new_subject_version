@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:53:48 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 01:15:25 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 01:30:49 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int	main(int argc, char **argv)
 	while (buffer)
 	{
 		buffer = get_next_line(STDIN_FILENO, STANDARD_MODE);
+		if (!buffer)
+			break ;
 		if (check_input(buffer) == ERR)
 			return (error_managment(&buffer, 255));
 		dispatch_move(&data, buffer);
