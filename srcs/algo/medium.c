@@ -3,30 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:30:16 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 17:59:43 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int check_range(int ranges[1024][2], int values, int size)
-{
-    int i;
-    int count;
-    
-    i = 0;
-    count = 0;
-    while (i < size)
-    {
-        count += (ranges[i][1] - ranges[i][0]) + 1;
-        i++;
-    }
-    assert(count == values);
-    return (OK);
-}
+
 
 int place_int_stack(t_global_data *data, int value)
 {
@@ -144,12 +130,12 @@ int medium_rank(t_global_data *data)
         }
         i++;
     }
-    while (data->size_a < 5)
+    while (data->size_a < 3)
     {
         at_beginning(data, STACK_B, bigest_value(data, STACK_B));
         push(data, STACK_B, STACK_A, DISPLAY);
     }
-    five_values(data, STACK_A);
+    three_values(data, STACK_A);
     while (data->b)
     {
         at_beginning(data, STACK_A, immediat_superior(data, STACK_A, data->b));

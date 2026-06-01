@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:26:10 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 17:58:44 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
 
 int	get_complexity(char *arg)
 {
@@ -55,28 +54,25 @@ float	compute_disorder(t_global_data *data)
 	return (mistakes / total_pairs);
 }
 
-int ft_is_sort(t_global_data *data, int stack)
+int	ft_is_sort(t_global_data *data, int stack)
 {
 	int				i;
 	t_stack_data	stk;
-	
-	if(get_stack_data(data, stack, &stk) == ERR)
+
+	if (get_stack_data(data, stack, &stk) == ERR)
 		return (-1);
 	i = 0;
 	while (i < stk.len - 1)
 	{
-		if(stack == STACK_A)
+		if (stack == STACK_A)
 		{
-			if(*(stk.arr) > *(stk.arr + 1))
-			{
-				//printf("Error in %d and %d\n", *(stk.arr) , *(stk.arr + 1));
+			if (*(stk.arr) > *(stk.arr + 1))
 				return (0);
-			}
 			stk.arr++;
 		}
 		else if (stack == STACK_B)
 		{
-			if(*(stk.arr) < *(stk.arr - 1))
+			if (*(stk.arr) < *(stk.arr - 1))
 				return (0);
 			stk.arr--;
 		}
@@ -85,17 +81,16 @@ int ft_is_sort(t_global_data *data, int stack)
 	return (1);
 }
 
-
-int get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
+int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
 {
-	if(!data || (stack != STACK_A && stack != STACK_B))
+	if (!data || (stack != STACK_A && stack != STACK_B))
 		return (ERR);
-	if(stack == STACK_A)
+	if (stack == STACK_A)
 	{
 		stk->arr = data->a;
 		stk->len = data->size_a;
 	}
-	else if(stack == STACK_B)
+	else if (stack == STACK_B)
 	{
 		stk->arr = data->b;
 		stk->len = data->size_b;

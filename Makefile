@@ -76,7 +76,10 @@ middle: $(NAME)
 
 middle_check: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --medium $(ARG_MIDDLE_6) | ./checker/checker_Mac $(ARG_MIDDLE_6)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_Mac $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_Mac $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 ifeq ($(OS), Linux)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_linux $(ARG_MIDDLE_500)

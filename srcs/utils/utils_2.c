@@ -3,78 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:07:40 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 18:03:13 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int generate_range(int ranges[LIMIT][2], int total_size)
+int	generate_range(int ranges[LIMIT][2], int total_size)
 {
-    int base;
-    int range_start;
-    int range_end;
-    int i;
+	int	base;
+	int	range_start;
+	int	range_end;
+	int	i;
 
-    if (total_size > LIMIT || total_size < 2)
-        return (ERR);
-    range_start = (total_size - RANGE_SIZE) + 1;
-    range_end = total_size;
-    base = total_size / RANGE_SIZE;
-    if (total_size % RANGE_SIZE)
-        base += 1;
-    i = 0;
-    while (i < base)
-    {
-        ranges[i][0] = range_start;
-        ranges[i][1] = range_end;
-        range_start -= RANGE_SIZE;
-        range_end -= RANGE_SIZE;
-        if(i == base - 1 && ranges[i][0] <= 0)
-            ranges[i][0] = 1;
-        i++;
-    }
-    return (i);
+	if (total_size > LIMIT || total_size < 2)
+		return (ERR);
+	range_start = (total_size - RANGE_SIZE) + 1;
+	range_end = total_size;
+	base = total_size / RANGE_SIZE;
+	if (total_size % RANGE_SIZE)
+		base += 1;
+	i = 0;
+	while (i < base)
+	{
+		ranges[i][0] = range_start;
+		ranges[i][1] = range_end;
+		range_start -= RANGE_SIZE;
+		range_end -= RANGE_SIZE;
+		if (i == base - 1 && ranges[i][0] <= 0)
+			ranges[i][0] = 1;
+		i++;
+	}
+	return (i);
 }
-int generate_range_v2(int ranges[LIMIT][2], int total_size)
+int	generate_range_v2(int ranges[LIMIT][2], int total_size)
 {
-    int base;
-    int range_start;
-    int range_end;
-    int i;
+	int	base;
+	int	range_start;
+	int	range_end;
+	int	i;
 
-    if (total_size > LIMIT || total_size < 2)
-        return (ERR);
-    range_start = 1;
-    range_end = total_size / RANGE_SIZE;
-    base = total_size / (total_size / RANGE_SIZE);
-    i = 0;
-
-
-    if (total_size % RANGE_SIZE)
-        base += 1;
-    while (i < base)
-    {
-        ranges[i][0] = range_start;
-        ranges[i][1] = range_end;
-        range_start += (total_size / RANGE_SIZE);
-        range_end += (total_size / RANGE_SIZE);
-        if(i == base - 1 && total_size % RANGE_SIZE > 0)
-            ranges[i][1] =  ranges[i][0] + (total_size % RANGE_SIZE) - 1;
-        i+=1;
-    }
-    return (i);
+	if (total_size > LIMIT || total_size < 2)
+		return (ERR);
+	range_start = 1;
+	range_end = total_size / RANGE_SIZE;
+	base = total_size / (total_size / RANGE_SIZE);
+	i = 0;
+	
+	if (total_size % RANGE_SIZE)
+		base += 1;
+	while (i < base)
+	{
+		ranges[i][0] = range_start;
+		ranges[i][1] = range_end;
+		range_start += (total_size / RANGE_SIZE);
+		range_end += (total_size / RANGE_SIZE);
+		if (i == base - 1 && total_size % RANGE_SIZE > 0)
+			ranges[i][1] =  ranges[i][0] + (total_size % RANGE_SIZE) - 1;
+		i+=1;
+	}
+	return (i);
 }
 
-int *bigest_value(t_global_data *data, int stack)
+int	*bigest_value(t_global_data *data, int stack)
 {
-	int *arr;
-	int *p1;
-	int i = INT_MIN;
-
+	int	*arr;
+	int	*p1;
+	int i;
+	
+	i = INT_MIN;
 	p1 = &i;
 	if (stack == STACK_A)
 	{
@@ -86,7 +86,7 @@ int *bigest_value(t_global_data *data, int stack)
 			arr++;
 		}
 	}
-	else if(stack == STACK_B)
+	else if (stack == STACK_B)
 	{
 		arr = data->b;
 		while (arr >= data->start)
@@ -99,12 +99,13 @@ int *bigest_value(t_global_data *data, int stack)
 	return (p1);
 }
 
-int *smalest_value(t_global_data *data, int stack)
+int	*smalest_value(t_global_data *data, int stack)
 {
-	int *arr;
-	int *p1;
-	int i = INT_MAX;
-
+	int	*arr;
+	int	*p1;
+	int	i;
+	
+	i = INT_MAX;
 	p1 = &i;
 	if (stack == STACK_A)
 	{
@@ -116,7 +117,7 @@ int *smalest_value(t_global_data *data, int stack)
 			arr++;
 		}
 	}
-	else if(stack == STACK_B)
+	else if (stack == STACK_B)
 	{
 		arr = data->b;
 		while (arr >= data->start)
@@ -134,31 +135,32 @@ int *immediat_superior(t_global_data *data, int stack, int *value)
 {
 	int *arr;
 	int *p1;
-	int i = INT_MAX;
-
+	int i;
+	
+	i = INT_MAX;
 	p1 = &i;
 	if (bigest_value(data, stack) == value)
 		return (value);
 	if (stack == STACK_A)
 	{
-		if(!data->a)
+		if (!data->a)
 			return (NULL);
 		arr = data->a;
 		while (arr <= data->end)
 		{
-			if(*arr < *p1 && *arr > *value)
+			if (*arr < *p1 && *arr > *value)
 				p1 = arr;
 			arr++;
 		}
 	}
 	else if(stack == STACK_B)
 	{
-		if(!data->b)
+		if (!data->b)
 			return (NULL);
 		arr = data->b;
 		while (arr >= data->start)
 		{
-			if(*arr < *p1 && *arr > *value)
+			if (*arr < *p1 && *arr > *value)
 				p1 = arr;
 			arr--;
 		}
@@ -166,13 +168,14 @@ int *immediat_superior(t_global_data *data, int stack, int *value)
 	return (p1);
 }
 
-int *immediat_inferior(t_global_data *data, int stack, int *value)
+int	*immediat_inferior(t_global_data *data, int stack, int *value)
 {
-	int *arr;
-	int *p1;
-	int i = INT_MIN;
-
+	int	*arr;
+	int	*p1;
+	int i;
+	
 	p1 = &i;
+	i = INT_MIN;
 	if (bigest_value(data, stack) == value)
 		return (value);
 	if (stack == STACK_A)
@@ -180,7 +183,7 @@ int *immediat_inferior(t_global_data *data, int stack, int *value)
 		arr = data->a;
 		while (arr <= data->end)
 		{
-			if(*arr > *p1 && *arr < *value)
+			if (*arr > *p1 && *arr < *value)
 				p1 = arr;
 			arr++;
 		}
@@ -190,10 +193,27 @@ int *immediat_inferior(t_global_data *data, int stack, int *value)
 		arr = data->b;
 		while (arr >= data->start)
 		{
-			if(*arr > *p1 && *arr < *value)
+			if (*arr > *p1 && *arr < *value)
 				p1 = arr;
 			arr--;
 		}
 	}
 	return (p1);
+}
+
+int	check_range(int ranges[1024][2], int values, int size)
+{
+	int	i;
+	int	count;
+	
+	i = 0;
+	count = 0;
+	while (i < size)
+	{
+		count += (ranges[i][1] - ranges[i][0]) + 1;
+		i++;
+	}
+	if(count != values);
+		write(STDOUT_FILENO,"Error check range\n", ft_strlen("Error check range\n"));
+	return (OK);
 }
