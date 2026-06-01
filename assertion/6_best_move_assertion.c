@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 17:33:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 12:02:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:37:16 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,7 @@ void place_in_stack_assert(void)
 }
 
 
-void display_range(int ranges[1024][2], int size)
-{
-    int i;
 
-    i = 0;
-    while (i < size)
-    {
-        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][1], ranges[i][0]);
-        i++;
-    }
-}
 
 void display_best_move(t_best_move move, int range[2])
 {

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 10:44:42 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:52:58 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,52 @@ int check_if_range_is_sorted(t_global_data *data, int range[2])
     return (OK);
 }
 
+// int medium_rank(t_global_data *data)
+// {
+//     int i;
+//     int nb_range;
+//     int ranges[LIMIT][2];
+//     t_best_move *best;
+    
+//     if(ft_is_sort(data, STACK_A))
+//         return (OK);
+//     if(data->size_a <= 5)
+//     {
+//         selection_sort(data);
+//         return (OK);
+//     }
+//     nb_range = generate_range(ranges, data->size_a);
+//     if(nb_range == ERR)
+//         return (ERR);
+//     i = 0;
+//     while (i < nb_range)
+//     {
+//         best = best_move(data, ranges[i]);
+//         while(best != NULL)
+//         {
+//             move(data, STACK_A, best->move, best->number);
+//             free(best);
+//             push(data, STACK_A, STACK_B, DISPLAY);
+//             best = best_move(data, ranges[i]);
+//         }
+//         if(data->size_b == 5)
+//             five_values(data, STACK_B);
+//         else if(data->size_b == 3)
+//             three_values(data, STACK_B);
+//         else if(data->size_b == 2)
+//             two_values(data, STACK_B);
+//         at_beginning(data, STACK_A, immediat_superior(data, STACK_A, data->b));
+//         while (data->b)
+//             push(data, STACK_B, STACK_A, DISPLAY);
+//         if(i < nb_range - 1)
+//             move(data, STACK_A, rev_rotate, data->size_a / 4);
+//         i++;
+//     }
+//     at_beginning(data, STACK_A, smalest_value(data, STACK_A));
+
+//     return (OK);
+// }
+
 int medium_rank(t_global_data *data)
 {
     int i;
@@ -113,7 +159,8 @@ int medium_rank(t_global_data *data)
         selection_sort(data);
         return (OK);
     }
-    nb_range = generate_range(ranges, data->size_a);
+    nb_range = generate_range_v2(ranges, data->size_a);
+    
     if(nb_range == ERR)
         return (ERR);
     i = 0;
@@ -127,19 +174,20 @@ int medium_rank(t_global_data *data)
             push(data, STACK_A, STACK_B, DISPLAY);
             best = best_move(data, ranges[i]);
         }
-        if(data->size_b == 5)
-            five_values(data, STACK_B);
-        else if(data->size_b == 3)
-            three_values(data, STACK_B);
-        else if(data->size_b == 2)
-            two_values(data, STACK_B);
-        at_beginning(data, STACK_A, immediat_superior(data, STACK_A, data->b));
-        while (data->b)
-            push(data, STACK_B, STACK_A, DISPLAY);
-        if(i < nb_range - 1)
-            move(data, STACK_A, rev_rotate, data->size_a / 4);
-        at_beginning(data, STACK_A, smalest_value(data, STACK_A));
+        //display_stack(data, STACK_B);
+        two_values(data, STACK_B);
+        //display_stack(data, STACK_B);
+        at_beginning(data, STACK_B, bigest_value(data,STACK_B));
+        
         i++;
     }
+    while (data->b)
+    {
+        push(data, STACK_B, STACK_A, DISPLAY);
+    }
+    //display_stack(data, STACK_A);
+
+    //at_beginning(data, STACK_A, smalest_value(data, STACK_A));
+    
     return (OK);
 }

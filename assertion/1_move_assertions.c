@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:07:31 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 11:47:35 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:31:29 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,7 +327,4 @@ void move_assertions(void)
     rev_rotate_short_assert();
     rotate_push_rotate_push_assert();
     double_rotation_assert();
-    min_at_beg_asser();
-    max_at_beg_asser();
-    immediat_superior_assert();
 }

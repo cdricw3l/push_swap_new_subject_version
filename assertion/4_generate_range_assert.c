@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_range_assert.c                            :+:      :+:    :+:   */
+/*   4_generate_range_assert.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 08:51:09 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/05/28 10:40:00 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:37:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "assertion.h"
 
 
-
+/**
+ * @brief check range creation.
+ * @param ranges tableau de range.
+ * @param value nombre d'element dans la liste.
+ * @param stack nombre de range creer
+ * @return OK, NO_MOVE or ERR.
+ */
 int check_range_assert(int ranges[1024][2], int values, int size)
 {
     int i;
@@ -30,6 +36,18 @@ int check_range_assert(int ranges[1024][2], int values, int size)
     return (OK);
 }
 
+
+void display_range(int ranges[1024][2], int size)
+{
+    int i;
+
+    i = 0;
+    while (i < size)
+    {
+        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][0], ranges[i][1]);
+        i++;
+    }
+}
 
 
 void generate_range_assert(void)

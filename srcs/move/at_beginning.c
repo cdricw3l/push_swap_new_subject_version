@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 12:04:50 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:07:16 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ int	move(t_global_data *data, int stack,
 	int	i;
 
 	i = 0;
-	printf("voici le nombre de mouve %d\n", counter);
+	//printf("voici le nombre de mouve %d\n", counter);
 	if ((stack != STACK_A && stack != STACK_B) || !data || !f)
 		return (ERR);
 	while (i < counter)
 	{
-		display_stack(data, stack);
+		//display_stack(data, stack);
 		f(data, stack, DISPLAY);
 		i++;
 	}

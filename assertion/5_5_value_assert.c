@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 07:39:26 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/01 11:54:13 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:31:47 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void fiv_value_assert()
     ASSERT_END(__func__);
 }
 
+// int four_value_in_full_stack()
+// {
+    
+// }
 
 
 int five_value_assert(void)

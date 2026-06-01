@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 10:53:03 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 13:11:29 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 #define NL printf("\n")
 #define LE 0
 #define RI 1
-#define RANGE_SIZE 4
+#define RANGE_SIZE 2
 
 enum e_algo
 {
