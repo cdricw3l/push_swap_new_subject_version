@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:58:44 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/06/01 18:31:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,23 @@ int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
 		stk->arr = data->b;
 		stk->len = data->size_b;
 	}
+	return (OK);
+}
+
+int	check_range(int ranges[1024][2], int values, int size)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < size)
+	{
+		count += (ranges[i][1] - ranges[i][0]) + 1;
+		i++;
+	}
+	if (count != values)
+		write(STDOUT_FILENO, "Error in creation range\n",
+			ft_strlen("Error in creation range\n"));
 	return (OK);
 }
