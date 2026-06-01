@@ -8,6 +8,10 @@ SRCS= 	srcs/main.c \
 		srcs/initialisation/check.c \
 		srcs/move/movement.c \
 		srcs/move/at_beginning.c \
+		srcs/move/get_bigest.c \
+		srcs/move/get_immediat_inf.c  \
+		srcs/move/get_immediat_sup.c  \
+		srcs/move/get_smalest.c  \
 		srcs/utils/utils_1.c \
 		srcs/utils/utils_2.c \
 		srcs/utils/display.c \

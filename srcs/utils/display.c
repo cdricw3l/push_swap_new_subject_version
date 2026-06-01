@@ -6,26 +6,12 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:29:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 18:48:51 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void display_range(int ranges[1024][2], int size)
-{
-    int i;
-
-    i = 0;
-    while (i < size)
-    {
-        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][0], ranges[i][1]);
-        i++;
-    }
-}
-
-
-/* float precision ajustement. Work with put_float */
 static int	float_precision_ajustement(int n)
 {
 	if (n % 10 > 5)
@@ -34,24 +20,17 @@ static int	float_precision_ajustement(int n)
 	return (n);
 }
 
-/* display float value for benchmark */
 void	put_float(float nb)
 {
 	int		ipart;
 	int		f_adjusted;
 	float	fpart;
 
-	/* get int value part */
 	ipart = (int)nb;
-	/* get float part */
 	fpart = nb - (float)ipart;
-	/* check if third number is greater than 5. Exemple: 0.586 -> 0.59 */
 	f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
-	/* write integer part */
 	ft_putnbr_fd(ipart, STDOUT_FILENO);
-	/* write '.' */
 	write(STDOUT_FILENO, ".", 1);
-	/* write float part */
 	ft_putnbr_fd(f_adjusted, STDOUT_FILENO);
 }
 
@@ -79,3 +58,20 @@ void	print_move(int move, int stack)
 	if (move == RRR && stack == A_AND_B)
 		write(STDOUT_FILENO, "rrr\n", 4);
 }
+/*
+	putfloat:
+
+	get int value part */
+	//ipart = (int)nb;
+	/* get float part */
+	//fpart = nb - (float)ipart;
+	/* check if third number is greater than 5. Exemple: 0.586 -> 0.59 */
+	//f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
+	/* write integer part */
+	//ft_putnbr_fd(ipart, STDOUT_FILENO);
+	/* write '.' */
+	//write(STDOUT_FILENO, ".", 1);
+	/* write float part */
+	/*ft_putnbr_fd(f_adjusted, STDOUT_FILENO);
+
+*/

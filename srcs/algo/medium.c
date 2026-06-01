@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 17:59:43 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/06/01 18:43:15 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int medium_rank(t_global_data *data)
     
     if(ft_is_sort(data, STACK_A))
         return (OK);
-    nb_range = generate_range_v2(ranges, data->size_a);
+    nb_range = generate_range(ranges, data->size_a);
     if(nb_range == ERR)
         return (ERR);
     i = 0;

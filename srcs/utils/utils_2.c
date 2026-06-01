@@ -6,13 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:37:25 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 18:45:34 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	generate_range_v2(int ranges[LIMIT][2], int total_size)
+int	generate_range(int ranges[LIMIT][2], int total_size)
 {
 	int	base;
 	int	range_start;
@@ -39,137 +39,3 @@ int	generate_range_v2(int ranges[LIMIT][2], int total_size)
 	}
 	return (i);
 }
-
-int	*bigest_value(t_global_data *data, int stack)
-{
-	int	*arr;
-	int	*p1;
-	int	i;
-
-	i = INT_MIN;
-	p1 = &i;
-	if (stack == STACK_A)
-	{
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if (*arr > *p1)
-				p1 = arr;
-			arr++;
-		}
-	}
-	else if (stack == STACK_B)
-	{
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if (*arr > *p1)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
-}
-
-int	*smalest_value(t_global_data *data, int stack)
-{
-	int	*arr;
-	int	*p1;
-	int	i;
-
-	i = INT_MAX;
-	p1 = &i;
-	if (stack == STACK_A)
-	{
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if (*arr < *p1)
-				p1 = arr;
-			arr++;
-		}
-	}
-	else if (stack == STACK_B)
-	{
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if (*arr < *p1)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
-}
-
-int	*immediat_superior(t_global_data *data, int stack, int *value)
-{
-	int	*arr;
-	int	*p1;
-	int	i;
-
-	i = INT_MAX;
-	p1 = &i;
-	// if (bigest_value(data, stack) == value)
-	// 	return (value);
-	if (stack == STACK_A)
-	{
-		if (!data->a)
-			return (NULL);
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if (*arr < *p1 && *arr > *value)
-				p1 = arr;
-			arr++;
-		}
-	}
-	else if (stack == STACK_B)
-	{
-		if (!data->b)
-			return (NULL);
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if (*arr < *p1 && *arr > *value)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
-}
-
-int	*immediat_inferior(t_global_data *data, int stack, int *value)
-{
-	int	*arr;
-	int	*p1;
-	int	i;
-
-	p1 = &i;
-	i = INT_MIN;
-	// if (bigest_value(data, stack) == value)
-	// 	return (value);
-	if (stack == STACK_A)
-	{
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if (*arr > *p1 && *arr < *value)
-				p1 = arr;
-			arr++;
-		}
-	}
-	else if (stack == STACK_B)
-	{
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if (*arr > *p1 && *arr < *value)
-				p1 = arr;
-			arr--;
-		}
-	}
-	return (p1);
-}
-
-

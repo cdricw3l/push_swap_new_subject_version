@@ -6,13 +6,41 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:47:10 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 21:05:13 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 18:48:22 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-/* just for debbuging. Delete this file for the render */
+int	check_range(int ranges[1024][2], int values, int size)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < size)
+	{
+		count += (ranges[i][1] - ranges[i][0]) + 1;
+		i++;
+	}
+	if (count != values)
+		write(STDOUT_FILENO, "Error in creation range\n",
+			ft_strlen("Error in creation range\n"));
+	return (OK);
+}
+
+void	display_range(int ranges[1024][2], int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("range %d: [end]: %d [start] %d\n", i, ranges[i][0], ranges[i][1]);
+		i++;
+	}
+}
 
 void	display_data(t_global_data data)
 {
