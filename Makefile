@@ -15,7 +15,6 @@ SRCS= 	srcs/main.c \
 		srcs/utils/utils_1.c \
 		srcs/utils/utils_2.c \
 		srcs/utils/display.c \
-		srcs/utils/debbuging.c \
 		srcs/algo/two.c \
 		srcs/algo/three.c \
 		srcs/algo/five.c \
@@ -35,7 +34,6 @@ SRCS_ASSERT= 	assertion/assertion.c \
 				srcs/move/at_beginning.c \
 				srcs/utils/utils_1.c \
 				srcs/utils/utils_2.c \
-				srcs/utils/debbuging.c \
 				srcs/utils/display.c \
 				srcs/algo/two.c \
 				srcs/algo/three.c \

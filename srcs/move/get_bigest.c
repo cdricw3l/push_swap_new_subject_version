@@ -6,39 +6,56 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 18:40:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:41:20 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:19:40 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	*bigest_value(t_global_data *data, int stack)
+static int	*process_bigest_in_a(t_global_data *data)
 {
 	int	*arr;
-	int	*p1;
+	int	*ptr_ref;
 	int	i;
 
-	i = INT_MIN;
-	p1 = &i;
-	if (stack == STACK_A)
+	i = *(data->a);
+	arr = data->a;
+	ptr_ref = &i;
+	while (arr <= data->end)
 	{
-		arr = data->a;
-		while (arr <= data->end)
-		{
-			if (*arr > *p1)
-				p1 = arr;
-			arr++;
-		}
+		if (*arr > *ptr_ref)
+			ptr_ref = arr;
+		arr++;
 	}
-	else if (stack == STACK_B)
+	return (ptr_ref);
+}
+
+static int	*process_bigest_in_b(t_global_data *data)
+{
+	int	*arr;
+	int	*ptr_ref;
+	int	i;
+
+	i = *(data->b);
+	arr = data->b;
+	ptr_ref = &i;
+	while (arr >= data->start)
 	{
-		arr = data->b;
-		while (arr >= data->start)
-		{
-			if (*arr > *p1)
-				p1 = arr;
-			arr--;
-		}
+		if (*arr > *ptr_ref)
+			ptr_ref = arr;
+		arr--;
 	}
-	return (p1);
+	return (ptr_ref);
+}
+
+int	*bigest_value(t_global_data *data, int stack)
+{
+	int	*ptr_ref;
+
+	ptr_ref = NULL;
+	if (stack == STACK_A && data->a)
+		ptr_ref = process_bigest_in_a(data);
+	else if (stack == STACK_B && data->b)
+		ptr_ref = process_bigest_in_b(data);
+	return (ptr_ref);
 }

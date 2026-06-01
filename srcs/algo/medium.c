@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:43:15 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 19:18:30 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,8 @@ int medium_rank(t_global_data *data)
     }
     while (data->size_a < 3)
     {
-        at_beginning(data, STACK_B, bigest_value(data, STACK_B));
+        if(bigest_value(data, STACK_B))
+            at_beginning(data, STACK_B, bigest_value(data, STACK_B));
         push(data, STACK_B, STACK_A, DISPLAY);
     }
     three_values(data, STACK_A);

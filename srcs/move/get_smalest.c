@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 18:40:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:40:50 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 18:55:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*smalest_value(t_global_data *data, int stack)
 
 	i = INT_MAX;
 	p1 = &i;
-	if (stack == STACK_A)
+	if (stack == STACK_A && data->a)
 	{
 		arr = data->a;
 		while (arr <= data->end)
@@ -30,7 +30,7 @@ int	*smalest_value(t_global_data *data, int stack)
 			arr++;
 		}
 	}
-	else if (stack == STACK_B)
+	else if (stack == STACK_B  && data->b)
 	{
 		arr = data->b;
 		while (arr >= data->start)
