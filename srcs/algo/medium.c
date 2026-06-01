@@ -6,11 +6,27 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 13:52:58 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 17:25:43 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+int check_range(int ranges[1024][2], int values, int size)
+{
+    int i;
+    int count;
+    
+    i = 0;
+    count = 0;
+    while (i < size)
+    {
+        count += (ranges[i][1] - ranges[i][0]) + 1;
+        i++;
+    }
+    assert(count == values);
+    return (OK);
+}
 
 int place_int_stack(t_global_data *data, int value)
 {
@@ -98,6 +114,19 @@ int check_if_range_is_sorted(t_global_data *data, int range[2])
     }
     return (OK);
 }
+void display_range(int ranges[1024][2], int size)
+{
+    int i;
+
+    i = 0;
+    while (i < size)
+    {
+        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][0], ranges[i][1]);
+        i++;
+    }
+}
+
+
 
 // int medium_rank(t_global_data *data)
 // {
@@ -145,6 +174,8 @@ int check_if_range_is_sorted(t_global_data *data, int range[2])
 //     return (OK);
 // }
 
+
+
 int medium_rank(t_global_data *data)
 {
     int i;
@@ -160,7 +191,6 @@ int medium_rank(t_global_data *data)
         return (OK);
     }
     nb_range = generate_range_v2(ranges, data->size_a);
-    
     if(nb_range == ERR)
         return (ERR);
     i = 0;
@@ -174,20 +204,19 @@ int medium_rank(t_global_data *data)
             push(data, STACK_A, STACK_B, DISPLAY);
             best = best_move(data, ranges[i]);
         }
-        //display_stack(data, STACK_B);
-        two_values(data, STACK_B);
-        //display_stack(data, STACK_B);
-        at_beginning(data, STACK_B, bigest_value(data,STACK_B));
-        
         i++;
     }
-    while (data->b)
+    while (data->size_a < 5)
     {
+        at_beginning(data, STACK_B, bigest_value(data, STACK_B));
         push(data, STACK_B, STACK_A, DISPLAY);
     }
-    //display_stack(data, STACK_A);
-
-    //at_beginning(data, STACK_A, smalest_value(data, STACK_A));
-    
+    five_values(data, STACK_A);
+    while (data->b)
+    {
+        at_beginning(data, STACK_A, immediat_superior(data, STACK_A, data->b));
+        push(data, STACK_B, STACK_A, DISPLAY);
+    }
+    at_beginning(data, STACK_A, smalest_value(data, STACK_A));
     return (OK);
 }

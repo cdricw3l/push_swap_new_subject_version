@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 08:51:09 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/01 13:37:19 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 16:28:13 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,7 @@ int check_range_assert(int ranges[1024][2], int values, int size)
 }
 
 
-void display_range(int ranges[1024][2], int size)
-{
-    int i;
 
-    i = 0;
-    while (i < size)
-    {
-        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][0], ranges[i][1]);
-        i++;
-    }
-}
 
 
 void generate_range_assert(void)

@@ -29,7 +29,6 @@ int check_duplicate(t_global_data *data);
 int init_global_data(char **argv, t_global_data *data);
 void display_data(t_global_data data);
 int check_range_assert(int ranges[1024][2], int values, int size);
-void display_range(int ranges[1024][2], int size);
 void generate_range_assert();
 
 #endif

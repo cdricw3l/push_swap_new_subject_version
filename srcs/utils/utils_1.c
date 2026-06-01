@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/29 00:06:40 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 17:26:10 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ int ft_is_sort(t_global_data *data, int stack)
 		if(stack == STACK_A)
 		{
 			if(*(stk.arr) > *(stk.arr + 1))
+			{
+				//printf("Error in %d and %d\n", *(stk.arr) , *(stk.arr + 1));
 				return (0);
+			}
 			stk.arr++;
 		}
 		else if (stack == STACK_B)
