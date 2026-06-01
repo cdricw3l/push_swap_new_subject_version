@@ -6,11 +6,24 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/27 15:07:25 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 17:29:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+void display_range(int ranges[1024][2], int size)
+{
+    int i;
+
+    i = 0;
+    while (i < size)
+    {
+        printf("range %d: [end]: %d [start] %d\n", i, ranges[i][0], ranges[i][1]);
+        i++;
+    }
+}
+
 
 /* float precision ajustement. Work with put_float */
 static int	float_precision_ajustement(int n)
