@@ -6,11 +6,28 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 20:53:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 22:48:55 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+int	get_complexity(char *arg)
+{
+	if (ft_strncmp(arg, "--simple",
+			ft_strlen_longest("--simple", arg)) == OK)
+		return (SIMPLE);
+	else if (ft_strncmp(arg, "--medium",
+			ft_strlen_longest("--medium", arg)) == OK)
+		return (MEDIUM);
+	else if (ft_strncmp(arg, "--complex",
+			ft_strlen_longest("--complex", arg)) == OK)
+		return (COMPLEX);
+	else if (ft_strncmp(arg, "--adaptive",
+			ft_strlen_longest("--adaptive", arg)) == OK)
+		return (ADAPTATIVE);
+	return (NONE);
+}
 
 static int	check_digit(char *str)
 {

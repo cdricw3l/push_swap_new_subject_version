@@ -1,4 +1,5 @@
 NAME=push_swap
+BONUS_NAME=checker
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror -g
 SRCS= 	srcs/main.c \
@@ -18,8 +19,12 @@ SRCS= 	srcs/main.c \
 		srcs/algo/medium.c \
 		srcs/algo/sorting_values.c
 
+SRCS_BONUS= checker/checker.c \
+			checker/initialisation/init.c \
+			checker/initialisation/check.c \
 
 SRCS_OBJS=$(SRCS:.c=.o)
+BONUS_OBJS=$(SRCS_BONUS:.c=.o)
 LIBFT=lib
 VALGRIND_LOG=valgrind.log
 OS=$(shell uname)
@@ -67,12 +72,15 @@ ifeq ($(OS), Linux)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 
+bonus: $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) -Llib -lft -o $(BONUS_NAME)
+
 clean:
 	make clean -C $(LIBFT)
 	rm -rf $(SRCS_OBJS) $(ASSERT_OBJS) $(VALGRIND_LOG)
 
 fclean: clean
-	rm -rf $(NAME) $(NAME_ASSER)
+	rm -rf $(NAME) $(BONUS_NAME)
 
 re: fclean $(NAME)
 
@@ -86,4 +94,4 @@ git: fclean
 libft:
 	make -C $(LIBFT)
 
-.PHONY: all clean fclean re as home libft git  middle simple
+.PHONY: all clean fclean re as home libft git  middle simple bonus
