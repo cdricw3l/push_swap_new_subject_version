@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_and_check_assertions.c                        :+:      :+:    :+:   */
+/*   0_init_and_check_assertions.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 09:09:57 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 20:59:35 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 11:47:53 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,10 +236,8 @@ void init_global_data_assert()
     ASSERT_END(__func__);
 }
 
-int init_and_check_assert(int argc, char **argv)
+int init_and_check_assert(void)
 {
-    (void)argc;
-    (void)argv;
     
     //check_digit_assert();
     get_complexity_assert();

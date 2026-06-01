@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   medium_assertion.c                                 :+:      :+:    :+:   */
+/*   6_best_move_assertion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 17:33:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 18:33:54 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 12:02:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void display_best_move(t_best_move move, int range[2])
     NL;
 }
 
-void best_move_assert(void)
+void bst_move_assert(void)
 {
     ASSERT_START(__func__, __LINE__);
     t_global_data data;
@@ -105,19 +105,6 @@ void best_move_assert(void)
     int nb = generate_range(range, data.size_a);
     i = 0;
     display_range(range, nb);
-
-    // best = best_move(&data, range[1]);
-    // display_stack(&data, STACK_B);
-    // move(&data, STACK_A,best->move,best->number);
-    // push(&data, STACK_A, STACK_B, NO_DISPLAY);
-    // display_stack(&data, STACK_B);
-    // best = best_move(&data, range[1]);
-    // printf(GREEN"svalue %d in range: %d to %d"RESET"\n", best->value ,range[1][1], range[1][0]);
-
-    // assert(place_int_stack(&data, STACK_A, best->value) >= range[1][0] && place_int_stack(&data, STACK_A, best->value) <= range[1][1]);
-
-    // best = best_move(&data, range[1]);
-
     while (i < nb)
     {
         best = best_move(&data, range[i]);
@@ -129,10 +116,7 @@ void best_move_assert(void)
         }
         
         five_values(&data, STACK_B);
-
-
         at_beginning(&data, STACK_A, immediat_superior(&data, STACK_A, data.b));
-        
         while (data.b)
             push(&data, STACK_B, STACK_A, NO_DISPLAY);
         i++;
@@ -158,10 +142,10 @@ void five_value_in_full_stack(void)
 
 }
 
-void middle_algo_assert(void)
+void best_move_assert(void)
 {
     //place_in_stack_assert();
     //five_value_in_full_stack();
-    best_move_assert();
+    bst_move_assert();
     
 }

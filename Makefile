@@ -2,6 +2,7 @@ NAME=push_swap
 NAME_ASSER=assertion/push_swap_assert
 CC=cc 
 CFLAGS= -Wall -Wextra -Werror -g
+#CFLAGS= 
 SRCS= 	srcs/main.c \
 		srcs/initialisation/init.c \
 		srcs/initialisation/check.c \
@@ -17,14 +18,13 @@ SRCS= 	srcs/main.c \
 		srcs/algo/medium.c \
 		srcs/algo/sorting_values.c 
 SRCS_ASSERT= 	assertion/assertion.c \
-				assertion/algo_assertion.c \
-				assertion/3_assert.c \
-				assertion/5_assert.c \
-				assertion/4_assert.c \
-				assertion/init_and_check_assertions.c \
-				assertion/move_assertions.c \
-				assertion/medium_assertion.c \
-				assertion/generate_range_assert.c \
+				assertion/0_init_and_check_assertions.c \
+				assertion/1_move_assertions.c \
+				assertion/2_at_beginning_assert.c \
+				assertion/3_3_value_assert.c  \
+				assertion/4_generate_range_assert.c\
+				assertion/5_5_value_assert.c  \
+				assertion/6_best_move_assertion.c  \
 				srcs/initialisation/init.c \
 				srcs/initialisation/check.c \
 				srcs/move/movement.c \
@@ -72,14 +72,14 @@ ARG_MIDDLE_500="-64 -83 -92 -131 -139 -150 -172 -182 -76 -196 -93 -201 -233 -244
 ARG_MIDDLE_100="-94 -97 -218 -288 -7 -296 -299 -32 -304 -171 -35 -323 -352 -360 -201 -382 -425 -454 -52 -455 -307 -463 -55 -337 -376 171 -380 -420 -16 -437 -481 58 -99 -123 -132 -488 137 -138 -161 -241 -424 303 219 32 226 -249 -442 166 25 -275 296 -166 -279 -283 277 157 -332 419 213 113 -36 82 56 354 -46 500 149 65 497 -51 -63 484 -190 451 278 53 459 9 -66 433 416 269 223 400 383 -20 -100 377 322 141 -34 257 312 167 273 245 242 155 151 62"
 ARG_MIDDLE_6="-344 -381 -389 -360 -395 -401"
 middle: $(NAME)
-	@./push_swap --medium $(ARG_MIDDLE_20)
+	@./push_swap --medium $(ARG_MIDDLE_500)
 
 middle_check: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --medium $(ARG_MIDDLE_100) | ./checker/checker_Mac $(ARG_MIDDLE_100)
+	@./$(NAME) --medium $(ARG_MIDDLE_6) | ./checker/checker_Mac $(ARG_MIDDLE_6)
 endif
 ifeq ($(OS), Linux)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./checker/checker_linux $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_6) | ./checker/checker_linux $(ARG_MIDDLE_6)
 endif
 
 as: $(ASSERT_OBJS)

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 00:03:02 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 12:23:58 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ int *immediat_superior(t_global_data *data, int stack, int *value)
 		return (value);
 	if (stack == STACK_A)
 	{
+		if(!data->a)
+			return (NULL);
 		arr = data->a;
 		while (arr <= data->end)
 		{
@@ -149,6 +151,8 @@ int *immediat_superior(t_global_data *data, int stack, int *value)
 	}
 	else if(stack == STACK_B)
 	{
+		if(!data->b)
+			return (NULL);
 		arr = data->b;
 		while (arr >= data->start)
 		{

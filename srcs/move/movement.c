@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 20:46:09 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 10:34:17 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	rotate(t_global_data *data, int stack, int mode)
 	}
 	else if (stack == STACK_B && data->b && data->size_b > 0)
 	{
+		display_stack(data, STACK_B);
 		tmp = *(data->b);
 		ft_memmove(data->b - (data->size_b - 2), data->b - (data->size_b - 1),
 			(data->size_b - 1) * sizeof(int));

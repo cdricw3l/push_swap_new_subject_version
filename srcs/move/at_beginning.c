@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 15:27:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 00:13:16 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 12:04:50 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	get_born(long born[2], t_global_data *data, int stack, int *value)
 		return (ERR);
 	if (stack == STACK_A)
 	{
+		if(data->size_a == 0 || value > data->a + (data->size_a - 1) || value < data->a)
+			return(NO_MOVE);
 		born[LE] = (((long)value - (long)data->a) / 4);
 		born[RI] = ft_abs((long)value - ((long)(data->a + (data->size_a - 1))))
 			/ sizeof(int) + 1;
@@ -40,6 +42,8 @@ int	get_born(long born[2], t_global_data *data, int stack, int *value)
 	}
 	else if (stack == STACK_B)
 	{
+		if(data->size_b == 0 || value < data->b - (data->size_b - 1) || value > data->b)
+			return(NO_MOVE);
 		born[LE] = ft_abs(((long)value - (long) data->b) / 4);
 		born[RI] = (((long)value - ((long)(data->b - (data->size_b - 1))))
 				/ sizeof(int)) + 1;
@@ -62,11 +66,7 @@ int	at_beginning(t_global_data *data, int stack, int *value)
 	if (born[LE] > born[RI] || born[LE] == born[RI])
 		move(data, stack, rev_rotate, born[RI]);
 	else if (born[RI] > born[LE])
-	{
-		display_stack(data, STACK_A);
-		printf("voici les borne left: %ld et right: %ld\n", born[RI], born[LE]);
 		move(data, stack, rotate, born[LE]);
-	}
 	return (OK);
 }
 
@@ -77,10 +77,12 @@ int	move(t_global_data *data, int stack,
 	int	i;
 
 	i = 0;
+	printf("voici le nombre de mouve %d\n", counter);
 	if ((stack != STACK_A && stack != STACK_B) || !data || !f)
 		return (ERR);
 	while (i < counter)
 	{
+		display_stack(data, stack);
 		f(data, stack, DISPLAY);
 		i++;
 	}
