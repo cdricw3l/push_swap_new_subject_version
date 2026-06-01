@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 21:07:17 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 22:15:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static int	process_best_move(t_global_data *data)
 
 int	medium_rank(t_global_data *data)
 {
+	
 	if (process_best_move(data) == ERR)
 		return (ERR);
 	while (data->size_a < 3)
@@ -108,7 +109,6 @@ int	medium_rank(t_global_data *data)
 			at_beginning(data, STACK_B, bigest_value(data, STACK_B));
 		push(data, STACK_B, STACK_A, DISPLAY);
 	}
-	three_values(data, STACK_A);
 	while (data->b)
 	{
 		if (immediat_superior(data, STACK_A, data->b))

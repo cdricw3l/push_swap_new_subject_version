@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/01 21:26:38 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/01 22:08:22 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,29 @@ int	processing_error_message(int code)
 	}
 	return (0);
 }
-
+#include <assert.h>
 int	main(int argc, char **argv)
 {
 	t_global_data	data;
-
+	int				r;
+	
+	(void)argc;
+	r = OK;
 	if (init_global_data(&argv[1], &data) == ERR)
 		return (1);
 	if (ft_is_sort(&data, STACK_A))
 		return (OK);
-	if (data.size_a == 2)
-		argc = two_values(&data, STACK_A);
-	if (data.size_a == 3)
-		argc = three_values(&data, STACK_A);
+	if (data.size_a == 2 && data.algo == NONE)
+		r = two_values(&data, STACK_A);
+	else if (data.size_a == 3 && data.algo == NONE)
+		r = three_values(&data, STACK_A);
 	else if (data.size_a == 5 && data.algo == NONE)
-		argc = five_values(&data, STACK_A);
+		r = five_values(&data, STACK_A);
 	else if (data.algo == SIMPLE)
-		argc = selection_sort(&data);
+		r = selection_sort(&data);
 	else if (data.algo == MEDIUM)
-		argc = medium_rank(&data);
-	if (argc == ERR)
-		return (processing_error_message(argc));
+		r = medium_rank(&data);
+	if (r == ERR)
+		return (processing_error_message(r));
 	return (OK);
 }
