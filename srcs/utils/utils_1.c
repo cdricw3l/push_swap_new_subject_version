@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 17:11:18 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/05/31 19:20:19 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,41 +175,5 @@ void free_list(t_list **list)
     }
     *list = NULL;
 }
-
-// void ft_lstremove_if(t_list **lst, int stack)
-// {
-//     t_list      *cur;
-//     t_list      *prev;
-//     t_list      *tmp;
-
-//     cur = *lst;
-//     prev = NULL;
-
-//     while (cur)
-//     {
-//         if (((t_best_cost *)cur->content)->stack == stack)
-//         {
-//             tmp = cur;
-//             cur = cur->next;
-//             if (prev)
-//                 prev->next = cur;
-//             else
-//                 *lst = cur;
-//             ft_lstdelone(tmp, free);
-//         }
-//         else
-//         {
-//             prev = cur;
-//             cur = cur->next;
-//         }
-//     }
-// }
-
-/*
-
-    rotate -> the last become the first
-    rev_rotate <- the first become the last
-*/
-
 
 

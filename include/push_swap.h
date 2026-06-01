@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 18:03:05 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/01 17:53:07 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,16 @@ typedef struct s_best_cost
     int (*move)(t_global_data *, int, int);
     int target_value;
     int best_move;
-    int processed;
     int *address_ptr_value;
     int *address_ptr_target_value;
 } t_best_cost;
 
+typedef struct s_target_result
+{
+    bool found;
+    int  best_cost;
+    int  *ptr_to_value_a;
+} t_target_result;
 
 /*
 
@@ -130,8 +135,9 @@ void five_values(t_global_data *data, int stack);
 int selection_sort(t_global_data *data);
 void    middle_rank(t_global_data *data);
 int     turkish(t_global_data *data);
-int     search_best_value(t_list *lst);
 t_best_cost *find_best_value(t_list *list);
+t_target_result find_closet_value(t_best_cost *cur, t_list *current);
+int    associate_one_target(t_best_cost *cur, t_target_result  target, t_global_data *data);
 
 /* utils */
 
