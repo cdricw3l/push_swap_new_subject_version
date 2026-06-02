@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 22:55:27 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:27:44 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	check_args(char **argv, t_global_data *data)
 			return (ERR);
 		idx[2] = 0;
 		if (idx[1] == 0)
-			data->algo = get_complexity(split[0]);
-		if (idx[1] == 0 && data->algo != NONE)
+			data->strategy = get_complexity(split[0]);
+		if (idx[1] == 0 && data->strategy != NONE)
 			idx[2]++;
 		while (split[idx[2]])
 		{
@@ -84,7 +84,7 @@ int	create_stack(char **argv, t_global_data *data)
 		if (!split)
 			return (ERR);
 		i = 0;
-		if (k == 0 && data->algo != NONE)
+		if (k == 0 && data->strategy != NONE)
 			i++;
 		while (split[i])
 			data->stack[j++] = ft_atoi_long(split[i++]);

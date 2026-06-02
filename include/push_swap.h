@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 14:09:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:01:27 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,22 @@ enum			e_move
 	RRR
 };
 
+enum			e_bench
+{
+	SA,
+	SB,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB	,
+	RV,
+	RR,
+	RRR
+};
+
 typedef struct s_global_data
 {
 	int		*a;
@@ -60,11 +76,12 @@ typedef struct s_global_data
 	int		*start;
 	int		*end;
 	int		stack[1024];
-	int		algo;
+	int		strategy;
+	float	disorder;
 	int		size_a;
 	int		size_b;
-	float	disorder;
-
+	int		total_ops;
+	int		move_count[11];
 }	t_global_data;
 
 typedef struct s_stack_data
@@ -154,4 +171,7 @@ int				get_target_number(t_global_data *data, int stack, t_list **lst);
 void			free_list(t_list **list);
 int				get_total_cost(t_best_cost *target, t_list *list);
 
+
+/* bench */
+int				benchmark(t_global_data *data);
 #endif
