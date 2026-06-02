@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 15:01:27 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:20:43 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,16 @@ enum			e_move
 
 enum			e_bench
 {
-	SA,
-	SB,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB	,
-	RV,
-	RR,
-	RRR
+	B_SA,
+	B_SB,
+	B_PA,
+	B_PB,
+	B_RA,
+	B_RB,
+	B_RR,
+	B_RRA,
+	B_RRB	,
+	B_RRR
 };
 
 typedef struct s_global_data
