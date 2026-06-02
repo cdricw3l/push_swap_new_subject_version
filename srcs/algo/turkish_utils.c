@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turkish_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 12:21:03 by mabrugge          #+#    #+#             */
-/*   Updated: 2026/06/02 12:23:54 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:01:37 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ int	get_total_cost(t_best_cost *target, t_list *list)
 	}
 	return (0);
 }
-

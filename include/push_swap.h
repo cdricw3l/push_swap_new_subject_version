@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 12:37:42 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:09:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include "../lib/libft.h"
 # include <stdbool.h>
+# include <stdio.h>
 
 # define LIMIT 1024
 # define OK 0
@@ -31,7 +32,7 @@
 # define NO_DISPLAY 1
 # define LE 0
 # define RI 1
-# define RANGE_SIZE 10
+# define RANGE_SIZE 1
 
 enum			e_algo
 {
@@ -136,7 +137,9 @@ int				get_stack_data(t_global_data *data, int stack,
 					t_stack_data *stk);
 int				at_beginning(t_global_data *data, int stack, int *value);
 int				*immediat_superior(t_global_data *data, int stack, int *value);
-int				generate_range(int ranges[LIMIT][2], int total_size);
+int				get_range_size(int size_list);
+int				generate_range(int ranges[LIMIT][2],
+					int total_size, int nb_range);
 int				check_push_input(t_global_data *data, int src, int dst);
 int				get_born(long born[2], t_global_data *data,
 					int stack, int *value);

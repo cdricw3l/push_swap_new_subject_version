@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 01:20:11 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:06:20 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	process_best_move(t_global_data *data)
 	int			ranges[LIMIT][2];
 	t_best_move	*best;
 
-	nb_range = generate_range(ranges, data->size_a);
+	nb_range = generate_range(ranges, data->size_a, get_range_size(data->a));
 	if (nb_range == ERR)
 		return (ERR);
 	i = 0;
@@ -100,6 +100,8 @@ static int	process_best_move(t_global_data *data)
 
 int	medium_rank(t_global_data *data)
 {
+	if (data->size_a == 2)
+		return (two_values(data, STACK_A));
 	if (process_best_move(data) == ERR)
 		return (ERR);
 	while (data->size_a < 3)

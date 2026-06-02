@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 13:21:35 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 13:32:46 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,39 +37,16 @@ int	push(t_global_data *data, int src, int dst)
 	return (OK);
 }
 
-int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
+int	swap(t_global_data *data, int stack)
 {
 	if (!data || (stack != STACK_A && stack != STACK_B))
 		return (ERR);
-	if (stack == STACK_A)
-	{
-		stk->arr = data->a;
-		stk->len = data->size_a;
-	}
+	if (stack == STACK_A && data->size_a > 1)
+		ft_swap(data->a, data->a + 1);
 	else if (stack == STACK_B)
-	{
-		stk->arr = data->b;
-		stk->len = data->size_b;
-	}
+		ft_swap(data->b, data->b - 1);
 	return (OK);
 }
-
-int	swap(t_global_data *data, int stack)
-{
-	t_stack_data	stk;
-
-	if (!data || get_stack_data(data, stack, &stk) == ERR)
-		return (ERR);
-	if (!stk.arr && stk.len < 2)
-		return (NO_MOVE);
-	if (stack == STACK_A)
-		ft_swap(stk.arr, stk.arr + 1);
-	else if (stack == STACK_B)
-		ft_swap(stk.arr, stk.arr - 1);
-	return (OK);
-}
-
-
 
 int	rotate(t_global_data *data, int stack)
 {

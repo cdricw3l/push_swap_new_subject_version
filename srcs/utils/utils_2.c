@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 01:20:36 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:06:31 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,38 @@ t_best_move	*build_best_move(int value, int counter,
 	return (best_move);
 }
 
-int	generate_range(int ranges[LIMIT][2], int total_size)
+int	get_range_size(int size_list)
+{
+	if (size_list >= 1 && size_list <= 10)
+		return (1);
+	else if (size_list > 10)
+		return (10);
+	return (0); 
+}
+
+int	generate_range(int ranges[LIMIT][2], int total_size, int range_size)
 {
 	int	base;
 	int	range_start;
 	int	range_end;
 	int	i;
 
-	if (total_size > LIMIT || total_size <= 2)
+	if (total_size > LIMIT || total_size < 1)
 		return (ERR);
 	range_start = 1;
-	range_end = total_size / RANGE_SIZE;
-	base = total_size / (total_size / RANGE_SIZE);
+	range_end = total_size / range_size;
+	base = total_size / (total_size / range_size);
 	i = 0;
-	if (total_size % RANGE_SIZE)
+	if (total_size % range_size)
 		base += 1;
 	while (i < base)
 	{
 		ranges[i][0] = range_start;
 		ranges[i][1] = range_end;
-		range_start += (total_size / RANGE_SIZE);
-		range_end += (total_size / RANGE_SIZE);
-		if (i == base - 1 && total_size % RANGE_SIZE > 0)
-			ranges[i][1] = ranges[i][0] + (total_size % RANGE_SIZE) - 1;
+		range_start += (total_size / range_size);
+		range_end += (total_size / range_size);
+		if (i == base - 1 && total_size % range_size > 0)
+			ranges[i][1] = ranges[i][0] + (total_size % range_size) - 1;
 		i += 1;
 	}
 	return (i);
