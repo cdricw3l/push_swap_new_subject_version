@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 13:58:43 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:36:10 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	get_complexity(char *arg)
 {
-	if (ft_strncmp(arg, "--simple", ft_strlen_longest("--simple", arg)) == OK)
+	if (ft_strncmp(arg, "--bench", ft_strlen_longest("--simple", arg)) == OK)
+		return (BENCH);
+	else if (ft_strncmp(arg, "--simple", ft_strlen_longest("--simple", arg)) == OK)
 		return (SIMPLE);
 	else if (ft_strncmp(arg, "--medium", ft_strlen_longest("--medium",
 				arg)) == OK)

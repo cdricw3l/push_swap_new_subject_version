@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 15:03:15 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:00:25 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,16 @@ int	check_args(char **argv, t_global_data *data)
 		if (!split)
 			return (ERR);
 		idx[2] = 0;
-		if (idx[1] == 0)
+		if (idx[1] == 0 && get_complexity(split[0]) == BENCH)
+		{
+			data->bench_mode = get_complexity(split[0]);
+				idx[2]++;
+		}
+		if (((idx[1] == 0 && data->bench_mode != BENCH) || idx[1] == 1) && get_complexity(split[0]) != NONE)
+		{
 			data->strategy = get_complexity(split[0]);
-		if (idx[1] == 0 && data->strategy != NONE)
 			idx[2]++;
+		}
 		while (split[idx[2]])
 		{
 			if (check_arg(split[idx[2]++]) == ERR)
@@ -84,7 +90,9 @@ int	create_stack(char **argv, t_global_data *data)
 		if (!split)
 			return (ERR);
 		i = 0;
-		if (k == 0 && data->strategy != NONE)
+		if ((k == 0) && data->bench_mode != BENCH)
+			i++;
+		if ((k == 0 || k == 1) && data->strategy != NONE)
 			i++;
 		while (split[i])
 			data->stack[j++] = ft_atoi_long(split[i++]);

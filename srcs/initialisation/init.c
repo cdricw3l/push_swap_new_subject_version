@@ -6,11 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 20:06:23 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 21:46:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:02:08 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+
 
 int	init_global_data(char **argv, t_global_data *data)
 {

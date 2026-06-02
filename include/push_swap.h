@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 15:20:43 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:52:58 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/libft.h"
 # include <stdbool.h>
 # include <stdio.h>
+#include <assert.h>
 
 # define LIMIT 1024
 # define OK 0
@@ -40,7 +41,8 @@ enum			e_algo
 	SIMPLE,
 	MEDIUM,
 	COMPLEX,
-	ADAPTATIVE
+	ADAPTATIVE,
+	BENCH
 };
 
 enum			e_move
@@ -75,6 +77,7 @@ typedef struct s_global_data
 	int		*end;
 	int		stack[1024];
 	int		strategy;
+	int		bench_mode;
 	float	disorder;
 	int		size_a;
 	int		size_b;

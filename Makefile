@@ -14,6 +14,7 @@ SRCS= 	srcs/main.c \
 		srcs/utils/utils_2.c \
 		srcs/utils/utils_3.c \
 		srcs/utils/display.c \
+		srcs/utils/bench.c \
 		srcs/algo/two.c \
 		srcs/algo/three.c \
 		srcs/algo/five.c \
