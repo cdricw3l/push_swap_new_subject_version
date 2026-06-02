@@ -104,6 +104,7 @@ make re
 
 ```text
 .
+├── checker_bonus/
 ├── include/
 ├── srcs/
 │   ├── algo/
@@ -146,15 +147,15 @@ The algorithm repeatedly finds the smallest unsorted value and moves it to its c
 
 ---
 
-### 🔹 Bucket Sort (Medium Cases)
+### 🔹 Range-based sorting (Medium Cases)
 
 **Why we chose it**
 
-As the number of values grows, simple sorting methods become inefficient. Bucket Sort allows values to be processed in groups, reducing the number of decisions and operations required.
+As the number of values grows, simple sorting methods become inefficient. Range-based sorting allows values to be processed in groups, reducing the number of decisions and operations required.
 
 **How it works**
 
-Values are divided into ranked ranges called *buckets*. Elements are pushed and processed bucket by bucket, making it easier to organize the stacks and progressively build a sorted sequence.
+Values are divided into ranked ranges. Elements are pushed and processed bucket by Range-based, making it easier to organize the stacks and progressively build a sorted sequence.
 
 ---
 
@@ -167,6 +168,25 @@ For large datasets, minimizing the total number of operations becomes the primar
 **How it works**
 
 Each element in Stack B is associated with a target position in Stack A. The algorithm calculates the movement cost required to place every element correctly, selects the cheapest operation, and repeats the process until all values have been reinserted into Stack A in sorted order.
+
+## 💵 Bonus
+
+The checker for the bonus part of the project receives, through a pipe, the instructions printed by the main program.
+
+It dispatches these instructions and applies the corresponding operations to the list initialized with the arguments passed to the checker. When the checker receives an EOF (End Of File), meaning that the main program has stopped outputting instructions, a function verifies whether the list is sorted in ascending order.
+
+Bonus Implementation
+
+The checker calls the get_next_line function on STDIN_FILENO, allowing it to read each operation printed by the main program.
+
+Each line is compared against the list of valid instructions:
+
+If the line matches a valid instruction, the corresponding operation is applied to the list using the movement functions.
+If the line does not match any valid instruction, the program prints Error and terminates immediately.
+
+Upon receiving an EOF (line == NULL), the checker function ft_is_sort traverses the list and verifies that it is sorted in ascending order.
+
+If the list is sorted, the program displays OK; otherwise, it displays KO.
 
 ## 📚 Resources
 
