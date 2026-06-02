@@ -175,7 +175,7 @@ The checker for the bonus part of the project receives, through a pipe, the inst
 
 It dispatches these instructions and applies the corresponding operations to the list initialized with the arguments passed to the checker. When the checker receives an EOF (End Of File), meaning that the main program has stopped outputting instructions, a function verifies whether the list is sorted in ascending order.
 
-Bonus Implementation
+### Bonus Implementation
 
 The checker calls the get_next_line function on STDIN_FILENO, allowing it to read each operation printed by the main program.
 
