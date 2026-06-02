@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 22:50:05 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 12:19:43 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	get_complexity(char *arg)
 {
-	if (ft_strncmp(arg, "--simple",
-			ft_strlen_longest("--simple", arg)) == OK)
+	if (ft_strncmp(arg, "--simple", ft_strlen_longest("--simple", arg)) == OK)
 		return (SIMPLE);
-	else if (ft_strncmp(arg, "--medium",
-			ft_strlen_longest("--medium", arg)) == OK)
+	else if (ft_strncmp(arg, "--medium", ft_strlen_longest("--medium",
+				arg)) == OK)
 		return (MEDIUM);
-	else if (ft_strncmp(arg, "--complex",
-			ft_strlen_longest("--complex", arg)) == OK)
+	else if (ft_strncmp(arg, "--complex", ft_strlen_longest("--complex",
+				arg)) == OK)
 		return (COMPLEX);
-	else if (ft_strncmp(arg, "--adaptive",
-			ft_strlen_longest("--adaptive", arg)) == OK)
+	else if (ft_strncmp(arg, "--adaptive", ft_strlen_longest("--adaptive",
+				arg)) == OK)
 		return (ADAPTATIVE);
 	return (NONE);
 }
@@ -95,18 +94,5 @@ int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
 		stk->arr = data->b;
 		stk->len = data->size_b;
 	}
-	return (OK);
-}
-
-int	check_push_input(t_global_data *data, int src, int dst)
-{
-	if (!data)
-		return (ERR);
-	else if ((src != STACK_A && src != STACK_B)
-		|| (dst != STACK_A && dst != STACK_B))
-		return (ERR);
-	else if ((src == STACK_A && data->size_a <= 0)
-		|| (src == STACK_B && data->size_b <= 0))
-		return (NO_MOVE);
 	return (OK);
 }

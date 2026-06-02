@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "build push_swap",
+            "command": "bash",
+            "args": [
+                "-c",
+                "make > /dev/null"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "echo": false,
+                "focus": false,
+                "panel": "dedicated",
+                "clear": true,
+                "showReuseMessage": false
+            }
+        }
+    ]
+}
