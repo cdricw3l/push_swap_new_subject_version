@@ -34,8 +34,9 @@ SRCS_BONUS= checker/checker_bonus.c \
 SRCS_OBJS=$(SRCS:.c=.o)
 BONUS_OBJS=$(SRCS_BONUS:.c=.o)
 LIBFT_PATH=lib
-CHECKER_PATH=checker/checker
-CHECKER_42=42_checker/checker_linux
+CHECKER_PATH_LINUX=checker/checker
+CHECKER_42_LINUX=42_checker/checker_linux
+CHECKER_42_MAC=42_checker/checker_Mac
 VALGRIND_LOG=valgrind.log
 OS=$(shell uname)
 
@@ -75,29 +76,29 @@ middle_two: $(NAME)
 
 middle_o: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_MAC) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_MAC) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 ifeq ($(OS), Linux)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_LINUX) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_LINUX) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 
 middle_oc: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_PATH) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_MAC) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_PATH) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_MAC) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 ifeq ($(OS), Linux)
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_PATH) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_LINUX) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_500) | wc -l
-	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_PATH) $(ARG_MIDDLE_500)
+	@./$(NAME) --medium $(ARG_MIDDLE_500) | ./$(CHECKER_42_LINUX) $(ARG_MIDDLE_500)
 	@./$(NAME) --medium $(ARG_MIDDLE_100) | wc -l
 endif
 
