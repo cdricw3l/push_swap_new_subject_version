@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/02 11:42:52 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 11:44:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 {
 	t_global_data	data;
 	int				status;
+	
 	(void)argc;
 	if (init_global_data(&argv[1], &data) == ERR)
 		return (1);
