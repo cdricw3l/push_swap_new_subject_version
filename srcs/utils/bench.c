@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 14:29:56 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 15:28:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:30:03 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,22 @@ void	write_strategy(t_global_data *data)
 void	write_disorder(t_global_data *data)
 {
 	ft_putstr_fd("disorder: ", STDERR_FILENO);
-	put_float(data->disorder);
+	put_float(data->disorder, STDERR_FILENO);
+	ft_putchar_fd('%', STDERR_FILENO);
 	ft_putendl_fd("", STDERR_FILENO);
 }
 
 void	write_total_ops(t_global_data *data)
 {
+	int total_ops;
+	int i;
+
+	i = 0;
+	total_ops = 0;
+	while (i < 10)
+		total_ops += data->move_count[i++];
 	ft_putstr_fd("total_ops: ", STDERR_FILENO);
-	ft_putnbr_fd(data->total_ops, STDERR_FILENO);
+	ft_putnbr_fd(total_ops, STDERR_FILENO);
 	ft_putendl_fd("", STDERR_FILENO);
 }
 
@@ -58,6 +66,7 @@ void	write_move_ops(t_global_data *data)
 	ft_putstr_fd(" pb: ", STDERR_FILENO);
 	ft_putnbr_fd(data->move_count[B_PB], STDERR_FILENO);
 	ft_putendl_fd("", STDERR_FILENO);
+	ft_putstr_fd("[bench] ", STDERR_FILENO);
 	ft_putstr_fd("ra: ", STDERR_FILENO);
 	ft_putnbr_fd(data->move_count[B_RA], STDERR_FILENO);
 	ft_putstr_fd(" rb: ", STDERR_FILENO);

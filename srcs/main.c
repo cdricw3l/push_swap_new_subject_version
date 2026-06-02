@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/02 16:04:34 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:22:33 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	processing(t_global_data *data)
 
 	status = OK;
 	// print_stack(data);
-	// assert(1 == 2);
-	if (data->strategy == 2 && data->strategy == NONE)
+	// assert(data->size_a == 2);
+	if (data->size_a == 2 && data->strategy == NONE)
 		status = two_values(data, STACK_A);
 	else if (data->size_a == 3 && data->strategy == NONE)
 		status = three_values(data, STACK_A);

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 15:52:58 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:30:11 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ typedef struct s_global_data
 	float	disorder;
 	int		size_a;
 	int		size_b;
-	int		total_ops;
-	int		move_count[11];
+	int		move_count[10];
 }	t_global_data;
 
 typedef struct s_stack_data
@@ -146,7 +145,7 @@ int				turkish(t_global_data *data);
 /* utils */
 void			print_move(int move, int stack);
 float			compute_disorder(t_global_data *data);
-void			put_float(float nb);
+void			put_float(float nb, int fd);
 int				get_complexity(char *arg);
 int				ft_is_sort(t_global_data *data, int stack);
 int				*smalest_value(t_global_data *data, int stack);

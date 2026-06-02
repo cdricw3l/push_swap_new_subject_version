@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 18:48:51 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:25:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	float_precision_ajustement(int n)
 	return (n);
 }
 
-void	put_float(float nb)
+void	put_float(float nb, int fd)
 {
 	int		ipart;
 	int		f_adjusted;
@@ -29,9 +29,9 @@ void	put_float(float nb)
 	ipart = (int)nb;
 	fpart = nb - (float)ipart;
 	f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
-	ft_putnbr_fd(ipart, STDOUT_FILENO);
-	write(STDOUT_FILENO, ".", 1);
-	ft_putnbr_fd(f_adjusted, STDOUT_FILENO);
+	ft_putnbr_fd(ipart, fd);
+	write(fd, ".", 1);
+	ft_putnbr_fd(f_adjusted, fd);
 }
 
 /* display the move in STDOUT */
