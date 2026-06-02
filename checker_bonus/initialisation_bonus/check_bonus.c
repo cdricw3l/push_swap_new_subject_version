@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 01:16:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 00:22:17 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_args(char **argv)
 	size_t	idx[3];
 	char	**split;
 
-	ft_bzero(&idx, sizeof(size_t) * 3); 
+	ft_bzero(&idx, sizeof(size_t) * 3);
 	while (argv[idx[1]])
 	{
 		split = ft_split(argv[idx[1]], SPACE);

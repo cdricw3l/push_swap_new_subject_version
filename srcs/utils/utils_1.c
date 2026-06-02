@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 18:52:49 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 00:19:01 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_complexity(char *arg)
 	else if (ft_strncmp(arg, "--adaptive", ft_strlen_longest("--adaptive",
 				arg)) == OK)
 		return (ADAPTATIVE);
-	else if (ft_strncmp(arg, "--bench", ft_strlen_longest("--simple", 
+	else if (ft_strncmp(arg, "--bench", ft_strlen_longest("--simple",
 				arg)) == OK)
 		return (BENCH);
 	return (NONE);

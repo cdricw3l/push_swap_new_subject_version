@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 19:13:41 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 00:18:48 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	flags_check_managment(t_global_data *data, size_t idx[3],
 		data->bench_mode = get_complexity(value);
 		idx[2]++;
 	}
-	if (mode == ARG_CHECK && ((idx[1] == 0 && data->bench_mode != BENCH) 
+	if (mode == ARG_CHECK && ((idx[1] == 0 && data->bench_mode != BENCH)
 			|| idx[1] == 1) && get_complexity(value) != NONE)
 	{
 		data->strategy = get_complexity(value);
@@ -49,7 +49,7 @@ int	get_range_size(int size_list)
 		return (1);
 	else if (size_list > 10)
 		return (10);
-	return (0); 
+	return (0);
 }
 
 int	generate_range(int ranges[LIMIT][2], int total_size, int range_size)

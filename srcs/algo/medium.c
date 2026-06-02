@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 16:55:20 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 00:19:42 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ t_best_move	*best_move(t_global_data *data, int range[2])
 	get_fist_ptr_in_range(data, range, &p_start, &p_end);
 	if (p_start > p_end)
 		return (NULL);
-	if (p_start - data->a < (data->a + (data->size_a - 1) - p_end) + 1 
+	if (p_start - data->a < (data->a + (data->size_a - 1) - p_end) + 1
 		|| p_end == p_start)
 		best = build_best_move(*p_start, p_start - data->a, rotate);
 	else
-		best = build_best_move(*p_end, ((data->a + (data->size_a - 1)) - p_end) 
+		best = build_best_move(*p_end, ((data->a + (data->size_a - 1)) - p_end)
 				+ 1, rev_rotate);
 	return (best);
 }
@@ -114,7 +114,7 @@ int	medium_rank(t_global_data *data)
 	while (data->b)
 	{
 		if (immediat_superior(data, STACK_A, data->b))
-			at_beginning(data, STACK_A, 
+			at_beginning(data, STACK_A,
 				immediat_superior(data, STACK_A, data->b));
 		push(data, STACK_B, STACK_A, DISPLAY);
 	}
