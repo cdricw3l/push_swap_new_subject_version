@@ -212,7 +212,7 @@ All design decisions, implementation, debugging, testing, and final validation w
 
 ## 🎯 Learning Objectives
 
-Through this project, I practiced:
+Through this project, we practiced:
 
 * Algorithm design
 * Optimization under constraints
