@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/02 01:21:00 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 02:20:02 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ int	main(int argc, char **argv)
 		return (1);
 	if (ft_is_sort(&data, STACK_A))
 		return (OK);
-	if (data.size_a == 2 && data.algo == NONE)
+	if (data.size_a == 2 && data.strategy == NONE)
 		r = two_values(&data, STACK_A);
-	else if (data.size_a == 3 && data.algo == NONE)
+	else if (data.size_a == 3 && data.strategy == NONE)
 		r = three_values(&data, STACK_A);
-	else if (data.size_a == 5 && data.algo == NONE)
+	else if (data.size_a == 5 && data.strategy == NONE)
 		r = five_values(&data, STACK_A);
-	else if (data.algo == SIMPLE)
+	else if (data.strategy == SIMPLE)
 		r = selection_sort(&data);
-	else if (data.algo == MEDIUM)
+	else if (data.strategy == MEDIUM)
 		r = medium_rank(&data);
 	if (r == ERR)
 		return (processing_error_message(r));

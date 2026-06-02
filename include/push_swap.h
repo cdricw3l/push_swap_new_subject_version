@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 22:36:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 02:19:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ enum e_move
 	RRR
 };
 
+typedef struct s_bench
+{
+	int		total_ops;
+	int		move_count[11];
+
+} t_bench;
+
 typedef struct s_global_data
 {
 	int		*a;
@@ -65,11 +72,11 @@ typedef struct s_global_data
 	int		*start;
 	int		*end;
 	int		stack[1024];
-	int		algo;
+	int		strategy;
+	float	disorder;
 	int		size_a;
 	int		size_b;
-	float	disorder;
-
+	t_bench	bench;
 }	t_global_data;
 
 typedef struct s_stack_data
