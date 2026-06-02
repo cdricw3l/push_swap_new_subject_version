@@ -6,13 +6,20 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 17:01:19 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 19:15:56 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-
+static int	init_stack(t_global_data *data)
+{
+	data->a = data->stack;
+	data->start = data->stack;
+	data->end = &data->stack[data->size_a - 1];
+	data->b = NULL;
+	return (OK);
+}
 /* idx[0]= couter_input idx[1] = idx i idx[2] = idx j*/
 
 int	check_args(char **argv, t_global_data *data)
@@ -27,16 +34,7 @@ int	check_args(char **argv, t_global_data *data)
 		if (!split)
 			return (ERR);
 		idx[2] = 0;
-		if (idx[1] == 0 && get_complexity(split[0]) == BENCH)
-		{
-			data->bench_mode = get_complexity(split[0]);
-			idx[2]++;
-		}
-		if (((idx[1] == 0 && data->bench_mode != BENCH) || idx[1] == 1) && get_complexity(split[0]) != NONE)
-		{
-			data->strategy = get_complexity(split[0]);
-			idx[2]++;
-		}
+		flags_check_managment(data, idx, split[0], ARG_CHECK);
 		while (split[idx[2]])
 		{
 			if (check_arg(split[idx[2]++]) == ERR)
@@ -66,18 +64,16 @@ int	create_stack(char **argv, t_global_data *data)
 		i = 0;
 		if ((k == 0) && data->bench_mode == BENCH)
 			i++;
-		if (((k == 0 && data->bench_mode != BENCH) || (k == 1 && data->bench_mode == BENCH)) && data->strategy != NONE)
+		if (((k == 0 && data->bench_mode != BENCH)
+				|| (k == 1 && data->bench_mode == BENCH))
+			&& data->strategy != NONE)
 			i++;
 		while (split[i])
 			data->stack[j++] = ft_atoi_long(split[i++]);
 		ft_split_clean(&split, OK);
 		k++;
 	}
-	data->a = data->stack;
-	data->start = data->stack;
-	data->end = &data->stack[data->size_a - 1];
-	data->b = NULL;
-	return (OK);
+	return (init_stack(data));
 }
 
 int	check_duplicate(t_global_data *data)

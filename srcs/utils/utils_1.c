@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 18:36:00 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:52:49 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	ft_is_sort(t_global_data *data, int stack)
 	}
 	return (1);
 }
-
 
 int	check_digit(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 17:40:07 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:59:45 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	float_precision_ajustement(int n)
 {
-	printf("voici n %d\n", n);
 	if (n % 10 > 5)
 		while (n % 10 != 0)
 			n++;
@@ -28,15 +27,13 @@ void	put_float(float nb, int fd)
 	float	fpart;
 
 	ipart = (int)nb * 100;
-	if(ipart == 100)
+	if (ipart == 100)
 	{
 		ft_putnbr_fd(ipart, fd);
 		return ;
 	}
 	fpart = (nb - (float)ipart) * 10;
-	printf("voici f %f\n", fpart);
-	printf("voici f %f\n", nb);
-	if(ipart == 0 && fpart == 0)
+	if (ipart == 0 && fpart == 0)
 	{
 		ft_putnbr_fd(0, fd);
 		return ;

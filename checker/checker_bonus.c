@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:53:48 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 13:27:39 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:54:26 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 int	ft_is_sort(t_global_data *data)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (i < data->size_a - 1)
+	while (i < data->size_a)
 	{
-		if (data->a[i] > data->a[i + 1])
-			return (ERR);
+		j = i + 1;
+		while (j < data->size_a)
+		{
+			if (data->stack[i] > data->stack[j])
+				return (ERR);
+			j++;
+		}
 		i++;
 	}
 	return (OK);

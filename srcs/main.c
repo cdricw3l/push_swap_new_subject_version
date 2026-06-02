@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/02 17:37:35 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 19:05:12 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	processing(t_global_data *data)
 		status = three_values(data, STACK_A);
 	else if (data->size_a == 5 && data->strategy == NONE)
 		status = five_values(data, STACK_A);
-	else if (data->strategy == SIMPLE || data->size_a == 4)
+	else if (data->strategy == SIMPLE)
 		status = selection_sort(data);
 	else if (data->strategy == MEDIUM)
 		status = medium_rank(data);
 	else if (data->strategy == COMPLEX)
 		status = turkish(data);
-	else if (data->strategy == ADAPTATIVE)
+	else if (data->strategy == ADAPTATIVE || data->strategy == NONE)
 		status = adaptative_stategie(data);
 	return (processing_message(status));
 }
@@ -66,8 +66,11 @@ int	main(int argc, char **argv)
 	(void)argc;
 	if (init_global_data(&argv[1], &data) == ERR)
 		return (1);
-	if(ft_is_sort(&data, STACK_A))
+	if (ft_is_sort(&data, STACK_A))
+	{
+		printf("here\n");
 		return (0);
+	}
 	status = processing(&data);
 	if (data.bench_mode == BENCH)
 		benchmark(&data);

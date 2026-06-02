@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 17:01:42 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 19:11:59 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define LE 0
 # define RI 1
 # define RANGE_SIZE 1
+# define ARG_CHECK 0
+# define ARG_INIT 0
 
 enum			e_algo
 {
@@ -144,6 +146,8 @@ int				turkish(t_global_data *data);
 /* utils */
 int				check_digit(char *str);
 int				check_arg(char *arg);
+void			flags_check_managment(t_global_data *data, size_t idx[3],
+					char *value, int mode);
 void			print_move(int move, int stack);
 float			compute_disorder(t_global_data *data);
 void			put_float(float nb, int fd);

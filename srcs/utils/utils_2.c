@@ -6,11 +6,27 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 17:01:05 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 19:13:41 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
+
+void	flags_check_managment(t_global_data *data, size_t idx[3],
+	char *value, int mode)
+{
+	if (mode == ARG_CHECK && idx[1] == 0 && get_complexity(value) == BENCH)
+	{
+		data->bench_mode = get_complexity(value);
+		idx[2]++;
+	}
+	if (mode == ARG_CHECK && ((idx[1] == 0 && data->bench_mode != BENCH) 
+			|| idx[1] == 1) && get_complexity(value) != NONE)
+	{
+		data->strategy = get_complexity(value);
+		idx[2]++;
+	}
+}
 
 t_best_move	*build_best_move(int value, int counter,
 	int (f)(t_global_data *, int, int)
