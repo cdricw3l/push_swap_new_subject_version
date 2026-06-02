@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 14:06:31 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:01:05 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,21 @@ int	generate_range(int ranges[LIMIT][2], int total_size, int range_size)
 		i += 1;
 	}
 	return (i);
+}
+
+int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
+{
+	if (!data || (stack != STACK_A && stack != STACK_B))
+		return (ERR);
+	if (stack == STACK_A)
+	{
+		stk->arr = data->a;
+		stk->len = data->size_a;
+	}
+	else if (stack == STACK_B)
+	{
+		stk->arr = data->b;
+		stk->len = data->size_b;
+	}
+	return (OK);
 }

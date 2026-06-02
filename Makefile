@@ -136,7 +136,7 @@ clean:
 	rm -rf $(SRCS_OBJS) $(BONUS_OBJS) $(VALGRIND_LOG)
 
 fclean: clean
-	rm -rf $(NAME) $(BONUS_NAME)
+	rm -rf $(NAME) $(BONUS_NAME) *.txt
 
 re: fclean $(NAME)
 

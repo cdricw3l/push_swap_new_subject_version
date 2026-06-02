@@ -6,39 +6,13 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:34:24 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 16:22:20 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:01:19 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static int	check_digit(char *str)
-{
-	char	*ptr;
 
-	ptr = str;
-	if (!ptr || !*ptr)
-		return (ERR);
-	if (*ptr == MINUS || *ptr == PLUS)
-		ptr++;
-	while (*ptr)
-	{
-		if (!ft_isdigit(*ptr))
-			return (ERR);
-		ptr++;
-	}
-	return (OK);
-}
-
-static int	check_arg(char *arg)
-{
-	if (!arg)
-		return (ERR);
-	if (check_digit(arg) == ERR || ft_atoi_long(arg) > INT_MAX
-		|| ft_atoi_long(arg) < INT_MIN)
-		return (ERR);
-	return (OK);
-}
 /* idx[0]= couter_input idx[1] = idx i idx[2] = idx j*/
 
 int	check_args(char **argv, t_global_data *data)
@@ -56,12 +30,12 @@ int	check_args(char **argv, t_global_data *data)
 		if (idx[1] == 0 && get_complexity(split[0]) == BENCH)
 		{
 			data->bench_mode = get_complexity(split[0]);
-				idx[2]++;
+			idx[2]++;
 		}
 		if (((idx[1] == 0 && data->bench_mode != BENCH) || idx[1] == 1) && get_complexity(split[0]) != NONE)
 		{
 			data->strategy = get_complexity(split[0]);
-				idx[2]++;
+			idx[2]++;
 		}
 		while (split[idx[2]])
 		{

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:39:03 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 16:25:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:40:07 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	float_precision_ajustement(int n)
 {
+	printf("voici n %d\n", n);
 	if (n % 10 > 5)
 		while (n % 10 != 0)
 			n++;
@@ -26,12 +27,26 @@ void	put_float(float nb, int fd)
 	int		f_adjusted;
 	float	fpart;
 
-	ipart = (int)nb;
-	fpart = nb - (float)ipart;
-	f_adjusted = float_precision_ajustement((int)(fpart * 1000)) / 10;
-	ft_putnbr_fd(ipart, fd);
+	ipart = (int)nb * 100;
+	if(ipart == 100)
+	{
+		ft_putnbr_fd(ipart, fd);
+		return ;
+	}
+	fpart = (nb - (float)ipart) * 10;
+	printf("voici f %f\n", fpart);
+	printf("voici f %f\n", nb);
+	if(ipart == 0 && fpart == 0)
+	{
+		ft_putnbr_fd(0, fd);
+		return ;
+	}
+	f_adjusted = float_precision_ajustement((int)(fpart * 10000)) / 10;
+	ft_putnbr_fd((f_adjusted / 1000) % 10, fd);
+	ft_putnbr_fd((f_adjusted / 100) % 10, fd);
 	write(fd, ".", 1);
-	ft_putnbr_fd(f_adjusted, fd);
+	ft_putnbr_fd((f_adjusted / 10) % 10, fd);
+	ft_putnbr_fd((f_adjusted) % 10, fd);
 }
 
 /* display the move in STDOUT */

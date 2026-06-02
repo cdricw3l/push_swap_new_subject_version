@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 16:30:11 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:01:42 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "../lib/libft.h"
 # include <stdbool.h>
 # include <stdio.h>
-#include <assert.h>
 
 # define LIMIT 1024
 # define OK 0
@@ -65,7 +64,7 @@ enum			e_bench
 	B_RB,
 	B_RR,
 	B_RRA,
-	B_RRB	,
+	B_RRB,
 	B_RRR
 };
 
@@ -143,6 +142,8 @@ int				medium_rank(t_global_data *data);
 int				turkish(t_global_data *data);
 
 /* utils */
+int				check_digit(char *str);
+int				check_arg(char *arg);
 void			print_move(int move, int stack);
 float			compute_disorder(t_global_data *data);
 void			put_float(float nb, int fd);
@@ -170,7 +171,6 @@ void			init_best_cost(t_best_cost *best, t_global_data *data,
 int				get_target_number(t_global_data *data, int stack, t_list **lst);
 void			free_list(t_list **list);
 int				get_total_cost(t_best_cost *target, t_list *list);
-
 
 /* bench */
 int				benchmark(t_global_data *data);

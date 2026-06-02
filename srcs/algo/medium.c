@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 14:28:03 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:55:20 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ static int	process_best_move(t_global_data *data)
 	int			ranges[LIMIT][2];
 	t_best_move	*best;
 
-	nb_range = generate_range(ranges, data->size_a, get_range_size(data->size_a));
+	nb_range = generate_range(ranges, data->size_a,
+			get_range_size(data->size_a));
 	if (nb_range == ERR)
 		return (ERR);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 14:29:56 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 16:30:03 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 16:51:17 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	write_disorder(t_global_data *data)
 
 void	write_total_ops(t_global_data *data)
 {
-	int total_ops;
-	int i;
+	int	i;
+	int	total_ops;
 
 	i = 0;
 	total_ops = 0;

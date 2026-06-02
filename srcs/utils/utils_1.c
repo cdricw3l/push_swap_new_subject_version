@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 15:36:10 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:01:32 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	get_complexity(char *arg)
 {
-	if (ft_strncmp(arg, "--bench", ft_strlen_longest("--simple", arg)) == OK)
-		return (BENCH);
-	else if (ft_strncmp(arg, "--simple", ft_strlen_longest("--simple", arg)) == OK)
+	if (ft_strncmp(arg, "--simple", ft_strlen_longest("--simple", arg)) == OK)
 		return (SIMPLE);
 	else if (ft_strncmp(arg, "--medium", ft_strlen_longest("--medium",
 				arg)) == OK)
@@ -27,7 +25,20 @@ int	get_complexity(char *arg)
 	else if (ft_strncmp(arg, "--adaptive", ft_strlen_longest("--adaptive",
 				arg)) == OK)
 		return (ADAPTATIVE);
+	else if (ft_strncmp(arg, "--bench", ft_strlen_longest("--simple", 
+				arg)) == OK)
+		return (BENCH);
 	return (NONE);
+}
+
+int	check_arg(char *arg)
+{
+	if (!arg)
+		return (ERR);
+	if (check_digit(arg) == ERR || ft_atoi_long(arg) > INT_MAX
+		|| ft_atoi_long(arg) < INT_MIN)
+		return (ERR);
+	return (OK);
 }
 
 float	compute_disorder(t_global_data *data)
@@ -82,19 +93,21 @@ int	ft_is_sort(t_global_data *data, int stack)
 	return (1);
 }
 
-int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
+
+int	check_digit(char *str)
 {
-	if (!data || (stack != STACK_A && stack != STACK_B))
+	char	*ptr;
+
+	ptr = str;
+	if (!ptr || !*ptr)
 		return (ERR);
-	if (stack == STACK_A)
+	if (*ptr == MINUS || *ptr == PLUS)
+		ptr++;
+	while (*ptr)
 	{
-		stk->arr = data->a;
-		stk->len = data->size_a;
-	}
-	else if (stack == STACK_B)
-	{
-		stk->arr = data->b;
-		stk->len = data->size_b;
+		if (!ft_isdigit(*ptr))
+			return (ERR);
+		ptr++;
 	}
 	return (OK);
 }
