@@ -52,10 +52,10 @@ simple: $(NAME)
 
 simple_check: $(NAME)
 ifeq ($(shell uname), Darwin)
-	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./42_checker/checker_Mac $(ARG_SIMPLE_500)
+	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./$(CHECKER_PATH) $(ARG_SIMPLE_500)
 endif
 ifeq ($(OS), Linux)
-	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./42_checker/checker_linux $(ARG_SIMPLE_500)
+	@./$(NAME) --simple $(ARG_SIMPLE_500) | ./$(CHECKER_PATH) $(ARG_SIMPLE_500)
 endif
 
 
