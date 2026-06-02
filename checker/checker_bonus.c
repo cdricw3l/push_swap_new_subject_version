@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:53:48 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 18:54:26 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 00:14:45 by cdric.b          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,12 @@ int	error_managment(char **line, int code)
 int	main(int argc, char **argv)
 {
 	t_global_data	data;
-	int				b_read; 
 	char			*buffer;
 
 	if (argc == 1)
 		return (0);
 	if (init_global_data(&argv[1], &data) == ERR)
 		return (error_managment(NULL, 1));
-	b_read = 1;
 	buffer = argv[0];
 	while (buffer)
 	{
