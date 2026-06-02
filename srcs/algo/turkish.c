@@ -6,37 +6,13 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 16:09:52 by mabrugge          #+#    #+#             */
-/*   Updated: 2026/06/02 11:39:57 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/02 12:24:30 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	associate_target(t_list *lst, t_global_data *data)
-{
-	t_list			*current;
-	t_best_cost		*cur;
-	t_list			*tmp;
-	t_target_result	target;
-
-	current = lst;
-	while (current)
-	{
-		cur = current->content;
-		tmp = lst;
-		if (cur->stack != STACK_B)
-		{
-			current = current->next;
-			continue ;
-		}
-		target = find_closet_value(cur, tmp);
-		associate_one_target(cur, target, data);
-		current = current->next;
-	}
-	return (OK);
-}
-
-int	associate_one_target(t_best_cost *cur, t_target_result target,
+static int	associate_one_target(t_best_cost *cur, t_target_result target,
 		t_global_data *data)
 {
 	int	*min;
@@ -55,7 +31,7 @@ int	associate_one_target(t_best_cost *cur, t_target_result target,
 	return (OK);
 }
 
-t_target_result	find_closet_value(t_best_cost *cur, t_list *list)
+static t_target_result	find_closet_value(t_best_cost *cur, t_list *list)
 {
 	t_list			*tmp;
 	t_target_result	target;
@@ -82,23 +58,31 @@ t_target_result	find_closet_value(t_best_cost *cur, t_list *list)
 	return (target);
 }
 
-static int	get_total_cost(t_best_cost *target, t_list *list)
+static int	associate_target(t_list *lst, t_global_data *data)
 {
-	t_list		*current;
-	t_best_cost	*cur;
+	t_list			*current;
+	t_best_cost		*cur;
+	t_list			*tmp;
+	t_target_result	target;
 
-	current = list;
+	current = lst;
 	while (current)
 	{
 		cur = current->content;
-		if (cur->value == target->target_value)
-			return (cur->number_of_move + target->number_of_move);
+		tmp = lst;
+		if (cur->stack != STACK_B)
+		{
+			current = current->next;
+			continue ;
+		}
+		target = find_closet_value(cur, tmp);
+		associate_one_target(cur, target, data);
 		current = current->next;
 	}
-	return (0);
+	return (OK);
 }
 
-t_best_cost	*find_best_value(t_list *list)
+static t_best_cost	*find_best_value(t_list *list)
 {
 	t_list		*current;
 	t_best_cost	*cur;

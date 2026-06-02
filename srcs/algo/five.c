@@ -6,35 +6,31 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:32:49 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/05/31 17:46:09 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/02 12:05:52 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	five_values(t_global_data *data, int stack)
+int	five_values(t_global_data *data, int stack)
 {
-	if (ft_is_sort(data, stack))
-		return ;
-	if(stack == STACK_A)
+	if (!data || stack != STACK_A)
+		return (ERR);
+	if (stack == STACK_A)
 	{
-		at_beginning(data, stack, smalest_value(data, STACK_A));
+		if (smalest_value(data, STACK_A))
+			at_beginning(data, stack, smalest_value(data, STACK_A));
+		else
+			return (ERR);
 		push(data, stack, STACK_B, DISPLAY);
-		at_beginning(data, stack, smalest_value(data, STACK_A));
+		if (smalest_value(data, STACK_A))
+			at_beginning(data, stack, smalest_value(data, STACK_A));
+		else
+			return (ERR);
 		push(data, stack, STACK_B, DISPLAY);
 		three_values(data, stack);
 		push(data, STACK_B, stack, DISPLAY);
 		push(data, STACK_B, stack, DISPLAY);
-
 	}
-	else if (stack == STACK_B)
-	{
-		at_beginning(data, stack, bigest_value(data, STACK_B));
-		push(data, stack, STACK_A, DISPLAY);
-		at_beginning(data, stack, bigest_value(data, STACK_B));
-		push(data, stack, STACK_A, DISPLAY);
-		three_values(data, stack);
-		push(data, STACK_A, STACK_B, DISPLAY);
-		push(data, STACK_A, STACK_B, DISPLAY);
-	}
+	return (OK);
 }

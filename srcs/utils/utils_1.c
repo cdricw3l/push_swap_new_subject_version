@@ -6,22 +6,11 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 10:11:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 11:40:36 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/02 12:19:43 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
-void	ft_swap(int *p1, int *p2)
-{
-	int	tmp;
-
-	if (!p1 || !p2)
-		return ;
-	tmp = *p1;
-	*p1 = *p2;
-	*p2 = tmp;
-}
 
 int	get_complexity(char *arg)
 {
@@ -69,7 +58,7 @@ int	ft_is_sort(t_global_data *data, int stack)
 	int				i;
 	t_stack_data	stk;
 
-	if (get_stack_data(*data, stack, &stk) == ERR)
+	if (get_stack_data(data, stack, &stk) == ERR)
 		return (-1);
 	i = 0;
 	while (i < stk.len - 1)
@@ -91,88 +80,19 @@ int	ft_is_sort(t_global_data *data, int stack)
 	return (1);
 }
 
-int	get_stack_data(t_global_data data, int stack, t_stack_data *stk)
+int	get_stack_data(t_global_data *data, int stack, t_stack_data *stk)
 {
+	if (!data || (stack != STACK_A && stack != STACK_B))
+		return (ERR);
 	if (stack == STACK_A)
 	{
-		stk->arr = data.a;
-		stk->len = data.size_a;
+		stk->arr = data->a;
+		stk->len = data->size_a;
 	}
 	else if (stack == STACK_B)
 	{
-		stk->arr = data.b;
-		stk->len = data.size_b;
-	}
-	else
-		return (ERR);
-	return (OK);
-}
-
-int	get_target_number(t_global_data *data, int stack, t_list **lst)
-{
-	t_stack_data	stk;
-	t_list			*new_node;
-	t_best_cost		*best;
-	int				i;
-
-	i = 0;
-	get_stack_data(*data, stack, &stk);
-	while (i < stk.len)
-	{
-		best = malloc(sizeof(t_best_cost));
-		if (!best)
-			return (free_list(lst), ERR);
-		if (stack == STACK_A)
-			init_best_cost(best, data, stack, stk.arr + i);
-		else
-			init_best_cost(best, data, stack, stk.arr - i);
-		new_node = ft_lstnew(best);
-		if (!new_node)
-			return (free(best), free_list(lst), ERR);
-		ft_lstadd_back(lst, new_node);
-		i++;
+		stk->arr = data->b;
+		stk->len = data->size_b;
 	}
 	return (OK);
-}
-
-void	set_move(t_best_cost *best, long born[2])
-{
-	if (born[LEFT] <= born[RIGHT])
-	{
-		best->move = rev_rotate;
-		best->number_of_move = born[LEFT];
-	}
-	if (born[RIGHT] < born[LEFT])
-	{
-		best->move = rotate;
-		best->number_of_move = born[RIGHT];
-	}
-}
-
-void	init_best_cost(t_best_cost *best, t_global_data *data, int stack,
-		int *ptr)
-{
-	long	born[2];
-
-	get_born(born, data, stack, ptr);
-	best->value = *ptr;
-	best->address_ptr_value = ptr;
-	best->stack = stack;
-	set_move(best, born);
-}
-
-void	free_list(t_list **list)
-{
-	t_list		*tmp;
-	t_best_cost	*content;
-
-	while (*list)
-	{
-		tmp = (*list)->next;
-		content = (*list)->content;
-		free(content);
-		free(*list);
-		*list = tmp;
-	}
-	*list = NULL;
 }
