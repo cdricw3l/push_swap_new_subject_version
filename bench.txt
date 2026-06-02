@@ -1,5 +1,5 @@
 [bench] disorder: 0.30%
 [bench] strategy: Simple / O(n2)
 [bench] total_ops: 9
-[bench] sa: 0 sb: 1 pa: 0 pb: 2
-[bench] ra: 2 rb: 2 rr: 0 rra: 0 rrb: 2 rrr: 0
+[bench] sa: 1 sb: 0 pa: 2 pb: 2
+[bench] ra: 2 rb: 0 rr: 0 rra: 2 rrb: 0 rrr: 0
