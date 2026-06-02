@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:35:38 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 01:19:38 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 13:22:03 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@
 # define STACK_B 1
 # define DISPLAY 0
 # define NO_DISPLAY 1
+# define NO_MOVE 1
+
+
+typedef struct s_stack_data
+{
+	int	*arr;
+	int	len;
+
+}	t_stack_data;
 
 enum e_move
 {

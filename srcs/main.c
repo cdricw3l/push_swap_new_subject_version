@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/02 12:37:32 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 13:14:15 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	processing_message(int code)
 	}
 	return (0);
 }
+#include <stdio.h>
 
 int	processing(t_global_data *data)
 {
@@ -38,6 +39,17 @@ int	processing(t_global_data *data)
 		status = selection_sort(data);
 	else if (data->algo == MEDIUM)
 		status = medium_rank(data);
+	else if (data->algo == COMPLEX)
+		status = turkish(data);
+	// int i = 0;
+
+
+	// while (i < data->size_a)
+	// {
+	// 	printf("%d ", data->a[i]);
+	// 	i++;
+	// }
+	// printf("\n");
 	return (processing_message(status));
 }
 

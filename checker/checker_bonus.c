@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:53:48 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 12:36:07 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/02 13:27:39 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	dispatch_move(t_global_data *data, char *buffer)
 	else if (!ft_strncmp(buffer, "sb\n", ft_strlen(buffer)))
 		return (swap(data, STACK_B));
 	else if (!ft_strncmp(buffer, "pa\n", ft_strlen(buffer)))
-		return (push(data, STACK_A, STACK_B));
-	else if (!ft_strncmp(buffer, "pb\n", ft_strlen(buffer)))
 		return (push(data, STACK_B, STACK_A));
+	else if (!ft_strncmp(buffer, "pb\n", ft_strlen(buffer)))
+		return (push(data, STACK_A, STACK_B));
 	else if (!ft_strncmp(buffer, "ra\n", ft_strlen(buffer)))
 		return (rotate(data, STACK_A));
 	else if (!ft_strncmp(buffer, "rb\n", ft_strlen(buffer)))
