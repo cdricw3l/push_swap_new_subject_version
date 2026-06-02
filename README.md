@@ -108,11 +108,11 @@ make re
 ├── include/
 ├── srcs/
 │   ├── algo/
-│   ├── parsing/
-│   ├── operations/
+│   ├── initialisation/
+│   ├── move/
 │   ├── utils/
-│   └── ...
-├── libft/
+│   └── main.c
+├── lib/
 ├── Makefile
 └── README.md
 ```
