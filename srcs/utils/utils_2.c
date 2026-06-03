@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 09:51:58 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/03 00:18:48 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/06/03 09:14:01 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_best_move	*build_best_move(int value, int counter,
 int	get_range_size(int size_list)
 {
 	if (size_list >= 1 && size_list <= 10)
-		return (1);
+		return (size_list);
 	else if (size_list > 10)
 		return (10);
 	return (0);

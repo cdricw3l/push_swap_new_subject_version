@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:08:25 by cdric.b           #+#    #+#             */
-/*   Updated: 2026/06/02 19:05:12 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 10:16:30 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	adaptative_stategie(t_global_data *data)
 		return (selection_sort(data));
 	else if (data->disorder >= 0.2 && data->disorder < 0.5)
 		return (medium_rank(data));
-	else if (data->disorder > 0.5)
+	else if (data->disorder >= 0.5)
 		return (turkish(data));
 	return (OK);
 }
@@ -41,13 +41,7 @@ int	processing(t_global_data *data)
 	int	status;
 
 	status = OK;
-	if (data->size_a == 2 && data->strategy == NONE)
-		status = two_values(data, STACK_A);
-	else if (data->size_a == 3 && data->strategy == NONE)
-		status = three_values(data, STACK_A);
-	else if (data->size_a == 5 && data->strategy == NONE)
-		status = five_values(data, STACK_A);
-	else if (data->strategy == SIMPLE)
+	if (data->strategy == SIMPLE)
 		status = selection_sort(data);
 	else if (data->strategy == MEDIUM)
 		status = medium_rank(data);
@@ -57,6 +51,7 @@ int	processing(t_global_data *data)
 		status = adaptative_stategie(data);
 	return (processing_message(status));
 }
+void	write_total_ops(t_global_data *data);
 
 int	main(int argc, char **argv)
 {
@@ -64,13 +59,17 @@ int	main(int argc, char **argv)
 	int				status;
 
 	(void)argc;
-	if (init_global_data(&argv[1], &data) == ERR)
+	if (argc == 1)
 		return (1);
-	if (ft_is_sort(&data, STACK_A))
+	if (init_global_data(&argv[1], &data) == ERR)
 	{
-		printf("here\n");
-		return (0);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		return (1);
 	}
+	if (ft_is_sort(&data, STACK_A) && data.bench_mode == BENCH)
+		return (benchmark(&data));
+	else if (ft_is_sort(&data, STACK_A) && data.bench_mode != BENCH)
+		return (0);
 	status = processing(&data);
 	if (data.bench_mode == BENCH)
 		benchmark(&data);

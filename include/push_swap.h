@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 19:11:59 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 09:59:22 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ enum			e_algo
 	MEDIUM,
 	COMPLEX,
 	ADAPTATIVE,
-	BENCH
+	BENCH,
+	COUNT,
 };
 
 enum			e_move

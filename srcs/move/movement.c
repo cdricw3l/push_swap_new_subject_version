@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 09:01:59 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 16:05:43 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 10:17:01 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	double_rotation(t_global_data *data, int move, int mode)
 	{
 		rev_rotate(data, STACK_A, NO_DISPLAY);
 		rev_rotate(data, STACK_B, NO_DISPLAY);
-		if (mode == DISPLAY)
+		if (mode == DISPLAY && data->strategy != COUNT)
 			print_move(RRR, A_AND_B);
 		data->move_count[B_RRR] += 1;
 	}

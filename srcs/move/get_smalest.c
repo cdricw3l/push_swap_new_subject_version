@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 18:40:29 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/01 21:59:20 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 09:57:04 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ static int	*process_smalest_in_a(t_global_data *data)
 {
 	int	*arr;
 	int	*ptr_ref;
-	int	i;
 
-	i = *(data->a);
 	arr = data->a;
-	ptr_ref = &i;
+	ptr_ref = data->a;
 	while (arr <= data->end)
 	{
 		if (*arr < *ptr_ref)
@@ -59,3 +57,5 @@ int	*smalest_value(t_global_data *data, int stack)
 		ptr_ref = process_smalest_in_b(data);
 	return (ptr_ref);
 }
+//int	i;
+//i = *(data->a);

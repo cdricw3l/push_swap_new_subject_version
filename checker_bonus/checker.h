@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/01 22:35:38 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/02 14:09:44 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 09:40:14 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <assert.h>
 # include <limits.h>
 # include <unistd.h>
-# include "lib/libft.h"
+# include "../lib/libft.h"
 # include "gnl/get_next_line.h"
 
 # define OK 0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdric.b <cdric.b@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:17:06 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/03 00:19:42 by cdric.b          ###   ########.fr       */
+/*   Updated: 2026/06/03 09:18:00 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	medium_rank(t_global_data *data)
 {
 	if (data->size_a == 2)
 		return (two_values(data, STACK_A));
+	if (data->size_a == 3)
+		return (three_values(data, STACK_A));
 	if (process_best_move(data) == ERR)
 		return (ERR);
 	while (data->size_a < 3)
@@ -111,6 +113,7 @@ int	medium_rank(t_global_data *data)
 			at_beginning(data, STACK_B, bigest_value(data, STACK_B));
 		push(data, STACK_B, STACK_A, DISPLAY);
 	}
+	three_values(data, STACK_A);
 	while (data->b)
 	{
 		if (immediat_superior(data, STACK_A, data->b))
