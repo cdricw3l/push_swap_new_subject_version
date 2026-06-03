@@ -6,7 +6,7 @@
 /*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 12:18:19 by mabrugge          #+#    #+#             */
-/*   Updated: 2026/06/02 12:19:59 by mabrugge         ###   ########.fr       */
+/*   Updated: 2026/06/02 20:05:50 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	check_push_input(t_global_data *data, int src, int dst)
 {
 	if (!data)
 		return (ERR);
-	else if ((src != STACK_A && src != STACK_B)
-		|| (dst != STACK_A && dst != STACK_B))
+	else if ((src != STACK_A && src != STACK_B) || (dst != STACK_A
+			&& dst != STACK_B))
 		return (ERR);
-	else if ((src == STACK_A && data->size_a <= 0)
-		|| (src == STACK_B && data->size_b <= 0))
+	else if ((src == STACK_A && data->size_a <= 0) || (src == STACK_B
+			&& data->size_b <= 0))
 		return (NO_MOVE);
 	return (OK);
 }
@@ -38,7 +38,8 @@ int	get_target_number(t_global_data *data, int stack, t_list **lst)
 	{
 		best = malloc(sizeof(t_best_cost));
 		if (!best)
-			return (free_list(lst), ERR);
+			return (free_list(lst));
+		*best = (t_best_cost){0};
 		if (stack == STACK_A)
 			init_best_cost(best, data, stack, stk.arr + i);
 		else
@@ -59,7 +60,7 @@ void	set_move(t_best_cost *best, long born[2])
 		best->move = rev_rotate;
 		best->number_of_move = born[LE];
 	}
-	if (born[RI] < born[LE])
+	else
 	{
 		best->move = rotate;
 		best->number_of_move = born[RI];
@@ -71,14 +72,19 @@ void	init_best_cost(t_best_cost *best, t_global_data *data, int stack,
 {
 	long	born[2];
 
+	born[0] = 0;
+	born[1] = 0;
 	get_born(born, data, stack, ptr);
+	best->number_of_move = 0;
 	best->value = *ptr;
-	best->address_ptr_value = ptr;
+	if (ptr)
+		best->address_ptr_value = ptr;
 	best->stack = stack;
+	best->target_value = 0;
 	set_move(best, born);
 }
 
-void	free_list(t_list **list)
+int	free_list(t_list **list)
 {
 	t_list		*tmp;
 	t_best_cost	*content;
@@ -92,4 +98,5 @@ void	free_list(t_list **list)
 		*list = tmp;
 	}
 	*list = NULL;
+	return (ERR);
 }

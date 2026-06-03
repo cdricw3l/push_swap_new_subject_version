@@ -6,7 +6,7 @@
 /*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 14:35:55 by cebouhad          #+#    #+#             */
-/*   Updated: 2026/06/03 09:59:22 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/03 10:29:31 by cebouhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void			set_move(t_best_cost *best, long born[2]);
 void			init_best_cost(t_best_cost *best, t_global_data *data,
 					int stack, int *ptr);
 int				get_target_number(t_global_data *data, int stack, t_list **lst);
-void			free_list(t_list **list);
+int				free_list(t_list **list);
 int				get_total_cost(t_best_cost *target, t_list *list);
 
 /* bench */

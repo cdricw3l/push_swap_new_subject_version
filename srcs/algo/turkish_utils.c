@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turkish_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cebouhad <cebouhad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabrugge <mabrugge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 12:21:03 by mabrugge          #+#    #+#             */
-/*   Updated: 2026/06/02 14:01:37 by cebouhad         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:14:59 by mabrugge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	get_total_cost(t_best_cost *target, t_list *list)
 	current = list;
 	while (current)
 	{
-		cur = current->content;
-		if (cur->value == target->target_value)
+		cur = (t_best_cost *)(current->content);
+		if (cur && cur->value == target->target_value)
 			return (cur->number_of_move + target->number_of_move);
 		current = current->next;
 	}
